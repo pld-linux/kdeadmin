@@ -13,7 +13,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -254,7 +254,11 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 	--enable-final \
  	--with-pam=yes \
 	--with-qt-libraries=%{_libdir} \
-	--with-shadow
+	--with-shadow \
+%if "%{_lib}" == "lib64"
+	--enable-libsuffix=64 \
+%endif
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
 %{__make}
 
