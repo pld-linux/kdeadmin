@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
-%define         _ver		3.1.92
-%define		_snap		031024
+%define         _ver		3.1.93
+%define		_snap		031105
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,25 +18,22 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	120fa30e6c69feeec2a9072c651c61b9
+# Source0-md5:	7c93ded2807dbd77898a92c92d7da88e
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-# Required by kpackage (RPM frontend). Dependency taken from librpm.la
-# by libtool.
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
+BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		no_install_post_chrpath		1
 
 %description
 KDE administrative tools. Package includes:
@@ -179,18 +176,6 @@ Zamiennik demona wu-ftp dla KDE.
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
-%package kxconfig
-Summary:	X Window Configuration
-Summary(pl):	Konfiguracja X Window
-Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
-
-%description kxconfig
-X Window Configuration Tool.
-
-%description kxconfig -l pl
-Narzêdzie do konfiguracji X Window..
-
 %prep
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
@@ -204,6 +189,7 @@ done
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
+	--disable-rpath \
 	--enable-final \
  	--with-pam=yes \
 	--with-shadow
@@ -215,18 +201,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_docdir}/kde/HTML
-
-#cd $RPM_BUILD_ROOT%{_iconsdir}
-#mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
-#cd -
+	kde_htmldir=%{_kdedocdir}
 
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
 %find_lang ksysv	--with-kde
 %find_lang kuser	--with-kde
-#%find_lang kxconfig	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -280,10 +261,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kuser
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
-
-#%files kxconfig -f kxconfig.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kxconfig
-#%{_datadir}/apps/kxconfig
-#%{_desktopdir}/kde/kxconfig.desktop
-#%{_iconsdir}/*/*/*/kxconfig*
