@@ -1,0 +1,20 @@
+--- kdeadmin-2.2.2/kpackage/Makefile.am~	Sat Dec  1 23:39:03 2001
++++ kdeadmin-2.2.2/kpackage/Makefile.am	Sat Dec  1 23:39:03 2001
+@@ -3,7 +3,7 @@
+ apps_DATA = kpackage.desktop
+ 
+ # set the include path for X, qt and KDE
+-INCLUDES= $(all_includes)
++INCLUDES= $(all_includes) -I$(RPMLIB_PATH)
+ 
+ # claim, which subdirectories you want to install
+ SUBDIRS = pics toolbar icon mimetypes
+@@ -35,8 +35,6 @@
+ # that depend on the following ones.
+ kpackage_LDADD   =  $(LIB_KFILE) $(LIBDB)  $(LIBRPM) $(LIBPOPT) $(LIBINTL) $(LIBZ)  
+ 
+-INCLUDES = $(all_includes) -I$(RPMLIB_PATH)
+-
+ messages: rc.cpp
+ 	$(XGETTEXT) *.cpp -o $(podir)/kpackage.pot
+ 
