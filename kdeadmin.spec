@@ -153,24 +153,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde/apps/ksysv/
 %{_datadir}/kde/icons/ksysv.xpm
 %{_datadir}/kde/icons/mini/ksysv.xpm
-
-%changelog
-* Tue May 25 1999 Wojciech "Sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
-  [1.1.1-2]
-- fixes package,
-- fixes file locations.
-
-* Tue May 18 1999 Wojciech "Sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
-  [1.1.1-1]
-- update to version 1.1.1,
-- added Group(pl) description,
-- added kdat package,
-- fixes Group description.
- 
-* Wed Dec  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0-7]
-- recompiled against libstdc++.so.2.9.
-
-* Fri Oct 16 1998 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
-  [1.0-4]
-- created new spec based on kdebase.spec.
