@@ -1,5 +1,5 @@
 
-%define         _state          stable                                        
+%define         _state          stable
 %define         _ver		3.1.2
 
 Summary:	K Desktop Environment - administrative tools
@@ -288,7 +288,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-%{_datadir}/pixmaps/*/*/*/kcron.png
+%{_pixmapsdir}/*/*/*/kcron.png
 %{_applnkdir}/System/kcron.desktop
 
 #################################################
