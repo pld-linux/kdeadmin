@@ -1,11 +1,11 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040511
+%define		_snap		040517
 %define		_packager	adgor
 
-%define		_minlibsevr	9:3.2.90.040508
-%define		_minbaseevr	9:3.2.90.040508
+%define		_minlibsevr	9:3.2.90.040515
+%define		_minbaseevr	9:3.2.90.040515
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -15,7 +15,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -37,7 +37,7 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake
+BuildRequires:	unsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -226,43 +226,11 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-# Workaround for doc caches (unsermake bug?)
-cd doc
-for i in `find . -name index.cache.bz2`; do
-	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
-done
-cd -	 
-
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
 %find_lang ksysv	--with-kde
 %find_lang kuser	--with-kde
-
-files="\
-	kcron \
-	kdat \
-	kpackage \
-	ksysv \
-	kuser"
-
-for i in $files; do
-	> ${i}_en.lang
-	echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-done
-
-durne=`ls -1 *.lang|grep -v _en`
-
-for i in $durne; do
-	echo $i >> control
-	grep -v en\/ $i|grep -v apidocs >> ${i}.1
-	if [ -f ${i}.1 ] ; then
-		mv ${i}.1 ${i}
-	fi
-done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -282,20 +250,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kcmlinuz
 %{_desktopdir}/kde/linuz.desktop
 
-%files kcron -f kcron_en.lang
+%files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
 
-%files kdat -f kdat_en.lang
+%files kdat -f kdat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
 %{_desktopdir}/kde/kdat.desktop
 %{_iconsdir}/[!l]*/*/*/kdat*
 
-%files kpackage -f kpackage_en.lang
+%files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
 %{_libdir}/kde3/kfile*.la
@@ -306,7 +274,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kpackage.desktop
 %{_iconsdir}/*/*/*/kpackage.png
 
-%files ksysv -f ksysv_en.lang
+%files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
@@ -317,7 +285,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/ksysv.png
 %{_iconsdir}/*/*/*/toggle_log.png
 
-%files kuser -f kuser_en.lang
+%files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
