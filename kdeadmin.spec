@@ -1,6 +1,6 @@
 
 %define         _state          unstable                                        
-%define         _kdever         kde-3.1-rc3
+%define         _kdever         kde-3.1-rc5
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -9,7 +9,7 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	3.0.99
+Version:	3.1
 Release:	1
 Epoch:		7
 License:	GPL
