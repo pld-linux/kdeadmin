@@ -21,8 +21,6 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 # generated from kde-i18n
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
-Requires:	kdelibs >= %{version}
-Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -35,6 +33,8 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	sed >= 4.0
+Requires:	kdelibs >= %{version}
+Requires:	pam
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -233,7 +233,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,System/Administration}
 
 KDEDIR=%{_prefix} ; export KDEDIR
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
 mv -f $ALD/System/{More/*.desktop,.}
