@@ -23,8 +23,8 @@ Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	1ff46933b955cb4bc71cd533c6f730d1
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
-Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
+Source1:        kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	eed79dbaa88ff33cf37d86edb3c6e767
 %endif
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-vcategories.patch
