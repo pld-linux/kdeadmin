@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
-%define         _ver		3.2
-%define		_snap		030613
+%define         _ver		3.1.90
+%define		_snap		030618
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -10,15 +10,15 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	%{_ver}
-Release:	0.%{_snap}.1
-Epoch:		7
+Version:	%{_ver}.%{_snap}
+Release:	1
+Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	09ab92a3b9615ba52a19b58069be736a
+# Source0-md5:	15853a890bd477468e82124f69cb072d
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
