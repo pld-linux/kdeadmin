@@ -3,8 +3,8 @@ Summary(es):	K Desktop Environment - herramientas administrativas
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Name:		kdeadmin
-Version:	2.2.1
-Release:	2
+Version:	2.2.2
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
