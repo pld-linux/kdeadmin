@@ -1,16 +1,26 @@
+%define		_ver		3.0
+#define		_sub_ver
+%define		_rel		1
+
+%{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
+%{!?_sub_ver:	%define	_version	%{_ver}}
+%{?_sub_ver:	%define	_release	0.%{_sub_ver}.%{_rel}}
+%{!?_sub_ver:	%define	_release	%{_rel}}
+%{!?_sub_ver:	%define	_ftpdir	stable}
+%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}%{_sub_ver}}
+
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Name:		kdeadmin
-Version:	2.2.2
-Release:	5
+Version:	%{_version}
+Release:	%{_release}
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-am15.patch
+Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}
 Requires:	pam
@@ -158,15 +168,24 @@ Zamiennik demona wu-ftp dla KDE.
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
+%package kdat
+Summary:	Tape backup tool
+Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
+Group:		X11/Applications
+Requires:       kdelibs = %{version}
+
+%description kdat
+Tape backup tool.
+
+%description kdat -l pl
+Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
+
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
-%{__make} -f Makefile.cvs
 
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
@@ -188,6 +207,8 @@ KDEDIR=%{_prefix} ; export KDEDIR
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
+
+%find_lang kdat --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -221,8 +242,8 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 %files kcmlinuz
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libkcm*
-%attr(755,root,root) %{_libdir}/kde2/libkcm*
+#%attr(755,root,root) %{_libdir}/libkcm*
+%attr(755,root,root) %{_libdir}/kde3/kcm_li*.??
 
 %{_applnkdir}/Settings/KDE/System/li*.desktop
 %{_datadir}/apps/kcmlinuz
@@ -264,3 +285,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_htmldir}/en/kwuftpd
 %{_applnkdir}/System/kwuftpd.desktop
+
+#################################################
+#             KWUFTPD
+#################################################
+%files kdat -f kdat.lang
+%defattr(644,root,root,755)
+%{_bindir}/kdat
+%{_datadir}/apps/kdat
+%{_pixmapsdir}/*/*/*/kdat*
+%{_applnkdir}/Utilities/kdat.desktop
