@@ -1,6 +1,7 @@
 
-%define         _state          stable                                        
-%define         _ver		3.1.2
+%define         _state          snapshots
+%define         _ver		3.1.90
+%define		_snap		030726
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -9,17 +10,16 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	%{_ver}
+Version:	%{_ver}.%{_snap}
 Release:	1
-Epoch:		7
+Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	94c2981cd54bd02549664852fb82dd05
-#
-# generated from kde-i18n
-#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	0cd4995fa8ac4a8a5da53965c615bf42
+Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs >= %{version}
 Requires:	pam
@@ -28,7 +28,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -38,7 +38,8 @@ BuildRequires:	sed >= 4.0
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_htmldir	/usr/share/doc/kde/HTML
+%define		_htmldir	%{_docdir}/kde/HTML
+%define		_icondir	%{_datadir}/icons
 
 %define		no_install_post_chrpath		1
 
@@ -73,7 +74,6 @@ Summary(pl):	Konfigurator j眃ra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 
 %description kcmlinuz
 A Linux kernel configurator for KDE.
@@ -89,7 +89,7 @@ Summary:	Tape backup tool
 Summary(pl):	Narz阣zie do wykonywania kopii zapasowych na ta秏ie
 Group:		X11/Applications
 Requires:       kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
+Obsoletes:	kdat
 
 %description kdat
 Tape backup tool.
@@ -102,8 +102,7 @@ Summary:	KDE cron daemon
 Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
+Requires:	kdebase-core >= %{version}
 
 %description kcron
 Kde version of "CRON".
@@ -119,10 +118,9 @@ Summary:	RPM front-end KDE
 Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
+Requires:	kdebase-core >= %{version}
 Provides:	kpackage
 Obsoletes:	kpackage
-Obsoletes:	%{name}-kwuftpd
 
 %description kpackage
 Package front-end for KDE.
@@ -138,8 +136,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administra玢o da inicializa玢o System V
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
+Requires:	kdebase-core >= %{version}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -157,8 +154,7 @@ Summary:	KDE User management tool
 Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administra玢o de usu醨ios
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
+Requires:	kdebase-core >= %{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -176,7 +172,7 @@ Summary:	KDE FTP daemon
 Summary(pl):	Wu-FTP daemon for KDE
 Summary(pt_BR):	Ferramenta de administra玢o gr醘ica do WU-FTPD
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
+Requires:	kdelibs >= %{version}
 Requires:	wu-ftpd
 
 %description kwuftpd
@@ -192,8 +188,7 @@ Ferramenta de administra玢o gr醘ica do WU-FTPD (servidor FTP).
 Summary:	X Window Configuration
 Summary(pl):	Konfiguracja X Window
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
+Requires:	kdebase-core >= %{version}
 
 %description kxconfig
 X Window Configuration Tool.
@@ -202,109 +197,74 @@ X Window Configuration Tool.
 Narz阣zie do konfiguracji X Window..
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
+%patch0 -p1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
-CXXFLAGS="%{rpmcflags} -Wall"
-CFLAGS="%{rpmcflags} -Wall"
 
 for plik in `find ./ -name *.desktop` ; do
+
+if [ -d $plik ]; then
 	echo $plik
-	sed -i -e 's/\[nb\]/\[no\]/g' $plik
+	sed -ie 's/\[nb\]/\[no\]/g' $plik
+	fi
 done
 
 %configure \
-	--with-qt-dir=%{_prefix} \
- 	--with-install-root=$RPM_BUILD_ROOT \
-	--with-quota \
-	--with-shadow \
-	--with-rpm \
- 	--with-pam="yes" \
-	--with-final
+	--enable-final \
+ 	--with-pam=yes \
+	--with-shadow
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,System/Administration}
 
-KDEDIR=%{_prefix} ; export KDEDIR
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
+	kde_htmldir=%{_htmldir}
 
-ALD=$RPM_BUILD_ROOT%{_applnkdir}
-mv -f $ALD/System/{More/*.desktop,.}
-mv -f $ALD/System/{{ksysv,kuser}.desktop,Administration}
-mv -f $ALD/{Settings/Peripherals/kxconfig.desktop,System/Administration}
-mv -f $ALD/Settings/{[!K]*,KDE}
+mv -f $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 
-cd $ALD/System/Administration
-cat kxconfig.desktop |sed -e 's/Icon=xapp/Icon=kxconfig/' \
-    > kxconfig.desktop.tmp
-mv kxconfig.desktop.tmp kxconfig.desktop
-cd -
+mv $RPM_BUILD_ROOT%{_applnkdir}/KDE-Settings/Peripherals/kxconfig.desktop \
+    $RPM_BUILD_ROOT%{_desktopdir}
 
-cd $RPM_BUILD_ROOT%{_pixmapsdir}
+cd $RPM_BUILD_ROOT%{_icondir}
 mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
 cd -
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-
-#%find_lang kcmlilo	--with-kde
-#%find_lang kcmlinuz	--with-kde
-#cat kcmlilo.lang >> kcmlinuz.lang
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
-#%find_lang ksysctrl	--with-kde
 %find_lang ksysv	--with-kde
-#cat ksysctrl.lang >> ksysv.lang
 %find_lang kuser	--with-kde
 %find_lang kwuftpd	--with-kde
 %find_lang kxconfig	--with-kde
-#%find_lang secpolicy	--with-kde
-#cat secpolicy.lang >> ksysv.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#################################################
-#             KCMLINUZ
-#################################################
-#%files kcmlinuz -f kcmlinuz.lang
 %files kcmlinuz
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_li*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
 %{_datadir}/apps/kcmlinuz
-%{_applnkdir}/Settings/KDE/System/li*.desktop
+%{_applnkdir}/KDE-Settings/System/li*.desktop
 
-#################################################
-#             KCRON
-#################################################
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-%{_datadir}/pixmaps/*/*/*/kcron.png
-%{_applnkdir}/System/kcron.desktop
+%{_desktopdir}/kcron.desktop
+%{_icondir}/*/*/*/kcron.png
 
-#################################################
-#             KDAT
-#################################################
 %files kdat -f kdat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
-%{_applnkdir}/System/kdat.desktop
-%{_applnkdir}/Utilities/kdat.desktop
-%{_pixmapsdir}/[!l]*/*/*/kdat*
+%{_desktopdir}/kdat.desktop
+%{_icondir}/[!l]*/*/*/kdat*
 
-#################################################
-#             KPACKAGE
-#################################################
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
@@ -313,12 +273,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kpackage
 %{_datadir}/mimelnk/application/x-debian-package.desktop
 %{_datadir}/services/kfile*
-%{_applnkdir}/System/kpackage.desktop
-%{_pixmapsdir}/*/*/*/kpackage.png
+%{_desktopdir}/kpackage.desktop
+%{_icondir}/*/*/*/kpackage.png
 
-#################################################
-#             KSYSV
-#################################################
 %files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
@@ -326,34 +283,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksysv
 %{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
-%{_applnkdir}/System/Administration/ksysv.desktop
-%{_pixmapsdir}/*/*/*/ksysv.png
-%{_pixmapsdir}/*/*/*/toggle_log.png
+%{_desktopdir}/ksysv.desktop
+%{_icondir}/*/*/*/ksysv.png
+%{_icondir}/*/*/*/toggle_log.png
 
-#################################################
-#             KUSER
-#################################################
 %files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
-%{_applnkdir}/System/Administration/kuser.desktop
-%{_pixmapsdir}/*/*/*/kuser.png
+%{_desktopdir}/kuser.desktop
+%{_icondir}/*/*/*/kuser.png
 
-#################################################
-#             KWUFTPD
-#################################################
-#%files kwuftpd -f kwuftpd.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kwuftpd
-#%{_applnkdir}/System/kwuftpd.desktop
-
-#################################################
-#             KXCONFIG
-#################################################
 %files kxconfig -f kxconfig.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kxconfig
 %{_datadir}/apps/kxconfig
-%{_applnkdir}/System/Administration/kxconfig.desktop
-%{_pixmapsdir}/*/*/*/kxconfig*
+%{_desktopdir}/kxconfig.desktop
+%{_icondir}/*/*/*/kxconfig*
