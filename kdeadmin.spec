@@ -183,7 +183,7 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
-Requires:       kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description kdat
 Tape backup tool.
