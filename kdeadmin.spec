@@ -22,6 +22,8 @@ Patch4:		%{name}-fix-ksysv-mem-leak.patch
 Patch5:		%{name}-fix-kpackage-mem-leak.patch
 Patch6:		%{name}-kdat-use-kintinput.patch
 Patch7:		%{name}-fix-kwuftpd-fix-bug-45142.patch
+Patch8:		%{name}-kuserconfig.patch
+Patch9:		%{name}-desktop.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}
 Requires:	pam
@@ -192,6 +194,8 @@ Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
