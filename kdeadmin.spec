@@ -1,15 +1,19 @@
+%define		REV	20000418
 Summary:	K Desktop Environment - administrative tools
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Name:		kdeadmin
-Version:	1.1.2
-Release:	1
+Version:	2.0
+Release:	1.pre_%{REV}
 Copyright:	GPL
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
 Vendor:		The KDE Team
-Source:		ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
-Requires:	qt >= 1.44, kdelibs = %{version}, pam
+Source:		ftp.kde.org/pub/kde/snapshots/current/%{name}-%{REV}.tar.bz2
+Requires:	qt >= 2.1, kdelibs = %{version}, pam
 BuildRequires:	kdelibs-devel
+BuildRequires:	rpm-devel >= 3.0.4
+BuildRequires:	pam-devel >= 0.71
+Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _prefix	/usr/X11R6
@@ -17,16 +21,36 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 KDE administrative tools.
 Package includes:
+  KCron - KDE Cron daemon
   KDat  - KDE tar-based tape archiver
   KUser - KDE user setup tool
   KSYSV - SYS V Init configuration
+  KPackage - KDE support for RPM
+  Kwuftpd - KDE ftp daemon
+  
 
 %description -l pl
 Aplikacje administratorskie dla KDE.
 Pakiet zawiera:
+  KCron - Program cron
   KDat  - Program archiwizuj±cy 
   KUser - Program do zarz±dzania kontami u¿ytkowników
   KSYSV - Program do konfiguracji startu systemu
+  KPackage - Przegl±darka pakietów
+  Kwuftpd - Demon FTP dla KDE
+  
+%package kcron
+Summary:     KDE cron daemon
+Summary(pl): Program cron
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 2.1, kdelibs = %{version}
+
+%description kcron
+Kde version of "CRON"
+
+%description -l pl kcron
+Program "cron" w wersji dla KDE.
 
 %package kdat
 Summary:     KDE tar-based tape archiver
@@ -70,24 +94,31 @@ A Sys V Init configurator for KDE.
 Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init
 
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %build
+make -f Makefile.cvs
 export KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti" \
-CFLAGS="$RPM_OPT_FLAGS -Wall" \
-./configure %{_target_platform} \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall"
+CFLAGS="$RPM_OPT_FLAGS -Wall"
+LDFLAGS="-s"
+export CXXFLAGS CFLAGS LDFLAGS
+%configure \
 	--prefix=$KDEDIR \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
+	--with-rpm \
+	--with-quota \
+	--with-shadow \
  	--with-pam="yes"
 
-cd kdat
-make KDEDIR=$KDEDIR
-cd  ../ksysv
-make KDEDIR=$KDEDIR
-cd ../kuser
-make KDEDIR=$KDEDIR
+make
+#cd kdat
+#make KDEDIR=$KDEDIR
+#cd  ../ksysv
+#make KDEDIR=$KDEDIR
+#cd ../kuser
+#make KDEDIR=$KDEDIR
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -97,6 +128,7 @@ make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
 cd ..
 make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
 
+%find_lang kcron
 %find_lang kdat
 %find_lang kuser
 %find_lang ksysv
@@ -104,6 +136,11 @@ make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+#################################################
+#             KCRON
+#################################################
+%files kcron -f kcron.lang
+%defattr(644,root,root,755)
 #################################################
 #             KDAT
 #################################################
