@@ -8,7 +8,6 @@ Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
 Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-nokdat.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}, pam 
 BuildRequires:	kdelibs-devel >= %{version}
