@@ -5,7 +5,7 @@
  X-DCOP-ServiceType=Unique
  X-KDE-SubstituteUID=true
 -Categories=Qt;KDE;System
-+Categories=Qt;KDE;System;X-Administration
++Categories=Qt;KDE;SystemSetup
 --- kdeadmin-030329/kuser/kuser.desktop~	Tue Mar 11 08:09:32 2003
 +++ kdeadmin-030329/kuser/kuser.desktop	Wed Apr  2 09:25:04 2003
 @@ -61,4 +61,4 @@
@@ -13,12 +13,12 @@
  X-KDE-StartupNotify=true
  X-KDE-SubstituteUID=true
 -Categories=Qt;KDE;System
-+Categories=Qt;KDE;System;X-Administration
---- kdeadmin-030403/kxconfig/kxconfig.desktop~	Tue Mar 11 08:09:33 2003
-+++ kdeadmin-030403/kxconfig/kxconfig.desktop	Fri Apr  4 10:14:50 2003
-@@ -108,3 +108,5 @@
- Keywords[xh]=X11,XFree,Uboniso,Isisombululo,Imizobo,Ikhadi, Ikhusi
++Categories=Qt;KDE;SystemSetup
+--- kdeadmin-030908/kxconfig/kxconfig.desktop~	2003-09-01 12:23:05.000000000 +0200
++++ kdeadmin-030908/kxconfig/kxconfig.desktop	2003-09-09 00:08:42.000000000 +0200
+@@ -126,4 +126,4 @@
  Keywords[zh_CN]=X11,XFree,Display,Resolution,Graphic,Card,Monitor,Screen,显示器,分辨率,图像,显示卡,监视器,屏幕
  keywords[zh_TW.Big5]=X11,XFree,顯示器,解析度,圖形,介面卡,監視器,螢幕
-+
-+Categories=Qt;KDE;System;X-Administration
+ 
+-Categories=Qt;KDE;X-KDE-settings-peripherals
++Categories=Qt;KDE;SystemSetup
