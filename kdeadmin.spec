@@ -6,7 +6,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	3.0.4
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -210,6 +210,7 @@ CFLAGS="%{rpmcflags} -Wall"
 	--with-shadow \
 	--with-rpm \
  	--with-pam="yes" \
+	--disable-rpath \
 	--with-final
 
 %{__make}
