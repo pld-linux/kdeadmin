@@ -4,7 +4,7 @@ Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Name:		kdeadmin
 Version:	2.2.2
-Release:	3
+Release:	4
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -25,10 +25,19 @@ Group(sv):	X11/Tillämpningar
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am15.patch
 Icon:		kde-icon.xpm
-Requires:	kdelibs = %{version}, pam 
+Requires:	kdelibs = %{version}
+Requires:	pam 
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	zlib-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libjpeg-devel
+# Required by kpackage (RPM frontend). Dependency taken from librpm.la
+# by libtool.
+BuildRequires:	db1-devel
+BuildRequires:	db3-devel
+BuildRequires:	bzip2-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel 
 BuildRequires:	rpm-devel
@@ -248,11 +257,13 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 %patch0 -p1
 
 %build
-CXXFLAGS="%{rpmcflags} -Wall"
-CFLAGS="%{rpmcflags} -Wall"
+kde_htmldir="%{_htmldir}"; export kde_htmldir
+kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %{__make} -f Makefile.cvs
 
+CXXFLAGS="%{rpmcflags} -Wall"
+CFLAGS="%{rpmcflags} -Wall"
 %configure \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
@@ -281,7 +292,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_htmldir}/en/kcron
 %{_applnkdir}/System/kcron.desktop
-%{_datadir}/icons/*color/*x*/apps/kcron.png
+%{_datadir}/pixmaps/*color/*x*/apps/kcron.png
 
 #################################################
 #             KPACKAGE
@@ -293,7 +304,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_htmldir}/en/kpackage
 %{_applnkdir}/System/kpackage.desktop
 %{_datadir}/apps/kpackage
-%{_datadir}/icons/*color/*x*/apps/kpackage.png
+%{_datadir}/pixmaps/*color/*x*/apps/kpackage.png
 %{_datadir}/mimelnk/application/x-debian-package.desktop
 
 #################################################
@@ -302,7 +313,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcmlinuz
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkcm*
-#%attr(755,root,root) %{_libdir}/kde2/libkcm*
+%attr(755,root,root) %{_libdir}/kde2/libkcm*
 
 %{_applnkdir}/Settings/System/li*.desktop
 %{_datadir}/apps/kcmlinuz
@@ -317,7 +328,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_htmldir}/en/ksysv
 %{_datadir}/apps/ksysv
-%{_datadir}/icons/*color/*x*/apps/ksysv.png
+%{_datadir}/pixmaps/*color/*x*/apps/ksysv.png
+%{_datadir}/pixmaps/*color/*x*/actions/toggle_log.png
 %{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
 %{_applnkdir}/System/ksysv.desktop
@@ -332,7 +344,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_htmldir}/en/kuser
 %{_applnkdir}/System/kuser.desktop
 %{_datadir}/apps/kuser
-%{_datadir}/icons/*color/*x*/apps/kuser.png
+%{_datadir}/pixmaps/*color/*x*/apps/kuser.png
 
 #################################################
 #             KWUFTPD
