@@ -10,7 +10,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	3.1
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -222,6 +222,16 @@ mv -f $ALD/System/{{ksysv,kuser}.desktop,Administration}
 mv -f $ALD/{Settings/Peripherals/kxconfig.desktop,System/Administration}
 mv -f $ALD/Settings/{[!K]*,KDE}
 
+cd $ALD/System/Administration
+cat kxconfig.desktop |sed -e 's/Icon=xapp/Icon=kxconfig/' \
+    > kxconfig.desktop.tmp
+mv kxconfig.desktop.tmp kxconfig.desktop
+cd -
+
+cd $RPM_BUILD_ROOT%{_pixmapsdir}
+mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
+cd -
+
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 #%find_lang kcmlilo	--with-kde
@@ -269,7 +279,7 @@ mv -f $ALD/Settings/{[!K]*,KDE}
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
-%{_pixmapsdir}/*/*/*/kdat*
+%{_pixmapsdir}/[!l]*/*/*/kdat*
 %{_applnkdir}/System/kdat.desktop
 %{_applnkdir}/Utilities/kdat.desktop
 
