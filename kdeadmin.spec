@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	3
+Release:	4
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -407,12 +407,12 @@ rm -rf $RPM_BUILD_ROOT
 %files ksysv-i18n -f ksysv.lang
 %files kuser-i18n -f kuser.lang
 %files kcmlinuz-i18n -f kcmlinuz.lang
-%ifnarch ppc
+%ifarch %{ix86} 
 %files kcmlilo-i18n -f kcmlilo.lang
 %endif
 %endif
 
-%ifnarch ppc
+%ifarch %{ix86}
 %files kcmlilo
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_lilo.la
