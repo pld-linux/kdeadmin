@@ -1,6 +1,6 @@
 %define		_ver		3.0.1
 #define		_sub_ver
-%define		_rel		2
+%define		_rel		3
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -49,6 +49,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 KDE administrative tools. Package includes:
 - KCron - KDE Cron daemon
+- KDat - Tape backup tool
 - KUser - KDE user setup tool
 - KSYSV - SYS V Init configuration
 - KPackage - KDE support for RPM
@@ -63,9 +64,10 @@ Herramientas administrativas para KDE. Incluidos en este paquete:
 %description -l pl
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KCron - Program cron
+- KDat - Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
 - KUser - Program do zarz±dzania kontami u¿ytkowników
 - KSYSV - Program do konfiguracji startu systemu
-- KPackage - Przegl±darka pakietów
+- KPackage - Program do zarz±dzania pakietami
 - Kwuftpd - Demon FTP dla KDE
 - Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
 
@@ -215,7 +217,17 @@ mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
+%find_lang kcmlilo --with-kde
+%find_lang kcmlinuz --with-kde
+cat kcmlilo.lang >> kcmlinuz.lang
+%find_lang kcron --with-kde
 %find_lang kdat --with-kde
+%find_lang kpackage --with-kde
+%find_lang ksysv --with-kde
+%find_lang kuser --with-kde
+%find_lang kwuftpd --with-kde
+%find_lang secpolicy --with-kde
+cat secpolicy.lang >> ksysv.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -223,22 +235,18 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCRON
 #################################################
-%files kcron
+%files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-
-%{_htmldir}/en/kcron
 %{_applnkdir}/System/kcron.desktop
 %{_datadir}/pixmaps/*color/*x*/apps/kcron.png
 
 #################################################
 #             KPACKAGE
 #################################################
-%files kpackage
+%files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
-
-%{_htmldir}/en/kpackage
 %{_applnkdir}/System/kpackage.desktop
 %{_datadir}/apps/kpackage
 %{_datadir}/pixmaps/*color/*x*/apps/kpackage.png
@@ -247,23 +255,20 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCMLINUZ
 #################################################
-%files kcmlinuz
+%files kcmlinuz -f kcmlinuz.lang
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_libdir}/libkcm*
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.??
-
 %{_applnkdir}/Settings/KDE/System/li*.desktop
 %{_datadir}/apps/kcmlinuz
 
 #################################################
 #             KSYSV
 #################################################
-%files ksysv
+%files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
-
-%{_htmldir}/en/ksysv
 %{_datadir}/apps/ksysv
 %{_datadir}/pixmaps/*color/*x*/apps/ksysv.png
 %{_datadir}/pixmaps/*color/*x*/actions/toggle_log.png
@@ -274,11 +279,9 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KUSER
 #################################################
-%files kuser
+%files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755, root, root) %{_bindir}/kuser
-
-%{_htmldir}/en/kuser
 %{_applnkdir}/System/kuser.desktop
 %{_datadir}/apps/kuser
 %{_datadir}/pixmaps/*color/*x*/apps/kuser.png
@@ -286,11 +289,9 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KWUFTPD
 #################################################
-%files kwuftpd
+%files kwuftpd -f kwuftpd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwuftpd
-
-%{_htmldir}/en/kwuftpd
 %{_applnkdir}/System/kwuftpd.desktop
 
 #################################################
