@@ -1,5 +1,5 @@
 
-%define         _state          stable                                        
+%define         _state          stable
 %define         _ver		3.1.1
 
 Summary:	K Desktop Environment - administrative tools
@@ -32,6 +32,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
+BuildRequires:	perl
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -211,11 +212,8 @@ CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
 
 for plik in `find ./ -name \*.desktop` ; do
-	if [ -d $plik ]; then
 		echo $plik
-		sed -e "s/[nb]/[no]/g" > $plik.1
-		mv -f $plik.1 $plik
-	fi
+		perl -pi -e "s/\[nb\]/\[no\]/g" $plik
 done
 
 %configure \
