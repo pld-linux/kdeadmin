@@ -240,11 +240,13 @@ cp /usr/share/automake/config.sub admin
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
 # Do not check for lilo
+
 rm lilo-config/configure.in.in
+
 cp %{_datadir}/automake/config.sub admin
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
+
 export UNSERMAKE=%{_datadir}/unsermake/unsermake
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -261,8 +263,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir} \
-	kde_libs_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir}
 
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
