@@ -164,7 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCRON
 #################################################
-%files kcron -f kcron.lang
+%files kcron
 %defattr(644,root,root,755)
 
 %attr(755,root,root) %{_bindir}/kcron
@@ -175,7 +175,7 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KDAT
 #################################################
-%files kdat -f kdat.lang
+%files kdat
 %defattr(644, root, root, 755)
 
 %attr(755, root, root) %{_bindir}/kdat
