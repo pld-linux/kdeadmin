@@ -148,7 +148,7 @@ export CXXFLAGS CFLAGS LDFLAGS
 	--with-shadow \
  	--with-pam="yes"
 
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
