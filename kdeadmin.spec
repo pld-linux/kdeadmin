@@ -21,47 +21,33 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 KDE administrative tools. Package includes:
 - KCron - KDE Cron daemon
-- KDat - KDE tar-based tape archiver
 - KUser - KDE user setup tool
 - KSYSV - SYS V Init configuration
 - KPackage - KDE support for RPM
 - Kwuftpd - KDE ftp daemon
+- Kcmlinuz - KDE Linux Kernel Configuration
 
 %description -l pl
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KCron - Program cron
-- KDat - Program archiwizuj±cy
 - KUser - Program do zarz±dzania kontami u¿ytkowników
 - KSYSV - Program do konfiguracji startu systemu
 - KPackage - Przegl±darka pakietów
 - Kwuftpd - Demon FTP dla KDE
+- Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
 
 %package kcron
 Summary:	KDE cron daemon
 Summary(pl):	Program cron
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description kcron
 Kde version of "CRON"
 
 %description -l pl kcron
 Program "cron" w wersji dla KDE.
-
-%package kdat
-Summary:	KDE tar-based tape archiver
-Summary(pl):	Program archiwizuj±cy
-Group:		X11/KDE/Utilities
-Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
-
-%description kdat
-KDat is a tar-based tape archiver, designed to work with multiple
-archives on a single tape.
-
-%description -l pl kdat
-Program archiwizujacy oparty na programie tar.
 
 %package kuser
 Summary:	KDE User management tool
@@ -91,18 +77,18 @@ Package front-end for KDE.
 %description -l pl kpackage
 Program do manipulowania pakietami w ¶rodowisku KDE.
 
-%package ksysctrl
-Summary:	KDE System configurator	
-Summary(pl):	Konfigurator Systemudla KDE
+%package kcmlinuz
+Summary:	KDE Linux Kernel Configuration
+Summary(pl):	Konfigurator j±dra Linuxa dla KDE
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
 Requires:	kdelibs = %{version}
 
-%description ksysctrl
-A System configurator for KDE.
+%description kcmlinuz
+A Linux kernel configurator for KDE.
 
-%description -l pl ksysctrl
-Program do konfiguracji systemu.
+%description -l pl kcmlinuz
+Program do konfiguracji j±dra Linuxa.
 
 %package ksysv
 Summary:	KDE Sys V Init configurator	
@@ -170,43 +156,31 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/doc/HTML/en/kcron/*
 %{_applnkdir}/System/kcron.desktop
-%{_datadir}/icons/locolor/*x*/apps/kcron.png
-
-#################################################
-#             KDAT
-#################################################
-%files kdat
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kdat
-
-%{_datadir}/doc/HTML/en/kdat/*
-%{_applnkdir}/Utilities/kdat.desktop
-%{_datadir}/apps/kdat/icons
+%{_datadir}/icons/*color/*x*/apps/kcron.png
 
 #################################################
 #             KPACKAGE
 #################################################
 %files kpackage
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kpackage*
+%attr(755,root,root) %{_bindir}/kpackage
 
 %{_datadir}/doc/HTML/en/kpackage/*
-%{_applnkdir}/Utilities/kpackage.desktop
+%{_applnkdir}/System/kpackage.desktop
 %{_datadir}/apps/kpackage
-%{_datadir}/icons/hicolor/*x*/apps/kpackage.png
-%{_datadir}/icons/locolor/*x*/apps/kpackage.png
-%{_datadir}/mimelnk/application/x-debian-package.kdelnk
+%{_datadir}/icons/*color/*x*/apps/kpackage.png
+%{_datadir}/mimelnk/application/x-debian-package.desktop
 
 #################################################
-#             KSYSCONTROL
+#             KCMLINUZ
 #################################################
-%files ksysctrl
+%files kcmlinuz
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ksysctrl
-%attr(755,root,root) %{_bindir}/printversion
+%attr(755,root,root) %{_libdir}/libkcm*
+%attr(755,root,root) %{_libdir/kde2/libkcm*
 
-%{_applnkdir}/System/ksysctrl.desktop
-%{_datadir}/apps/ksysctrl
+%{_applnkdir}/Settings/System/li*.desktop
+%{_datadir}/apps/kcmlinuz
 
 #################################################
 #             KSYSV
@@ -218,8 +192,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/doc/HTML/en/ksysv/*
 %{_datadir}/apps/ksysv
-%{_datadir}/icons/hicolor/*x*/apps/ksysv.png
-%{_datadir}/icons/locolor/*x*/apps/ksysv.png
+%{_datadir}/icons/*color/*x*/apps/ksysv.png
+%{_datadir}/mimelnk/application/x-ksysv-log.desktop
+%{_datadir}/mimelnk/text/x-ksysv-log.desktop
+%{_applnkdir}/System/ksysv.desktop
 
 #################################################
 #             KUSER
@@ -231,8 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/doc/HTML/en/kuser/*
 %{_applnkdir}/System/kuser.desktop
 %{_datadir}/apps/kuser
-%{_datadir}/icons/hicolor/*x*/apps/kuser.png
-%{_datadir}/icons/locolor/*x*/apps/kuser.png
+%{_datadir}/icons/*color/*x*/apps/kuser.png
 
 #################################################
 #             KWUFTPD
