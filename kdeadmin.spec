@@ -10,7 +10,10 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am15.patch
 Icon:		kde-icon.xpm
@@ -58,7 +61,10 @@ Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Requires:	kdelibs = %{version}
 
 %description kcron
@@ -76,7 +82,10 @@ Summary(pl):	administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administração de usuários
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Requires:	kdelibs = %{version}
 
 %description kuser
@@ -96,7 +105,10 @@ Summary(pl):	Program do manipulacji pakietami.
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Requires:	kdelibs = %{version}
 
 %description kpackage
@@ -114,7 +126,10 @@ Summary(pl):	Konfigurator j±dra Linuxa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Requires:	kdelibs = %{version}
 
 %description kcmlinuz
@@ -132,7 +147,10 @@ Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administração da inicialização System V
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Requires:	kdelibs = %{version}
 
 %description ksysv
@@ -152,7 +170,10 @@ Summary(pl):	Wu-FTP daemon for KDE
 Summary(pt_BR):	Ferramenta de administração gráfica do WU-FTPD
 Group:		X11/Applications
 Group(de):	X11/Applikationen
+Group(es):	X11/Aplicaciones
 Group(pl):	X11/Aplikacje
+Group(pt_BR):	X11/Aplicações
+Group(pt):	X11/Aplicações
 Requires:	kdelibs = %{version}
 Requires:	wu-ftpd
 
