@@ -4,7 +4,7 @@ Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Name:		kdeadmin
 Version:	2.2.2
-Release:	2
+Release:	3
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -28,6 +28,7 @@ Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
+%define		_htmldir	/usr/share/doc/kde/HTML
 
 %description
 KDE administrative tools. Package includes:
@@ -222,7 +223,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 
-%{_datadir}/doc/HTML/en/kcron/*
+%{_htmldir}/en/kcron
 %{_applnkdir}/System/kcron.desktop
 %{_datadir}/icons/*color/*x*/apps/kcron.png
 
@@ -233,7 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
 
-%{_datadir}/doc/HTML/en/kpackage/*
+%{_htmldir}/en/kpackage
 %{_applnkdir}/System/kpackage.desktop
 %{_datadir}/apps/kpackage
 %{_datadir}/icons/*color/*x*/apps/kpackage.png
@@ -258,7 +259,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
 
-%{_datadir}/doc/HTML/en/ksysv/*
+%{_htmldir}/en/ksysv
 %{_datadir}/apps/ksysv
 %{_datadir}/icons/*color/*x*/apps/ksysv.png
 %{_datadir}/mimelnk/application/x-ksysv.desktop
@@ -272,7 +273,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755, root, root) %{_bindir}/kuser
 
-%{_datadir}/doc/HTML/en/kuser/*
+%{_htmldir}/en/kuser
 %{_applnkdir}/System/kuser.desktop
 %{_datadir}/apps/kuser
 %{_datadir}/icons/*color/*x*/apps/kuser.png
@@ -284,5 +285,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwuftpd
 
-%{_datadir}/doc/HTML/en/kwuftpd/*
+%{_htmldir}/en/kwuftpd
 %{_applnkdir}/System/kwuftpd.desktop
