@@ -1,6 +1,7 @@
-
-%bcond_without  i18n    # dont build i18n subpackage
-
+#
+# Conditional build:
+%bcond_without	i18n	# don't build i18n subpackages
+#
 %define		_state		stable
 %define		_ver		3.2.0
 ##%define		_snap		040110
@@ -27,6 +28,7 @@ Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{v
 %endif
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
+URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -49,7 +51,7 @@ KDE administrative tools. Package includes:
 - KUser - KDE user setup tool,
 - KSYSV - SYS V Init configuration,
 - KPackage - KDE support for RPM,
-- Kwuftpd - KDE ftp daemon,
+- Kwuftpd - KDE ftp daemon configuration,
 - Kcmlinuz - KDE Linux Kernel Configuration.
 
 %description -l es
@@ -64,8 +66,8 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KUser - program do zarz±dzania kontami u¿ytkowników,
 - KSYSV - program do konfiguracji startu systemu,
 - KPackage - program do zarz±dzania pakietami,
-- Kwuftpd - demon FTP dla KDE,
-- Kcmlinuz - konfigurator j±dra Linuxa dla KDE.
+- Kwuftpd - konfigurator demona FTP dla KDE,
+- Kcmlinuz - konfigurator j±dra Linuksa dla KDE.
 
 %package kcmlilo
 Summary:	LILO Configurator
@@ -197,11 +199,22 @@ Narzêdzie do konfiguracji demona WU-FTP dla KDE.
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
+%package i18n
+Summary:	Common internationalization and localization files for kdeadmin
+Summary(pl):	Wspó³dzielone pliki umiêdzynarodawiaj±ce dla pakietów kdeadmin
+Group:		X11/Applications
+Requires:	kdelibs-i18n >= 9:%{version}
+
+%description i18n
+Common internationalization and localization files for kdeadmin.
+
+%description i18n -l pl
+Wspó³dzielone pliki umiêdzynarodawiaj±ce dla pakietów kdeadmin.
 
 %package kcron-i18n
 Summary:	Internationalization and localization files for kcron
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcron
-Group:	X11/Applications
+Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcrona
+Group:		X11/Applications
 Requires:	%{name}-kcron = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -209,13 +222,13 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description kcron-i18n
 Internationalization and localization files for kcron.
 
-%description -l pl kcron-i18n
-Pliki umiêdzynarodawiaj±ce dla kcron.
+%description kcron-i18n -l pl
+Pliki umiêdzynarodawiaj±ce dla kcrona.
 
 %package kdat-i18n
 Summary:	Internationalization and localization files for kdat
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdat
-Group:	X11/Applications
+Group:		X11/Applications
 Requires:	%{name}-kdat = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -223,13 +236,13 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description kdat-i18n
 Internationalization and localization files for kdat.
 
-%description -l pl kdat-i18n
+%description kdat-i18n -l pl
 Pliki umiêdzynarodawiaj±ce dla kdat.
 
 %package kpackage-i18n
 Summary:	Internationalization and localization files for kpackage
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kpackage
-Group:	X11/Applications
+Group:		X11/Applications
 Requires:	%{name}-kpackage = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -237,13 +250,13 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description kpackage-i18n
 Internationalization and localization files for kpackage.
 
-%description -l pl kpackage-i18n
+%description kpackage-i18n -l pl
 Pliki umiêdzynarodawiaj±ce dla kpackage.
 
 %package ksysv-i18n
 Summary:	Internationalization and localization files for ksysv
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ksysv
-Group:	X11/Applications
+Group:		X11/Applications
 Requires:	%{name}-ksysv = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -251,13 +264,13 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description ksysv-i18n
 Internationalization and localization files for ksysv.
 
-%description -l pl ksysv-i18n
+%description ksysv-i18n -l pl
 Pliki umiêdzynarodawiaj±ce dla ksysv.
 
 %package kuser-i18n
 Summary:	Internationalization and localization files for kuser
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kuser
-Group:	X11/Applications
+Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kusera
+Group:		X11/Applications
 Requires:	%{name}-kuser = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -265,14 +278,13 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description kuser-i18n
 Internationalization and localization files for kuser.
 
-%description -l pl kuser-i18n
-Pliki umiêdzynarodawiaj±ce dla kuser.
-
+%description kuser-i18n -l pl
+Pliki umiêdzynarodawiaj±ce dla kusera.
 
 %package kcmlilo-i18n
 Summary:	Internationalization and localization files for kcmlilo
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcmlilo
-Group:	X11/Applications
+Group:		X11/Applications
 Requires:	%{name}-kcmlilo = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -280,13 +292,13 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description kcmlilo-i18n
 Internationalization and localization files for kcmlilo.
 
-%description -l pl kcmlilo-i18n
+%description kcmlilo-i18n -l pl
 Pliki umiêdzynarodawiaj±ce dla kcmlilo.
 
 %package kcmlinuz-i18n
 Summary:	Internationalization and localization files for kcmlinuz
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcmlinuz
-Group:	X11/Applications
+Group:		X11/Applications
 Requires:	%{name}-kcmlinuz = %{epoch}:%{version}-%{release}
 Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
@@ -294,20 +306,8 @@ Requires:	kdebase-core-i18n >= 9:%{version}
 %description kcmlinuz-i18n
 Internationalization and localization files for kcmlinuz.
 
-%description -l pl kcmlinuz-i18n
+%description kcmlinuz-i18n -l pl
 Pliki umiêdzynarodawiaj±ce dla kcmlinuz.
-
-%package i18n
-Summary:	Common internationalization and localization files for kdeadmin
-Summary(pl):	Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeadmin
-Group:	X11/Applications
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description i18n
-Common internationalization and localization files for kdeadmin.
-
-%description -l pl i18n
-Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeadmin.
 
 %prep
 %setup -q 
@@ -349,7 +349,6 @@ else
 	echo "No i18n sources found and building --with i18n. FIXIT!"
 	exit 1
 fi
-
 %endif
 
 %find_lang kcron	--with-kde
@@ -388,6 +387,7 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with i18n}
+%files i18n -f desktop_kdeadmin.lang
 %files kcron-i18n -f kcron.lang
 %files kdat-i18n -f kdat.lang
 %files kpackage-i18n -f kpackage.lang
@@ -395,7 +395,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kuser-i18n -f kuser.lang
 %files kcmlinuz-i18n -f kcmlinuz.lang
 %files kcmlilo-i18n -f kcmlilo.lang
-%files i18n -f desktop_kdeadmin.lang
 %endif
 
 %files kcmlilo
