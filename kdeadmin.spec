@@ -1,10 +1,10 @@
 #
 # Conditional build:
-%bcond_without	i18n	# don't build i18n subpackages
+%bcond_with	i18n	# w/wo i18n subpackages
 #
-%define		_state		stable
-%define		_ver		3.2.0
-##%define		_snap		040110
+%define		_state		snapshots
+%define		_ver		3.2.90
+%define		_snap		040213
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -13,21 +13,18 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	%{_ver}
-Release:	2
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	b24ec2e71edcd0157d84821729cae2b2
-%if %{with i18n}
-Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
-%endif
-Patch0:		%{name}-3.2branch.diff
-Patch1:		%{name}-vcategories.patch
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+##%% Source0-md5:	b24ec2e71edcd0157d84821729cae2b2
+#Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
+##%% Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
+Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -38,10 +35,10 @@ BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-#BuildRequires:	lilo
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -311,12 +308,13 @@ Internationalization and localization files for kcmlinuz.
 Pliki umi阣zynarodawiaj眂e dla kcmlinuz.
 
 %prep
-%setup -q 
+%setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
 
 # Do not check for lilo
 rm lilo-config/configure.in.in
@@ -361,21 +359,22 @@ fi
 
 %if %{with i18n}
 %find_lang desktop_kdeadmin	--with-kde
-%find_lang kcmlinuz	--with-kde
-%find_lang kcmlilo	--with-kde
-%find_lang kfile_deb	--with-kde
+%find_lang kcmlinuz		--with-kde
+%find_lang kcmlilo		--with-kde
+%find_lang kfile_deb		--with-kde
 cat kfile_deb.lang >> kpackage.lang
-%find_lang kfile_rpm	--with-kde
+%find_lang kfile_rpm		--with-kde
 cat kfile_rpm.lang >> kpackage.lang
-%find_lang secpolicy	--with-kde
+%find_lang secpolicy		--with-kde
 cat secpolicy.lang >> ksysv.lang
 %endif
 
-files="kcron \
-kdat \
-kpackage \
-ksysv \
-kuser"
+files="\
+	kcron \
+	kdat \
+	kpackage \
+	ksysv \
+	kuser"
 
 for i in $files; do
 	> ${i}_en.lang
@@ -387,8 +386,7 @@ done
 
 durne=`ls -1 *.lang|grep -v _en`
 
-for i in $durne; 
-do
+for i in $durne; do
 	echo $i >> control
 	grep -v en\/ $i|grep -v apidocs >> ${i}.1
 	if [ -f ${i}.1 ] ; then
@@ -410,11 +408,13 @@ rm -rf $RPM_BUILD_ROOT
 %files kcmlilo-i18n -f kcmlilo.lang
 %endif
 
+%ifarch %{ix86}
 %files kcmlilo
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_lilo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
 %{_desktopdir}/kde/lilo.desktop
+%endif
 
 %files kcmlinuz
 %defattr(644,root,root,755)
