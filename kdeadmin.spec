@@ -191,6 +191,7 @@ Summary:	X Window Configuration
 Summary(pl):	Konfiguracja X Window
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	%{name}-kwuftpd
 
 %description kxconfig
 X Window Configuration Tool.
