@@ -13,7 +13,7 @@ Source:		%{name}-%{version}.tar.bz2
 Requires:	qt >= 1.44, kdelibs = %{version}
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define _prefix	/usr/X11R6
+%define 	_prefix		/usr/X11R6
 
 %description
 KDE administrative tools.
@@ -109,11 +109,11 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kdat -f kdat.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/kdat.kdelnk
 
-%attr(755, root, root) %{_bindir}/kdat
+%attr(755,root,root) %{_bindir}/kdat
 
 %{_datadir}/kde/icons/kdat.xpm
 %{_datadir}/kde/icons/mini/kdat.xpm
@@ -123,13 +123,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kuser -f kuser.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/System/kuser.kdelnk
 
-%attr(755, root, root) %{_bindir}/kuser
+%attr(755,root,root) %{_bindir}/kuser
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/kuser
+%{_datadir}/kde/doc/HTML/en/kuser
 %lang(ru) %{_datadir}/kde/doc/HTML/ru/kuser
 
 %{_datadir}/kde/apps/kuser/
@@ -142,13 +142,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files ksysv -f ksysv.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/System/ksysv.kdelnk
 
-%attr(755, root, root) %{_bindir}/ksysv
+%attr(755,root,root) %{_bindir}/ksysv
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/ksysv
+%{_datadir}/kde/doc/HTML/en/ksysv
 
 %{_datadir}/kde/apps/ksysv/
 %{_datadir}/kde/icons/ksysv.xpm
