@@ -21,6 +21,8 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
+# generated from kde-i18n
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}
 Requires:	pam
@@ -210,6 +212,8 @@ KDEDIR=%{_prefix} ; export KDEDIR
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
+
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%
 
 %find_lang kdat --with-kde
 
