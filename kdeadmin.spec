@@ -28,7 +28,7 @@ BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	lilo
+#BuildRequires:	lilo
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -200,6 +200,9 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 for f in `find . -name *.desktop` ; do
 	sed -i 's/\[nb\]/\[no\]/g' $f
 done
+
+# Do not check for lilo
+rm lilo-config/configure.in.in
 
 %{__make} -f admin/Makefile.common cvs
 
