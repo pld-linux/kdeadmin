@@ -189,7 +189,6 @@ X Window Configuration Tool.
 %description kxconfig -l pl
 Narzêdzie do konfiguracji X Window..
 
-
 %prep
 %setup -q
 
@@ -241,12 +240,13 @@ mv -f $ALD/Settings/{[!K]*,KDE}
 #cat secpolicy.lang >> ksysv.lang
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
 
 #################################################
 #             KCMLINUZ
 #################################################
-%files kcmlinuz -f kcmlinuz.lang
+#%files kcmlinuz -f kcmlinuz.lang
+%files kcmlinuz
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_libdir}/libkcm*
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.??
