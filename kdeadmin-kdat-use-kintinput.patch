@@ -1,0 +1,190 @@
+cvs server: Diffing .
+Index: OptionsDlg.cpp
+===================================================================
+RCS file: /home/kde/kdeadmin/kdat/OptionsDlg.cpp,v
+retrieving revision 1.20
+diff -u -u -p -r1.20 OptionsDlg.cpp
+--- kdeadmin/kdat/OptionsDlg.cpp	2002/04/23 12:41:30	1.20
++++ kdeadmin/kdat/OptionsDlg.cpp	2002/08/06 15:16:52
+@@ -38,7 +38,7 @@
+ #include <kglobal.h>
+ 
+ #include "OptionsDlg.moc"
+-
++#include <knuminput.h>
+ OptionsDlg::OptionsDlg( QWidget* parent, const char* name )
+         : QDialog( parent, name, TRUE )
+ {
+@@ -48,42 +48,42 @@ OptionsDlg::OptionsDlg( QWidget* parent,
+     QVBoxLayout *ml = new QVBoxLayout( this, KDialog::spacingHint() );
+ 
+     QHBoxLayout *h1 = new QHBoxLayout( ml, KDialog::spacingHint() );
++
++    QVBoxLayout *v1 = new QVBoxLayout( h1, KDialog::spacingHint() );
++    QVBoxLayout *v2 = new QVBoxLayout( h1, KDialog::spacingHint() );
++    QVBoxLayout *v3 = new QVBoxLayout( h1, KDialog::spacingHint() );
+ 
+-    QVBoxLayout *v1 = new QVBoxLayout( h1, KDialog::spacingHint() );                        
+-    QVBoxLayout *v2 = new QVBoxLayout( h1, KDialog::spacingHint() );                        
+-    QVBoxLayout *v3 = new QVBoxLayout( h1, KDialog::spacingHint() );                        
+ 
+-    
+     QLabel* lbl1 = new QLabel( i18n( "Default tape size:" ), this );
+     v1->addWidget( lbl1 );
+ 
+     QLabel* lbl2 = new QLabel( i18n( "Tape block size:" ), this );
+     v1->addWidget( lbl2 );
+-    
+-    _defaultTapeSize = new QLineEdit( this );
++
++    _defaultTapeSize = new KIntNumInput( this );
+     _defaultTapeSize->setMinimumWidth( 48 );
+-    v2->addWidget( _defaultTapeSize ); 
++    v2->addWidget( _defaultTapeSize );
+ 
+-    _tapeBlockSize = new QLineEdit( this );
++    _tapeBlockSize = new KIntNumInput( this );
+     _tapeBlockSize->setMinimumWidth( 48 );
+-    v2->addWidget( _tapeBlockSize ); 
+-    
++    v2->addWidget( _tapeBlockSize );
++
+     _defaultTapeSizeUnits = new QComboBox( this );
+     _defaultTapeSizeUnits->insertItem( "MB" );
+     _defaultTapeSizeUnits->insertItem( "GB" );
+-    v3->addWidget( _defaultTapeSizeUnits ); 
+-    
++    v3->addWidget( _defaultTapeSizeUnits );
++
+     QLabel* lbl5 = new QLabel( i18n( "bytes" ), this );
+-    v3->addWidget( lbl5 ); 
++    v3->addWidget( lbl5 );
+ 
+     ml->addSpacing( KDialog::spacingHint() );
+ 
+     QHBoxLayout *h2 = new QHBoxLayout( ml, KDialog::spacingHint() );
++
++    QVBoxLayout *v4 = new QVBoxLayout( h2, KDialog::spacingHint() );
++    QVBoxLayout *v5 = new QVBoxLayout( h2, KDialog::spacingHint() );
++    QVBoxLayout *v6 = new QVBoxLayout( h2, KDialog::spacingHint() );
+ 
+-    QVBoxLayout *v4 = new QVBoxLayout( h2, KDialog::spacingHint() );                        
+-    QVBoxLayout *v5 = new QVBoxLayout( h2, KDialog::spacingHint() );                        
+-    QVBoxLayout *v6 = new QVBoxLayout( h2, KDialog::spacingHint() );                        
+-    
+     QLabel* lbl3 = new QLabel( i18n( "Tape device:" ), this );
+     v4->addWidget( lbl3 );
+ 
+@@ -95,7 +95,7 @@ OptionsDlg::OptionsDlg( QWidget* parent,
+ 
+     _tarCommand = new QLineEdit( this );
+     v5->addWidget( _tarCommand );
+-    
++
+     QPushButton* browseTapeDevice = new QPushButton( i18n( "..." ), this );
+     v6->addWidget( browseTapeDevice );
+ 
+@@ -115,7 +115,7 @@ OptionsDlg::OptionsDlg( QWidget* parent,
+ 
+     _lockOnMount = new QCheckBox( i18n( "Lock tape drive on mount" ), g1 );
+     v7->addWidget( _lockOnMount );
+-    
++
+     _ejectOnUnmount = new QCheckBox( i18n( "Eject tape on unmount" ), g1 );
+     v7->addWidget( _ejectOnUnmount );
+ 
+@@ -125,7 +125,7 @@ OptionsDlg::OptionsDlg( QWidget* parent,
+ 
+     QHBoxLayout *h3 = new QHBoxLayout( ml, KDialog::spacingHint() );
+     h3->addStretch( 1 );
+- 
++
+     QPushButton* ok     = new QPushButton( i18n( "OK" )    , this );
+     ok->setDefault(TRUE);
+     h3->addWidget( ok );
+@@ -153,12 +153,9 @@ OptionsDlg::OptionsDlg( QWidget* parent,
+         size /= 1024;
+         _defaultTapeSizeUnits->setCurrentItem( 0 );
+     }
+-    QString tmp;
+-    tmp.setNum( size );
+-    _defaultTapeSize->setText( tmp );
++    _defaultTapeSize->setValue( size );
+ 
+-    tmp.setNum( Options::instance()->getTapeBlockSize() );
+-    _tapeBlockSize->setText( tmp );
++    _tapeBlockSize->setValue( Options::instance()->getTapeBlockSize() );
+ 
+     _tapeDevice->setText( Options::instance()->getTapeDevice() );
+     _tarCommand->setText( Options::instance()->getTarCommand() );
+@@ -178,7 +175,7 @@ void OptionsDlg::slotBrowseTapeDevice()
+ {
+     KURL url;
+     url = KFileDialog::getOpenURL( _tapeDevice->text() );
+-    
++
+     if ( !url.isEmpty() )
+     {
+         if( !url.isLocalFile() )
+@@ -188,14 +185,14 @@ void OptionsDlg::slotBrowseTapeDevice()
+         }
+         _tapeDevice->setText( url.path() );
+     }
+-    
++
+ }
+ 
+ void OptionsDlg::slotBrowseTarCommand()
+ {
+     KURL url;
+     url = KFileDialog::getOpenURL( _tarCommand->text() );
+-    
++
+     if ( !url.isEmpty() )
+     {
+         if( !url.isLocalFile() )
+@@ -215,7 +212,7 @@ void OptionsDlg::slotOK()
+ 
+ void OptionsDlg::slotApply()
+ {
+-    int size = (int)KGlobal::locale()->readNumber(_defaultTapeSize->text());
++    int size = _defaultTapeSize->value();
+     if ( _defaultTapeSizeUnits->currentItem() == 0 ) {
+         // MB
+         size *= 1024;
+@@ -225,7 +222,7 @@ void OptionsDlg::slotApply()
+     }
+     Options::instance()->setDefaultTapeSize( size );
+ 
+-    Options::instance()->setTapeBlockSize( KGlobal::locale()->readNumber( _tapeBlockSize->text() ) );
++    Options::instance()->setTapeBlockSize( _tapeBlockSize->value() );
+ 
+     Options::instance()->setTapeDevice( _tapeDevice->text() );
+ 
+Index: OptionsDlg.h
+===================================================================
+RCS file: /home/kde/kdeadmin/kdat/OptionsDlg.h,v
+retrieving revision 1.4
+diff -u -u -p -r1.4 OptionsDlg.h
+--- kdeadmin/kdat/OptionsDlg.h	2002/01/20 19:59:58	1.4
++++ kdeadmin/kdat/OptionsDlg.h	2002/08/06 15:16:52
+@@ -24,15 +24,15 @@
+ class QCheckBox;
+ class QComboBox;
+ class QLineEdit;
+-
++class KIntNumInput;
+ /**
+  * @short Display/edit user preferences.
+  */
+ class OptionsDlg : public QDialog {
+     Q_OBJECT
+-    QLineEdit* _defaultTapeSize;
++    KIntNumInput* _defaultTapeSize;
+     QComboBox* _defaultTapeSizeUnits;
+-    QLineEdit* _tapeBlockSize;
++    KIntNumInput* _tapeBlockSize;
+     QLineEdit* _tapeDevice;
+     QLineEdit* _tarCommand;
+     QCheckBox* _loadOnMount;
+cvs server: Diffing pics

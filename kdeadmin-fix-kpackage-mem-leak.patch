@@ -1,0 +1,36 @@
+--- kdeadmin-3.0.3/kpackage/kio.cpp--	2002-09-02 07:50:11.000000000 +0200
++++ kdeadmin-3.0.3/kpackage/kio.cpp	2002-09-02 07:50:24.000000000 +0200
+@@ -26,12 +26,23 @@ void Kio::slotIOJobFinished( KIO::Job * 
+ 
+ Kiod::Kiod()
+ {
++  file = 0L;
++  fileT = 0L;
+ }
+ 
++Kiod::~Kiod()
++{
++  delete fileT;
++  delete file;
++}
++
++
+ bool Kiod::listDir(QString url, QString fname)
+ {
++  delete file;
+   file = new QFile(fname);
+   if (file->open(IO_WriteOnly)) {
++    delete fileT;
+     fileT = new QTextStream(file);
+     KIO::ListJob *job = KIO::listDir( url );
+ 
+--- kdeadmin-3.0.3/kpackage/kio.h--	2002-09-02 07:50:14.000000000 +0200
++++ kdeadmin-3.0.3/kpackage/kio.h	2002-09-02 07:50:44.000000000 +0200
+@@ -32,6 +32,7 @@ class Kiod: public QObject
+ 
+ public:
+   Kiod();
++  ~Kiod();
+ 
+   bool listDir(QString url, QString fname);
+ 
