@@ -7,17 +7,20 @@ Version:	2.2.2
 Release:	1
 Epoch:		7
 License:	GPL
+Vendor:		The KDE Team
 Group:		X11/Applications
 Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
-Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-am15.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}, pam 
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	libtool
 BuildRequires:	pam-devel 
 BuildRequires:	rpm-devel
-BuildRequires:	db1-devel
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -164,15 +167,15 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-KDEDIR=%{_prefix}
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
-export KDEDIR
 
-%configure2_13 \
-	--prefix=%{_prefix} \
+%{__make} -f Makefile.cvs
+
+%configure \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
 	--with-quota \
