@@ -21,7 +21,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	184ebe0c6c61854f934d7e9ad40b77e3
 Source2:	%{name}-extra_icons.tar.bz2
-# Source2-md5:	eba8c1f88acc2d41b00f769819f31c91
+# Source2-md5:	6204a64084d5f5fdb05d65f0998e4a15
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -303,7 +303,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
 %{_datadir}/apps/kcmlinuz
 %{_applnkdir}/Settings/KDE/System/li*.desktop
-%{_pixmapsdir}/penguin.png
 
 #################################################
 #             KCRON
