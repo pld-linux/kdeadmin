@@ -1,6 +1,6 @@
 
 %define         _state          stable                                        
-%define         _ver		3.1.1
+%define         _ver		3.1.2
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -70,7 +70,7 @@ Summary:	KDE Linux Kernel Configuration
 Summary(pl):	Konfigurator j±dra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	%{name}-kwuftpd
 
 %description kcmlinuz
@@ -86,7 +86,7 @@ Configurador do Kernel Linux.
 Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
-Requires:       kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Obsoletes:	%{name}-kwuftpd
 
 %description kdat
@@ -100,7 +100,7 @@ Summary:	KDE cron daemon
 Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Obsoletes:	%{name}-kwuftpd
 
 %description kcron
@@ -117,7 +117,7 @@ Summary:	RPM front-end KDE
 Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Provides:	kpackage
 Obsoletes:	kpackage
 Obsoletes:	%{name}-kwuftpd
@@ -136,7 +136,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administração da inicialização System V
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Obsoletes:	%{name}-kwuftpd
 
 %description ksysv
@@ -155,7 +155,7 @@ Summary:	KDE User management tool
 Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administração de usuários
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Obsoletes:	%{name}-kwuftpd
 
 %description kuser
@@ -174,7 +174,7 @@ Summary:	KDE FTP daemon
 Summary(pl):	Wu-FTP daemon for KDE
 Summary(pt_BR):	Ferramenta de administração gráfica do WU-FTPD
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Requires:	wu-ftpd
 
 %description kwuftpd
@@ -190,7 +190,7 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 Summary:	X Window Configuration
 Summary(pl):	Konfiguracja X Window
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:       kdebase-core >= %{version}
 Obsoletes:	%{name}-kwuftpd
 
 %description kxconfig
@@ -211,12 +211,8 @@ CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
 
 for plik in `find ./ -name *.desktop` ; do
-
-if [ -d $plik ]; then
 	echo $plik
 	sed -ie 's/\[nb\]/\[no\]/g' $plik
-	fi
-
 done
 
 %configure \
