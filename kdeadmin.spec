@@ -114,7 +114,7 @@ features of the dds2tar program. It features:
 
 %description kdat -l pl
 KDat to oparty na tarze program do wykonywania kopii zapasowych na
-ta¶mie. Jest przeznaczony do dzaia³ania z wieloma archiwami na
+ta¶mie. Jest przeznaczony do dzia³ania z wieloma archiwami na
 jednej tasiemce. By³ projektowany, by zapewniæ mi³y, graficzny
 interfejs do tara, obs³uguj±cy mo¿liwo¶ci najszybszego, selektywnego
 odczytywania z programu dds2tar. Mo¿liwo¶ci programu KDat:
