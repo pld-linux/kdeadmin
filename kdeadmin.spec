@@ -1,6 +1,6 @@
 
 %define         _state          unstable                                        
-%define         _kdever         kde-3.1-rc2 
+%define         _kdever         kde-3.1-rc3
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -9,7 +9,7 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	3.0.98
+Version:	3.0.99
 Release:	1
 Epoch:		7
 License:	GPL
@@ -19,14 +19,14 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 # generated from kde-i18n
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	kdelibs-devel = %{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -67,7 +67,7 @@ Summary:	KDE Linux Kernel Configuration
 Summary(pl):	Konfigurator j眃ra Linuxa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kcmlinuz
 A Linux kernel configurator for KDE.
