@@ -135,7 +135,7 @@ Zamiennik demona wu-ftp dla KDE.
 #%patch0 -p1
 
 %build
-%{__make} -f Makefile.cvs
+#%{__make} -f Makefile.cvs
 KDEDIR=%{_prefix}
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
