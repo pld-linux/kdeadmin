@@ -5,8 +5,8 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	3.0.3
-Release:	3
+Version:	3.0.4
+Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -14,6 +14,14 @@ Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 # generated from kde-i18n
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Patch0:		%{name}-fix-kcron-mem-leak.patch
+Patch1:		%{name}-fix-mem-leak-in-kpackage.patch
+Patch2:		%{name}-remove-initial-preference.patch
+Patch3:		%{name}-kdat-fix-mem-leak.patch
+Patch4:		%{name}-fix-ksysv-mem-leak.patch
+Patch5:		%{name}-fix-kpackage-mem-leak.patch
+Patch6:		%{name}-kdat-use-kintinput.patch
+Patch7:		%{name}-fix-kwuftpd-fix-bug-45142.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}
 Requires:	pam
@@ -176,6 +184,14 @@ Narz阣zie do wykonywania kopii zapasowych na ta秏ie.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
