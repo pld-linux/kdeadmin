@@ -63,9 +63,10 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KPackage - Program do zarz±dzania pakietami
 - Kwuftpd - Demon FTP dla KDE
 - Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
+
 %package kcmlinuz
 Summary:	KDE Linux Kernel Configuration
-Summary(pl):	Konfigurator j±dra Linuxa dla KDE
+Summary(pl):	Konfigurator j±dra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
@@ -74,7 +75,7 @@ Requires:	kdelibs >= %{version}
 A Linux kernel configurator for KDE.
 
 %description kcmlinuz -l pl
-Program do konfiguracji j±dra Linuxa.
+Program do konfiguracji j±dra Linuksa.
 
 %description kcmlinuz -l pt_BR
 Configurador do Kernel Linux.
@@ -109,7 +110,7 @@ Gerenciador/agendador de tarefas e interface para o cron.
 
 %package kpackage
 Summary:	RPM front-end KDE
-Summary(pl):	Program do manipulacji pakietami.
+Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
@@ -136,7 +137,7 @@ Requires:	kdelibs >= %{version}
 A Sys V Init configurator for KDE.
 
 %description ksysv -l pl
-Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init
+Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init.
 
 %description ksysv -l pt_BR
 Interface para administração da inicialização System V, com
@@ -145,7 +146,7 @@ disponíveis bem como dos níveis de execução.
 
 %package kuser
 Summary:	KDE User management tool
-Summary(pl):	administracja kontami dla KDE
+Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administração de usuários
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
