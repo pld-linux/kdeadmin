@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.90
-%define		_snap		030618
+%define		_snap		030622
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,7 +18,7 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	15853a890bd477468e82124f69cb072d
+# Source0-md5:	0d37ed5bae4ff501f1cd8c1fa4f06f3e	
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
@@ -29,7 +29,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
