@@ -11,7 +11,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	3
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -28,6 +28,7 @@ BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
+BuildRequires:	lilo
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -59,6 +60,20 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KPackage - Program do zarz眃zania pakietami
 - Kwuftpd - Demon FTP dla KDE
 - Kcmlinuz - Konfigurator j眃ra Linuxa dla KDE
+
+%package kcmlilo
+Summary:	LILO Configurator
+Summary(pl):	Konfigurator LILO
+Group:		X11/Applications
+Requires:	kdebase-core >= 9:%{version}
+Requires:	lilo
+Obsoletes:	%{name}-kcmlinuz < 8:3.1.93.031105-3
+
+%description kcmlilo
+LILO configurator for KDE.
+
+%description kcmlilo -l pl
+Konfigurator LILO dla KDE.
 
 %package kcmlinuz
 Summary:	KDE Linux Kernel Configuration
@@ -212,12 +227,17 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%files kcmlilo
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kcm_lilo.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
+%{_desktopdir}/kde/lilo.desktop
+
 %files kcmlinuz
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_li*.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
+%{_libdir}/kde3/kcm_linuz.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
 %{_datadir}/apps/kcmlinuz
-#%%{_desktopdir}/kde/lilo.desktop
 %{_desktopdir}/kde/linuz.desktop
 
 %files kcron -f kcron.lang
