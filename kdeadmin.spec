@@ -1,6 +1,6 @@
 %define		_ver		3.0.3
 #define		_sub_ver
-%define		_rel		0.1
+%define		_rel		1
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -28,18 +28,18 @@ Requires:	kdelibs = %{version}
 Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	kdelibs-devel >= %{version}
-BuildRequires:	zlib-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libjpeg-devel
+BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
 BuildRequires:	db1-devel
 BuildRequires:	db3-devel
-BuildRequires:	bzip2-devel
+BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
+BuildRequires:	zlib-devel
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -217,16 +217,18 @@ mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang kcmlilo --with-kde
-%find_lang kcmlinuz --with-kde
+%find_lang kcmlilo	--with-kde
+%find_lang kcmlinuz	--with-kde
 cat kcmlilo.lang >> kcmlinuz.lang
-%find_lang kcron --with-kde
-%find_lang kdat --with-kde
-%find_lang kpackage --with-kde
-%find_lang ksysv --with-kde
-%find_lang kuser --with-kde
-%find_lang kwuftpd --with-kde
-%find_lang secpolicy --with-kde
+%find_lang kcron	--with-kde
+%find_lang kdat		--with-kde
+%find_lang kpackage	--with-kde
+%find_lang ksysctrl	--with-kde
+%find_lang ksysv	--with-kde
+cat ksysctrl.lang >> ksysv.lang
+%find_lang kuser	--with-kde
+%find_lang kwuftpd	--with-kde
+%find_lang secpolicy	--with-kde
 cat secpolicy.lang >> ksysv.lang
 
 %clean
