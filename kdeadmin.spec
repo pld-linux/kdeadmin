@@ -208,6 +208,17 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
+
+for plik in `find ./ -name *.desktop` ; do
+
+if [ -d $plik ]; then
+	echo $plik
+	sed -ie "s/[nb]/[no]/g" $plik
+	fi
+
+done
+				
+
 %configure \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
