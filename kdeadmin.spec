@@ -3,7 +3,7 @@
 %bcond_without	i18n	# don't build i18n subpackages
 #
 %define		_state		stable
-%define		_ver		3.2.0
+%define		_ver		3.2.1
 ##%define		_snap		040110
 
 Summary:	K Desktop Environment - administrative tools
@@ -14,14 +14,14 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	4
+Release:	0.1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+# Source0-md5:	1ff46933b955cb4bc71cd533c6f730d1
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	b24ec2e71edcd0157d84821729cae2b2
 %if %{with i18n}
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
@@ -312,7 +312,7 @@ Pliki umi阣zynarodawiaj眂e dla kcmlinuz.
 
 %prep
 %setup -q 
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 
 %build
