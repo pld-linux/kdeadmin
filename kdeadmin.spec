@@ -1,6 +1,7 @@
 
-%define         _state          stable                                        
-%define         _ver		3.1.1
+%define         _state          snapshots
+%define         _ver		3.2
+%define		_snap		030329
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -10,14 +11,14 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	0.%{_snap}.1
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# generated from kde-i18n
-#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
+Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs >= %{version}
 Requires:	pam
@@ -36,7 +37,7 @@ BuildRequires:	sed >= 4.0
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_htmldir	/usr/share/doc/kde/HTML
+%define		_htmldir	%{_docdir}/kde/HTML
 
 %define		no_install_post_chrpath		1
 
@@ -200,7 +201,8 @@ X Window Configuration Tool.
 Narz阣zie do konfiguracji X Window..
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
+%patch0 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -220,55 +222,34 @@ if [ -d $plik ]; then
 done
 
 %configure \
-	--with-qt-dir=%{_prefix} \
- 	--with-install-root=$RPM_BUILD_ROOT \
 	--with-quota \
 	--with-shadow \
 	--with-rpm \
  	--with-pam="yes" \
-	--with-final
+	--enable-final
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,System/Administration}
 
-KDEDIR=%{_prefix} ; export KDEDIR
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-ALD=$RPM_BUILD_ROOT%{_applnkdir}
-mv -f $ALD/System/{More/*.desktop,.}
-mv -f $ALD/System/{{ksysv,kuser}.desktop,Administration}
-mv -f $ALD/{Settings/Peripherals/kxconfig.desktop,System/Administration}
-mv -f $ALD/Settings/{[!K]*,KDE}
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-cd $ALD/System/Administration
-cat kxconfig.desktop |sed -e 's/Icon=xapp/Icon=kxconfig/' \
-    > kxconfig.desktop.tmp
-mv kxconfig.desktop.tmp kxconfig.desktop
-cd -
+mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
 
 cd $RPM_BUILD_ROOT%{_pixmapsdir}
 mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
 cd -
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-
-#%find_lang kcmlilo	--with-kde
-#%find_lang kcmlinuz	--with-kde
-#cat kcmlilo.lang >> kcmlinuz.lang
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
-#%find_lang ksysctrl	--with-kde
 %find_lang ksysv	--with-kde
-#cat ksysctrl.lang >> ksysv.lang
 %find_lang kuser	--with-kde
 %find_lang kwuftpd	--with-kde
 %find_lang kxconfig	--with-kde
-#%find_lang secpolicy	--with-kde
-#cat secpolicy.lang >> ksysv.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -290,8 +271,8 @@ rm -rf $RPM_BUILD_ROOT
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-%{_datadir}/pixmaps/*/*/*/kcron.png
-%{_applnkdir}/System/kcron.desktop
+%{_desktopdir}/kcron.desktop
+%{_pixmapsdir}/*/*/*/kcron.png
 
 #################################################
 #             KDAT
@@ -300,8 +281,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
-%{_applnkdir}/System/kdat.desktop
-%{_applnkdir}/Utilities/kdat.desktop
+%{_desktopdir}/kdat.desktop
 %{_pixmapsdir}/[!l]*/*/*/kdat*
 
 #################################################
@@ -315,7 +295,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kpackage
 %{_datadir}/mimelnk/application/x-debian-package.desktop
 %{_datadir}/services/kfile*
-%{_applnkdir}/System/kpackage.desktop
+%{_desktopdir}/kpackage.desktop
 %{_pixmapsdir}/*/*/*/kpackage.png
 
 #################################################
@@ -328,7 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksysv
 %{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
-%{_applnkdir}/System/Administration/ksysv.desktop
+%{_desktopdir}/ksysv.desktop
 %{_pixmapsdir}/*/*/*/ksysv.png
 %{_pixmapsdir}/*/*/*/toggle_log.png
 
@@ -339,7 +319,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
-%{_applnkdir}/System/Administration/kuser.desktop
+%{_desktopdir}/kuser.desktop
 %{_pixmapsdir}/*/*/*/kuser.png
 
 #################################################
@@ -357,5 +337,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kxconfig
 %{_datadir}/apps/kxconfig
-%{_applnkdir}/System/Administration/kxconfig.desktop
+%{_applnkdir}/Settings/KDE/Peripherals/kxconfig.desktop
 %{_pixmapsdir}/*/*/*/kxconfig*
