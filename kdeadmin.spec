@@ -10,8 +10,8 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	0.1
-Epoch:		7
+Release:	1
+Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
@@ -26,7 +26,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	kdelibs-devel = %{epoch}:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
