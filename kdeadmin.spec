@@ -19,8 +19,6 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 # generated from kde-i18n
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
-Requires:	kdelibs >= %{version}
-Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -33,7 +31,10 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	perl
+Requires:	kdelibs >= %{version}
+Requires:	pam
 Requires:	shadow
+Obsoletes:	%{name}-kwuftpd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -48,7 +49,6 @@ KDE administrative tools. Package includes:
 - KUser - KDE user setup tool
 - KSYSV - SYS V Init configuration
 - KPackage - KDE support for RPM
-- Kwuftpd - KDE ftp daemon
 - Kcmlinuz - KDE Linux Kernel Configuration
 
 %description -l es
@@ -63,7 +63,6 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KUser - Program do zarz±dzania kontami u¿ytkowników
 - KSYSV - Program do konfiguracji startu systemu
 - KPackage - Program do zarz±dzania pakietami
-- Kwuftpd - Demon FTP dla KDE
 - Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
 
 %package kcmlinuz
