@@ -1,0 +1,13 @@
+--- kdeadmin-3.1.5/kcron/ctcron.cpp~	Wed May 19 18:51:58 2004
++++ kdeadmin-3.1.5/kcron/ctcron.cpp	Wed May 19 18:51:58 2004
+@@ -60,8 +60,8 @@
+   {
+     if (syscron)
+     {
+-      readCommand  = "cat /etc/crontab > " + tmpFileName;
+-      writeCommand = "cat " + tmpFileName + " > /etc/crontab";
++      readCommand  = "cat /etc/cron.d/crontab > " + tmpFileName;
++      writeCommand = "cat " + tmpFileName + " > /etc/cron.d/crontab";
+       login = (const char *)i18n("(System Crontab)").local8Bit();
+       name = "";
+     }
