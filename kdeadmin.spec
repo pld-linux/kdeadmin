@@ -28,6 +28,7 @@ Source1:        kde-i18n-%{name}-%{version}.tar.bz2
 %endif
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-vcategories.patch
+Patch2:		%{name}-gcc34.patch
 Icon:		kde-icon.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -314,6 +315,7 @@ Pliki umiêdzynarodawiaj±ce dla kcmlinuz.
 %setup -q 
 #%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
