@@ -18,6 +18,7 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://team.pld.org.pl/~adgor/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	aeaabbf9310d4c495672b03df2b9027a
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
