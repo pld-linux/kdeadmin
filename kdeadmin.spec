@@ -1,9 +1,6 @@
 #
-# Conditional build:
-%bcond_without	i18n	# don't build i18n subpackages
-#
 %define		_state		stable
-%define		_ver		3.2.2
+%define		_ver		3.2.3
 ##%define		_snap		040110
 
 Summary:	K Desktop Environment - administrative tools
@@ -14,23 +11,20 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	2
+Release:	0.1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	4a39ce0d9abdd2dccb4531466ee7f229
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with i18n}
-Source1:        kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	1095b044a325a63d640255695ab2a6b4
-%endif
-Patch0:		%{name}-3.2branch.diff
-Patch1:		%{name}-vcategories.patch
-Icon:		kde-icon.xpm
+Patch100:	%{name}-branch.diff
+Patch0:		%{name}-vcategories.patch
+Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
+BuildRequires:	unsermake >= 040511
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	ed
@@ -79,7 +73,7 @@ Requires:	lilo
 Obsoletes:	%{name}-kcmlinuz < 8:3.1.93.031105-3
 
 %description kcmlilo
-LILO configurator for KDE.
+LILO configuration module for KDE Control Centre.
 
 %description kcmlilo -l pl
 Konfigurator LILO dla KDE.
@@ -92,7 +86,7 @@ Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kcmlinuz
-A Linux kernel configurator for KDE.
+A Linux kernel configuration module for KDE Control Centre.
 
 %description kcmlinuz -l pl
 Program do konfiguracji j眃ra Linuksa.
@@ -108,7 +102,16 @@ Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kdat
 
 %description kdat
-Tape backup tool.
+KDat is a tar-based tape archiver. It is designed to work with
+multiple archives on a single tape. It was designed to provide a nice,
+GUI front-end to tar that supported the fast selective extraction
+features of the dds2tar program. It features:
+- simple graphical interface to local filesystem and tape contents.
+- multiple archives on the same physical tape.
+- complete index of archives and files is stored on local hard disk.
+- selective restore of files from an archive.
+- backup profiles for frequently used backups.
+- tape backup tool.
 
 %description kdat -l pl
 Narz阣zie do wykonywania kopii zapasowych na ta秏ie.
@@ -121,7 +124,9 @@ Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kcron
-Kde version of "CRON".
+KCron is an application for scheduling programs to run in the
+background. It is a graphical user interface to cron, the UNIX system
+scheduler.
 
 %description kcron -l pl
 Program "cron" w wersji dla KDE.
@@ -139,7 +144,9 @@ Provides:	kpackage
 Obsoletes:	kpackage
 
 %description kpackage
-Package front-end for KDE.
+KPackage is a GUI interface to the RPM, Debian, Slackware and BSD
+package managers. KPackage is part of the K Desktop Environment and,
+as a result, it is designed to integrate with the KDE file manager.
 
 %description kpackage -l pl
 Program do manipulowania pakietami w 秗odowisku KDE.
@@ -173,8 +180,7 @@ Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kuser
-A simple tool for adding/removing users from system and changing user
-information.
+A simple tool for managin system groups and user accounts from system.
 
 %description kuser -l pl
 Narz阣zie do dodawania/usuwania u縴tkownik體 oraz do zmiany danych o
@@ -200,108 +206,18 @@ Narz阣zie do konfiguracji demona WU-FTP dla KDE.
 %description kwuftpd -l pt_BR
 Ferramenta de administra玢o gr醘ica do WU-FTPD (servidor FTP).
 
-%package kcron-i18n
-Summary:	Internationalization and localization files for kcron
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kcrona
-Group:		X11/Applications
-Requires:	%{name}-kcron = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kcron-i18n
-Internationalization and localization files for kcron.
-
-%description kcron-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla kcrona.
-
-%package kdat-i18n
-Summary:	Internationalization and localization files for kdat
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kdat
-Group:		X11/Applications
-Requires:	%{name}-kdat = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kdat-i18n
-Internationalization and localization files for kdat.
-
-%description kdat-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla kdat.
-
-%package kpackage-i18n
-Summary:	Internationalization and localization files for kpackage
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kpackage
-Group:		X11/Applications
-Requires:	%{name}-kpackage = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kpackage-i18n
-Internationalization and localization files for kpackage.
-
-%description kpackage-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla kpackage.
-
-%package ksysv-i18n
-Summary:	Internationalization and localization files for ksysv
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla ksysv
-Group:		X11/Applications
-Requires:	%{name}-ksysv = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description ksysv-i18n
-Internationalization and localization files for ksysv.
-
-%description ksysv-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla ksysv.
-
-%package kuser-i18n
-Summary:	Internationalization and localization files for kuser
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kusera
-Group:		X11/Applications
-Requires:	%{name}-kuser = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kuser-i18n
-Internationalization and localization files for kuser.
-
-%description kuser-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla kusera.
-
-%package kcmlilo-i18n
-Summary:	Internationalization and localization files for kcmlilo
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kcmlilo
-Group:		X11/Applications
-Requires:	%{name}-kcmlilo = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kcmlilo-i18n
-Internationalization and localization files for kcmlilo.
-
-%description kcmlilo-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla kcmlilo.
-
-%package kcmlinuz-i18n
-Summary:	Internationalization and localization files for kcmlinuz
-Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kcmlinuz
-Group:		X11/Applications
-Requires:	%{name}-kcmlinuz = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kcmlinuz-i18n
-Internationalization and localization files for kcmlinuz.
-
-%description kcmlinuz-i18n -l pl
-Pliki umi阣zynarodawiaj眂e dla kcmlinuz.
-
 %prep
-%setup -q 
-#%patch0 -p1
-%patch1 -p1
+%setup -q
+%patch100 -p1
+%patch0 -p1
 
 %build
-cp /usr/share/automake/config.sub admin
-
 # Do not check for lilo
 rm lilo-config/configure.in.in
-
+cp %{_datadir}/automake/config.sub admin
+export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
+export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -318,78 +234,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
-
-%if %{with i18n}
-if [ -f "%{SOURCE1}" ] ; then
-	bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-	for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
-		if [ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] ; then
-			rm -f $f
-		fi
-	done
-else
-	echo "No i18n sources found and building --with i18n. FIXIT!"
-	exit 1
-fi
-%endif
-
-%find_lang kcron	--with-kde
-%find_lang kdat		--with-kde
-%find_lang kpackage	--with-kde
-%find_lang ksysv	--with-kde
-%find_lang kuser	--with-kde
-
-%if %{with i18n}
-%find_lang kcmlinuz	--with-kde
-%find_lang kcmlilo	--with-kde
-%find_lang kfile_deb	--with-kde
-cat kfile_deb.lang >> kpackage.lang
-%find_lang kfile_rpm	--with-kde
-cat kfile_rpm.lang >> kpackage.lang
-%find_lang secpolicy	--with-kde
-cat secpolicy.lang >> ksysv.lang
-%endif
-
-files="kcron \
-kdat \
-kpackage \
-ksysv \
-kuser"
-
-for i in $files; do
-	> ${i}_en.lang
-	echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-done
-
-durne=`ls -1 *.lang|grep -v _en`
-
-for i in $durne; 
-do
-	echo $i >> control
-	grep -v en\/ $i|grep -v apidocs >> ${i}.1
-	if [ -f ${i}.1 ] ; then
-		mv ${i}.1 ${i}
-	fi
-done
+	kde_htmldir=%{_kdedocdir} \
+	kde_libs_htmldir=%{_kdedocdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%if %{with i18n}
-%files kcron-i18n -f kcron.lang
-%files kdat-i18n -f kdat.lang
-%files kpackage-i18n -f kpackage.lang
-%files ksysv-i18n -f ksysv.lang
-%files kuser-i18n -f kuser.lang
-%files kcmlinuz-i18n -f kcmlinuz.lang
-%ifarch %{ix86} 
-%files kcmlilo-i18n -f kcmlilo.lang
-%endif
-%endif
 
 %ifarch %{ix86}
 %files kcmlilo
@@ -406,20 +255,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kcmlinuz
 %{_desktopdir}/kde/linuz.desktop
 
-%files kcron -f kcron_en.lang
+%files kcron
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
+%{_kdedocdir}/en/kcron
 
-%files kdat -f kdat_en.lang
+%files kdat
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
 %{_desktopdir}/kde/kdat.desktop
 %{_iconsdir}/[!l]*/*/*/kdat*
+%{_kdedocdir}/en/kdat
 
-%files kpackage -f kpackage_en.lang
+%files kpackage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
 %{_libdir}/kde3/kfile*.la
@@ -429,8 +280,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kfile*
 %{_desktopdir}/kde/kpackage.desktop
 %{_iconsdir}/*/*/*/kpackage.png
+%{_kdedocdir}/en/kpackage
 
-%files ksysv -f ksysv_en.lang
+%files ksysv
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
@@ -440,10 +292,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/ksysv.desktop
 %{_iconsdir}/*/*/*/ksysv.png
 %{_iconsdir}/*/*/*/toggle_log.png
+%{_kdedocdir}/en/ksysv
 
-%files kuser -f kuser_en.lang
+%files kuser
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
+%{_kdedocdir}/en/kuser
