@@ -1,9 +1,10 @@
 
-%define		_state		stable
-%define		_ver		3.3.2
+%define		_state		unstable
+%define		_ver		3.3.92
+%define		_snap		050217
 
-%define		_minlibsevr	9:3.3.2
-%define		_minbaseevr	9:3.3.2
+%define		_minlibsevr	9:3.3.92.050217
+%define		_minbaseevr	9:3.3.92.050217
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -12,14 +13,16 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	%{_ver}
+Version:	%{_ver}.%{_snap}
+#Version:	%{_ver}
 Release:	1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2	
-# Source0-md5:	d12b12925dda1f4e6ba162e856730a5e
+Source0:        http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2	
+#%% Source0-md5:	d12b12925dda1f4e6ba162e856730a5e
 Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -219,7 +222,8 @@ Narz阣zie do konfiguracji demona WU-FTP dla KDE.
 Ferramenta de administra玢o gr醘ica do WU-FTPD (servidor FTP).
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
+#%setup -q
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -241,15 +245,12 @@ done
 %build
 cp /usr/share/automake/config.sub admin
 
-export UNSERMAKE=/usr/share/unsermake/unsermake
-
 # Do not check for lilo
-
 rm lilo-config/configure.in.in
 
 cp %{_datadir}/automake/config.sub admin
 
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -290,19 +291,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/lilo.desktop
 %endif
 
-%files kcmlinuz
-%defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_linuz.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_linuz.so
-%{_datadir}/apps/kcmlinuz
-%{_desktopdir}/kde/linuz.desktop
+#%files kcmlinuz
+#%defattr(644,root,root,755)
+#{_libdir}/kde3/kcm_linuz.la
+#%attr(755,root,root) %{_libdir}/kde3/kcm_linuz.so
+#%{_datadir}/apps/kcmlinuz
+#%{_desktopdir}/kde/linuz.desktop
 
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
+%{_datadir}/apps/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
-%{_kdedocdir}/en/kcron
 
 %files kdat -f kdat.lang
 %defattr(644,root,root,755)
