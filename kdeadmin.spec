@@ -10,7 +10,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	0.2
+Release:	0.3
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -45,13 +45,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 KDE administrative tools. Package includes:
-- KCron - KDE Cron daemon
-- KDat - Tape backup tool
-- KUser - KDE user setup tool
-- KSYSV - SYS V Init configuration
-- KPackage - KDE support for RPM
-- Kwuftpd - KDE ftp daemon
-- Kcmlinuz - KDE Linux Kernel Configuration
+- KCron - KDE Cron daemon,
+- KDat - Tape backup tool,
+- KUser - KDE user setup tool,
+- KSYSV - SYS V Init configuration,
+- KPackage - KDE support for RPM,
+- Kcmlinuz - KDE Linux Kernel Configuration.
+%if 0
+- Kwuftpd - KDE ftp daemon,
+%endif
 
 %description -l es
 Herramientas administrativas para KDE. Incluidos en este paquete:
@@ -60,13 +62,15 @@ Herramientas administrativas para KDE. Incluidos en este paquete:
 
 %description -l pl
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
-- KCron - Program cron
-- KDat - Narz阣zie do wykonywania kopii zapasowych na ta秏ie.
-- KUser - Program do zarz眃zania kontami u縴tkownik體
-- KSYSV - Program do konfiguracji startu systemu
-- KPackage - Program do zarz眃zania pakietami
-- Kwuftpd - Demon FTP dla KDE
-- Kcmlinuz - Konfigurator j眃ra Linuxa dla KDE
+- KCron - program cron,
+- KDat - narz阣zie do wykonywania kopii zapasowych na ta秏ie,
+- KUser - program do zarz眃zania kontami u縴tkownik體,
+- KSYSV - program do konfiguracji startu systemu,
+- KPackage - program do zarz眃zania pakietami,
+- Kcmlinuz - konfigurator j眃ra Linuxa dla KDE.
+%if 0
+- Kwuftpd - demon FTP dla KDE,
+%endif
 
 %package kcmlinuz
 Summary:	KDE Linux Kernel Configuration
@@ -256,20 +260,26 @@ cd -
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-#%find_lang kcmlilo	--with-kde
-#%find_lang kcmlinuz	--with-kde
-#cat kcmlilo.lang >> kcmlinuz.lang
-%find_lang kcron	--with-kde
-%find_lang kdat		--with-kde
-%find_lang kpackage	--with-kde
-#%find_lang ksysctrl	--with-kde
-%find_lang ksysv	--with-kde
-#cat ksysctrl.lang >> ksysv.lang
-%find_lang kuser	--with-kde
-%find_lang kwuftpd	--with-kde
-%find_lang kxconfig	--with-kde
-#%find_lang secpolicy	--with-kde
-#cat secpolicy.lang >> ksysv.lang
+%find_lang	kcmlilo		--with-kde
+%find_lang	kcmlinuz	--with-kde
+cat kcmlilo.lang >> kcmlinuz.lang
+%find_lang	kcron		--with-kde
+%find_lang	kdat		--with-kde
+%find_lang	kpackage	--with-kde
+%find_lang	kfile_deb	--with-kde
+%find_lang	kfile_rpm	--with-kde
+cat kfile_{deb,rpm}.lang >> kpackage.lang
+%find_lang	ksysv		--with-kde
+%find_lang	kuser		--with-kde
+%find_lang	kxconfig	--with-kde
+%find_lang	secpolicy	--with-kde
+cat secpolicy.lang >> ksysv.lang
+
+# does not build
+#%find_lang	kwuftpd		--with-kde
+
+# probably obsolete
+#%find_lang	ksysctrl	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -277,8 +287,7 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCMLINUZ
 #################################################
-#%files kcmlinuz -f kcmlinuz.lang
-%files kcmlinuz
+%files kcmlinuz -f kcmlinuz.lang
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_li*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
