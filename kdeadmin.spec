@@ -112,7 +112,7 @@ Ferramenta para administração de usuários do sistema.
 
 %package kpackage
 Summary:	RPM front-end KDE
-Summary(pl):	Program do manipulacji pakietami.
+Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
 Requires:	kdelibs = %{version}
