@@ -1,0 +1,20 @@
+--- kdeadmin-030403/kdat/Makefile.am~	Fri Feb 28 01:00:12 2003
++++ kdeadmin-030403/kdat/Makefile.am	Fri Apr  4 09:49:38 2003
+@@ -19,7 +19,6 @@
+ install-data-local: uninstall.desktop
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Utilities
+ 	$(INSTALL_DATA) $(srcdir)/uninstall.desktop $(DESTDIR)$(kde_appsdir)/Utilities/kdat.desktop
+-	$(INSTALL_DATA) $(srcdir)/uninstall.desktop $(DESTDIR)$(kde_appsdir)/System/kdat.desktop
+ 
+ # set the include path for X, qt and KDE
+ INCLUDES= $(all_includes)
+--- kdeadmin-030403/kdat/Makefile.in~	Thu Apr  3 00:48:13 2003
++++ kdeadmin-030403/kdat/Makefile.in	Fri Apr  4 09:51:47 2003
+@@ -918,7 +918,6 @@
+ install-data-local: uninstall.desktop
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Utilities
+ 	$(INSTALL_DATA) $(srcdir)/uninstall.desktop $(DESTDIR)$(kde_appsdir)/Utilities/kdat.desktop
+-	$(INSTALL_DATA) $(srcdir)/uninstall.desktop $(DESTDIR)$(kde_appsdir)/System/kdat.desktop
+ 
+ messages:
+ 	$(XGETTEXT) $(kdat_SOURCES) -o $(podir)/kdat.pot
