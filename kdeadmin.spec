@@ -308,7 +308,7 @@ Internationalization and localization files for kcmlinuz.
 Pliki umiêdzynarodawiaj±ce dla kcmlinuz.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 
 %build
