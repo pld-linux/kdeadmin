@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -28,7 +28,6 @@ Source1:        kde-i18n-%{name}-%{version}.tar.bz2
 %endif
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-vcategories.patch
-Patch2:		%{name}-gcc34.patch
 Icon:		kde-icon.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -315,7 +314,6 @@ Pliki umi阣zynarodawiaj眂e dla kcmlinuz.
 %setup -q 
 #%patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -362,7 +360,6 @@ fi
 %find_lang kuser	--with-kde
 
 %if %{with i18n}
-%find_lang desktop_kdeadmin	--with-kde
 %find_lang kcmlinuz	--with-kde
 %find_lang kcmlilo	--with-kde
 %find_lang kfile_deb	--with-kde
@@ -402,7 +399,6 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with i18n}
-%files i18n -f desktop_kdeadmin.lang
 %files kcron-i18n -f kcron.lang
 %files kdat-i18n -f kdat.lang
 %files kpackage-i18n -f kpackage.lang
