@@ -4,7 +4,7 @@ Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Name:		kdeadmin
 Version:	2.2.2
-Release:	4
+Release:	5
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -280,6 +280,9 @@ rm -rf $RPM_BUILD_ROOT
 KDEDIR=%{_prefix} ; export KDEDIR
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -315,7 +318,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkcm*
 %attr(755,root,root) %{_libdir}/kde2/libkcm*
 
-%{_applnkdir}/Settings/System/li*.desktop
+%{_applnkdir}/Settings/KDE/System/li*.desktop
 %{_datadir}/apps/kcmlinuz
 
 #################################################
