@@ -13,7 +13,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1.91
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -256,19 +256,28 @@ cd -
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang kcmlilo	--with-kde
 %find_lang kcmlinuz	--with-kde
-%find_lang desktop_kdeadmin --with-kde
-
+%find_lang kcmlilo	--with-kde
 cat kcmlilo.lang >> kcmlinuz.lang
+%find_lang desktop_kdeadmin --with-kde
+cat desktop_kdeadmin.lang >> kcmlinuz.lang
+
+
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
+
+%find_lang kfile_deb	--with-kde
+cat kfile_deb.lang >> kpackage.lang
+%find_lang kfile_rpm	--with-kde
+cat kfile_rpm.lang >> kpackage.lang
+
 #%%find_lang ksysctrl	--with-kde # no i18nal file found
 %find_lang ksysv	--with-kde
-cat ksysctrl.lang >> ksysv.lang
+# cat ksysctrl.lang >> ksysv.lang
+
 %find_lang kuser	--with-kde
-%find_lang kwuftpd	--with-kde
+#%%find_lang kwuftpd	--with-kde 
 %find_lang kxconfig	--with-kde
 %find_lang secpolicy	--with-kde
 cat secpolicy.lang >> ksysv.lang
@@ -348,10 +357,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KWUFTPD
 #################################################
-#%files kwuftpd -f kwuftpd.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kwuftpd
-#%{_applnkdir}/System/kwuftpd.desktop
+#%%files kwuftpd -f kwuftpd.lang
+#%%defattr(644,root,root,755)
+#%%attr(755,root,root) %{_bindir}/kwuftpd
+#%%{_applnkdir}/System/kwuftpd.desktop
 
 #################################################
 #             KXCONFIG
