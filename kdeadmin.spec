@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030406
+%define		_snap		030418
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -220,11 +220,11 @@ if [ -d $plik ]; then
 done
 
 %configure \
+	--enable-final \
 	--with-quota \
-	--with-shadow \
-	--with-rpm \
  	--with-pam="yes" \
-	--enable-final
+	--with-rpm \
+	--with-shadow
 
 %{__make}
 
@@ -233,11 +233,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+mv -f $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 
-mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
-
-mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE/Peripherals/kxconfig.desktop \
+mv $RPM_BUILD_ROOT%{_applnkdir}/KDE-Settings/Peripherals/kxconfig.desktop \
     $RPM_BUILD_ROOT%{_desktopdir}
 
 cd $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -255,29 +253,19 @@ cd -
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#################################################
-#             KCMLINUZ
-#################################################
-#%files kcmlinuz -f kcmlinuz.lang
 %files kcmlinuz
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_li*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
 %{_datadir}/apps/kcmlinuz
-%{_applnkdir}/Settings/KDE/System/li*.desktop
+%{_applnkdir}/KDE-Settings/System/li*.desktop
 
-#################################################
-#             KCRON
-#################################################
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_desktopdir}/kcron.desktop
 %{_pixmapsdir}/*/*/*/kcron.png
 
-#################################################
-#             KDAT
-#################################################
 %files kdat -f kdat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
@@ -285,9 +273,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kdat.desktop
 %{_pixmapsdir}/[!l]*/*/*/kdat*
 
-#################################################
-#             KPACKAGE
-#################################################
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
@@ -299,9 +284,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kpackage.desktop
 %{_pixmapsdir}/*/*/*/kpackage.png
 
-#################################################
-#             KSYSV
-#################################################
 %files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
@@ -313,9 +295,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/*/ksysv.png
 %{_pixmapsdir}/*/*/*/toggle_log.png
 
-#################################################
-#             KUSER
-#################################################
 %files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
@@ -323,17 +302,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kuser.desktop
 %{_pixmapsdir}/*/*/*/kuser.png
 
-#################################################
-#             KWUFTPD
-#################################################
-#%files kwuftpd -f kwuftpd.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kwuftpd
-#%{_applnkdir}/System/kwuftpd.desktop
-
-#################################################
-#             KXCONFIG
-#################################################
 %files kxconfig -f kxconfig.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kxconfig
