@@ -91,6 +91,7 @@ Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
 Requires:       kdelibs >= %{version}
 Obsoletes:	%{name}-kwuftpd
+Obsoletes:	kdat
 
 %description kdat
 Tape backup tool.
