@@ -69,7 +69,7 @@ Summary(pl):	Konfigurator LILO
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	lilo
-Obsoletes:	kdeadmin-kcmlinuz < 8:3.1.93.031105-3
+Obsoletes:	kdeadmin-kcmlinuz < 8:3.4.0
 
 %description kcmlilo
 LILO configuration module for KDE Control Centre.
