@@ -10,7 +10,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1.1
+Release:	1.2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -20,7 +20,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 #
 # generated from kde-i18n
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	4fa7397e8441308224b629e1035d9c55
+# Source1-md5:	ac9a5b726cfce669b9f8898ad2b4f649
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
