@@ -1,9 +1,0 @@
---- kdeadmin-3.0.3/kpackage/kpackage.desktop--	2002-09-08 14:15:09.000000000 +0200
-+++ kdeadmin-3.0.3/kpackage/kpackage.desktop	2002-09-08 14:15:16.000000000 +0200
-@@ -67,6 +67,5 @@ DocPath=kpackage/index.html 
- Terminal=0
- TerminalOptions=
- Path=
--InitialPreference=5
- X-KDE-StartupNotify=true
- X-DCOP-ServiceType=Multi
