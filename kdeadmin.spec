@@ -213,7 +213,7 @@ KDEDIR=%{_prefix} ; export KDEDIR
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang kdat --with-kde
 
