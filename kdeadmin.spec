@@ -1,6 +1,6 @@
 %define		_ver		3.0.1
 #define		_sub_ver
-%define		_rel		1
+%define		_rel		2
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -294,7 +294,7 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 %files kdat -f kdat.lang
 %defattr(644,root,root,755)
-%{_bindir}/kdat
+%attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
 %{_pixmapsdir}/*/*/*/kdat*
 %{_applnkdir}/Utilities/kdat.desktop
