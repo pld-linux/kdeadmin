@@ -1,3 +1,8 @@
+#
+# Conditional build:
+# _with_pixmapsubdirs - leave different depth/resolution icons
+#
+%define		_with_pixmapsubdirs	1
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
 Summary(ko):	K 单胶农啪 券版 - 包府 档备
@@ -6,7 +11,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	3.0.4
-Release:	2
+Release:	3
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
@@ -14,6 +19,7 @@ Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 # generated from kde-i18n
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Source2:	%{name}-kcron.png
 Patch0:		%{name}-fix-kcron-mem-leak.patch
 Patch1:		%{name}-fix-mem-leak-in-kpackage.patch
 Patch2:		%{name}-remove-initial-preference.patch
@@ -224,7 +230,31 @@ KDEDIR=%{_prefix} ; export KDEDIR
 
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
 
+# create in toplevel %%{_pixmapsdir} links to icons
+for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/{kdat,kpackage,ksysv,kuser}.png
+do
+%if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
+	ln -sf `echo $i | sed "s:^$RPM_BUILD_ROOT%{_pixmapsdir}/::"` $RPM_BUILD_ROOT%{_pixmapsdir}
+%else
+	cp -af $i $RPM_BUILD_ROOT%{_pixmapsdir}
+%endif
+done
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}/kcron.png
+
+%if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
+# moved
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{kdat,kpackage,ksysv,kuser}.png
+# resized
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/kcron.png
+%endif
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+
+for f in `find $RPM_BUILD_ROOT%{_applnkdir} -name '.directory' -o -name '*.desktop'` ; do
+	awk -v F=$f '/^Icon=/ && !/\.xpm$/ && !/\.png$/ { $0 = $0 ".png";} { print $0; } END { if(F == ".directory") print "Type=Directory"; }' < $f > $f.tmp
+	mv -f $f{.tmp,}
+done
 
 %find_lang kcmlilo	--with-kde
 %find_lang kcmlinuz	--with-kde
@@ -244,26 +274,6 @@ cat secpolicy.lang >> ksysv.lang
 rm -rf $RPM_BUILD_ROOT
 
 #################################################
-#             KCRON
-#################################################
-%files kcron -f kcron.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kcron
-%{_applnkdir}/System/kcron.desktop
-%{_datadir}/pixmaps/*color/*x*/apps/kcron.png
-
-#################################################
-#             KPACKAGE
-#################################################
-%files kpackage -f kpackage.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kpackage
-%{_applnkdir}/System/kpackage.desktop
-%{_datadir}/apps/kpackage
-%{_datadir}/pixmaps/*color/*x*/apps/kpackage.png
-%{_datadir}/mimelnk/application/x-debian-package.desktop
-
-#################################################
 #             KCMLINUZ
 #################################################
 %files kcmlinuz -f kcmlinuz.lang
@@ -274,6 +284,39 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kcmlinuz
 
 #################################################
+#             KCRON
+#################################################
+%files kcron -f kcron.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kcron
+%{_applnkdir}/System/kcron.desktop
+%{?_with_pixmapsubdirs:%{_datadir}/pixmaps/*color/*x*/apps/kcron.png}
+%{_datadir}/pixmaps/kcron.png
+
+#################################################
+#             KDAT
+#################################################
+%files kdat -f kdat.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kdat
+%{_datadir}/apps/kdat
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*color/*x*/apps/kdat.png}
+%{_pixmapsdir}/kdat.png
+%{_applnkdir}/Utilities/kdat.desktop
+
+#################################################
+#             KPACKAGE
+#################################################
+%files kpackage -f kpackage.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kpackage
+%{_applnkdir}/System/kpackage.desktop
+%{_datadir}/apps/kpackage
+%{?_with_pixmapsubdirs:%{_datadir}/pixmaps/*color/*x*/apps/kpackage.png}
+%{_datadir}/pixmaps/kpackage.png
+%{_datadir}/mimelnk/application/x-debian-package.desktop
+
+#################################################
 #             KSYSV
 #################################################
 %files ksysv -f ksysv.lang
@@ -281,7 +324,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
 %{_datadir}/apps/ksysv
-%{_datadir}/pixmaps/*color/*x*/apps/ksysv.png
+%{?_with_pixmapsubdirs:%{_datadir}/pixmaps/*color/*x*/apps/ksysv.png}
+%{_datadir}/pixmaps/ksysv.png
 %{_datadir}/pixmaps/*color/*x*/actions/toggle_log.png
 %{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
@@ -295,7 +339,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755, root, root) %{_bindir}/kuser
 %{_applnkdir}/System/kuser.desktop
 %{_datadir}/apps/kuser
-%{_datadir}/pixmaps/*color/*x*/apps/kuser.png
+%{?_with_pixmapsubdirs:%{_datadir}/pixmaps/*color/*x*/apps/kuser.png}
+%{_datadir}/pixmaps/kuser.png
 
 #################################################
 #             KWUFTPD
@@ -304,13 +349,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwuftpd
 %{_applnkdir}/System/kwuftpd.desktop
-
-#################################################
-#             KWUFTPD
-#################################################
-%files kdat -f kdat.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kdat
-%{_datadir}/apps/kdat
-%{_pixmapsdir}/*/*/*/kdat*
-%{_applnkdir}/Utilities/kdat.desktop
