@@ -236,7 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcmlinuz
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_linuz.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
+%attr(755,root,root) %{_libdir}/kde3/kcm_linuz.so
 %{_datadir}/apps/kcmlinuz
 %{_desktopdir}/kde/linuz.desktop
 
