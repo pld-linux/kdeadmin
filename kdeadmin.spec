@@ -4,7 +4,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040213
+%define		_snap		040414
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -20,8 +20,9 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
-##%% Source0-md5:	b24ec2e71edcd0157d84821729cae2b2
+#Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+Source0:	%{name}-%{_snap}.tar.bz2
+# Source0-md5:	18aca10710c2bd3a4213116f6f756e87
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
 Patch0:		%{name}-vcategories.patch
