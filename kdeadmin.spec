@@ -1,5 +1,3 @@
-# TODO:
-
 %define         _state          stable
 %define         _ver		3.1.1
 
@@ -11,7 +9,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
