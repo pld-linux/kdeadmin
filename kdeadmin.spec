@@ -2,7 +2,6 @@
 %define		_state		snapshots
 %define		_ver		3.2.91
 %define		_snap		040703
-%define		_packager	adgor
 
 %define		_minlibsevr	9:3.2.91.040629
 %define		_minbaseevr	9:3.2.91.040629
@@ -20,10 +19,7 @@ Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-#Source0:	%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	216d8d0448a8c25e1a03a440d8cad276
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-vcategories.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
