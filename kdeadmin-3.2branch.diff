@@ -1,174 +1,1661 @@
 diff -urN -x CVS kdeadmin.orig/kcmlinuz/linuz.desktop kdeadmin/kcmlinuz/linuz.desktop
---- kdeadmin.orig/kcmlinuz/linuz.desktop	Thu Jan 15 08:35:03 2004
-+++ kdeadmin/kcmlinuz/linuz.desktop	Sat Feb  7 13:40:09 2004
-@@ -17,6 +17,7 @@
+--- kdeadmin.orig/kcmlinuz/linuz.desktop	Sun Mar  7 14:18:15 2004
++++ kdeadmin/kcmlinuz/linuz.desktop	Thu Apr 29 14:52:53 2004
+@@ -1,6 +1,7 @@
+ [Desktop Entry]
+ Encoding=UTF-8
+ Name=Linux Kernel
++Name[ar]=نواة لينكس
+ Name[bg]=Ядро на Линукс
+ Name[ca]=Nucli Linux
+ Name[cs]=Linuxové jádro
+@@ -17,6 +18,7 @@
+ Name[gl]=Núcleo de Linux
  Name[he]=גרעין לינוקס
  Name[hi]=लिनक्स कर्नेल
++Name[hr]=Linux jezgra
  Name[hu]=Linux kernelbeállítások
-+Name[is]=Linux Kjarninn
+ Name[is]=Linux Kjarninn
  Name[ja]=Linux カーネル
- Name[lt]=Linux branduolys
- Name[mn]=Линүкс Цөм
-@@ -71,7 +72,7 @@
- Comment[hi]=लिनक्स कर्नेल कॉन्फिगरेशन हेतु केडीई फ्रन्टएण्ड
+@@ -37,6 +39,7 @@
+ Name[sr]=Линукс Кернел
+ Name[sr@Latn]=Linuks Kernel
+ Name[sv]=Linux-kärnan
++Name[tg]=Ядрои Linux
+ Name[tr]=Linux Çekirdeği
+ Name[uk]=Ядро Linux
+ Name[uz]=Linux кернели
+@@ -53,6 +56,7 @@
+ Type=Application
+ Comment=KDE Frontend for the Linux kernel configuration
+ Comment[af]=Kde Voorprogram vir die Linux kernel opstelling
++Comment[ar]=واجهة إعدادات KDE لنواة لينكس 
+ Comment[az]=Linux Çəkirdək quraşdırması üçün KDE ara üzü
+ Comment[bg]=Графичен конфигуратор за настройка на ядрото на Линукс
+ Comment[bs]=KDE okolina za podešavanje Linux kernela
+@@ -72,7 +76,7 @@
+ Comment[ga]=Comhéadan KDE do chumraíocht eithne Linux
+ Comment[gl]=Programa de KDE para configura-lo núcleo de Linux
+ Comment[he]=שינוי הגדרות הגרעין של לינוקס
+-Comment[hi]=लिनक्स कर्नेल कॉन्फिगरेशन हेतु केडीई फ्रन्टएण्ड
++Comment[hi]=लिनक्स कर्नेल कॉन्फ़िगरेशन हेतु केडीई फ्रन्टएण्ड
  Comment[hr]=KDE sučelje za podešavanje Linux kernela
  Comment[hu]=Grafikus felületű beállítóprogram a Linux kernelhez
--Comment[is]=KDE tÃ³l til aÃ° stilla Linux kjarnann
-+Comment[is]=KDE tól til að stilla Linux kjarnann
- Comment[it]=Interfaccia grafica per la configurazione del kernel Linux
- Comment[ja]=KDEのLinux kernel設定フロントエンド
- Comment[ko]=KDE용 리눅스 커널 설정 도구
+ Comment[is]=KDE tól til að stilla Linux kjarnann
+@@ -100,6 +104,7 @@
+ Comment[sr@Latn]=KDE program za podešavanje Linuks Kernela
+ Comment[sv]=KDE-gränssnitt för anpassning av Linux-kärnan
+ Comment[ta]=KDE பகுதிக்காக லினக்ஸ் கெர்னல் உள்ளமைவு
++Comment[tg]=Ҷилди графикӣ барои танзими ядрои Linux 
+ Comment[th]=ฟร้อนต์เอนด์ KDE สำหรับปรับแต่งเคอร์เนลลินุกซ์
+ Comment[tr]=Linux çekirdek yapılandırması için bir KDE önyüzü
+ Comment[uk]=Інтерфейс KDE для конфігуратора ядра Linux
 diff -urN -x CVS kdeadmin.orig/kcron/kcron.desktop kdeadmin/kcron/kcron.desktop
---- kdeadmin.orig/kcron/kcron.desktop	Thu Jan 15 08:35:05 2004
-+++ kdeadmin/kcron/kcron.desktop	Fri Jan 30 18:29:17 2004
-@@ -36,7 +36,7 @@
- GenericName[hi]=टास्क शेड्यूलर
- GenericName[hr]=Zakazivanje zadataka
- GenericName[hu]=Feladatütemező
--GenericName[is]=VerkefnastjÃ³ri
-+GenericName[is]=Verkefnastjóri
- GenericName[it]=Operazioni pianificate
- GenericName[ja]=タスクスケジューラー
- GenericName[ko]=작업 스케줄러
+--- kdeadmin.orig/kcron/kcron.desktop	Sun Mar  7 14:18:17 2004
++++ kdeadmin/kcron/kcron.desktop	Thu Apr 29 14:52:55 2004
+@@ -6,16 +6,19 @@
+ DocPath=kcron/index.html
+ Name=KCron
+ Name[af]= kcron 
++Name[ar]=برنامج KCron
+ Name[eo]=Taskoplanilo
+ Name[hi]=के-क्रॉन
+ Name[ko]=KDE 크론
+ Name[mn]=КДЕ Крон
+ Name[sv]=Kcron
+ Name[ta]=கேக்ரொன்
++Name[tg]=Kрон
+ Name[th]=ตารางงาน - K
+ Name[xx]=xxKCronxx
+ GenericName=Task Scheduler
+ GenericName[af]=Opdrag Skeduleerder
++GenericName[ar]=مجدول المهام
+ GenericName[bg]=Диспечер на задачи
+ GenericName[bs]=Zakazivanje zadataka
+ GenericName[ca]=Planificador de tasques
+@@ -62,6 +65,7 @@
+ GenericName[sr@Latn]=Organizator zadataka
+ GenericName[sv]=Jobbschemaläggare
+ GenericName[ta]=பணி முறைப்படுத்தி
++GenericName[tg]=Нақшаи Масъала
+ GenericName[th]=ตารางงาน
+ GenericName[tr]=Görev Zamanlayıcı
+ GenericName[uk]=Планувальник задач
+diff -urN -x CVS kdeadmin.orig/kcron/kttask.cpp kdeadmin/kcron/kttask.cpp
+--- kdeadmin.orig/kcron/kttask.cpp	Tue Oct  7 18:48:55 2003
++++ kdeadmin/kcron/kttask.cpp	Mon Apr 12 19:04:25 2004
+@@ -19,7 +19,6 @@
+ #include <qlayout.h>
+ #include <qlineedit.h>
+ #include <qcheckbox.h>
+-#include <qpushbutton.h>
+ #include <qbuttongroup.h>
+ #include <qpainter.h>
+ #include <qpalette.h>
+@@ -29,6 +28,8 @@
+ #include <klocale.h>
+ #include <kfiledialog.h>
+ #include <kmessagebox.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "cttask.h"
+ 
+@@ -37,7 +38,7 @@
+ class KTPushButton : public QPushButton
+ {
+ public:
+-   KTPushButton(QWidget * parent, const char * name = 0 ) 
++   KTPushButton(QWidget * parent, const char * name = 0 )
+      : QPushButton(parent, name), isSelected(false), isDirty(false)
+    {
+       updatePalette();
+@@ -49,9 +50,9 @@
+       palSelected = palNormal;
+       for(int cg = (int) QPalette::Disabled; cg < (int) QPalette::NColorGroups; cg++)
+       {
+-        palSelected.setColor((QPalette::ColorGroup)cg, QColorGroup::Button, 
++        palSelected.setColor((QPalette::ColorGroup)cg, QColorGroup::Button,
+                      palSelected.color((QPalette::ColorGroup)cg, QColorGroup::Highlight));
+-        palSelected.setColor((QPalette::ColorGroup)cg, QColorGroup::ButtonText, 
++        palSelected.setColor((QPalette::ColorGroup)cg, QColorGroup::ButtonText,
+                      palSelected.color((QPalette::ColorGroup)cg, QColorGroup::HighlightedText));
+       }
+       isDirty = true;
+@@ -66,7 +67,7 @@
+      }
+      return QPushButton::event(e);
+    }
+-   
++
+    void drawButton ( QPainter *p )
+    {
+      if (isDirty || (isOn() != isSelected)) // Prevent infinite recursion
+@@ -326,12 +327,12 @@
+   h5->addStretch( 1 );
+ 
+   // OK
+-  pbOk = new QPushButton(i18n("&OK"), this, "pbOk");
++  pbOk = new KPushButton(KStdGuiItem::ok(), this, "pbOk");
+   pbOk->setDefault(true);
+   h5->addWidget( pbOk );
+ 
+   // Cancel
+-  pbCancel = new QPushButton(i18n("&Cancel"), this, "pbCancel");
++  pbCancel = new KPushButton(KStdGuiItem::cancel(), this, "pbCancel");
+   h5->addWidget( pbCancel );
+ 
+   // window
+diff -urN -x CVS kdeadmin.orig/kdat/ArchiveInfoWidget.cpp kdeadmin/kdat/ArchiveInfoWidget.cpp
+--- kdeadmin.orig/kdat/ArchiveInfoWidget.cpp	Sun Aug 11 11:00:12 2002
++++ kdeadmin/kdat/ArchiveInfoWidget.cpp	Wed Apr 14 13:22:53 2004
+@@ -21,9 +21,10 @@
+ #include <qlabel.h>
+ #include <qlayout.h>
+ #include <qlineedit.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "Archive.h"
+ #include "ArchiveInfoWidget.h"
+@@ -59,7 +60,7 @@
+     _size = new QLabel( "???", this );
+     _size->setFixedHeight( _size->sizeHint().height() );
+ 
+-    _apply = new QPushButton( i18n( "&Apply" ), this );
++    _apply = new KPushButton( KStdGuiItem::apply(), this );
+     _apply->setFixedSize( 80, _apply->sizeHint().height() );
+     _apply->setEnabled( FALSE );
+ 
+diff -urN -x CVS kdeadmin.orig/kdat/BackupDlg.cpp kdeadmin/kdat/BackupDlg.cpp
+--- kdeadmin.orig/kdat/BackupDlg.cpp	Sun Aug 11 11:00:12 2002
++++ kdeadmin/kdat/BackupDlg.cpp	Mon Apr 12 19:04:25 2004
+@@ -1,4 +1,4 @@
+-// $Id$
++// $Id$
+ //
+ // KDat - a tar-based DAT archiver
+ // Copyright (C) 1998-2000  Sean Vyain, svyain@mail.tds.net
+@@ -33,6 +33,8 @@
+ #include <kapplication.h>
+ #include <kprocess.h>
+ #include <kmessagebox.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "Archive.h"
+ #include "BackupDlg.h"
+@@ -78,7 +80,7 @@
+ 
+     resize( 515, 300 );
+ 
+-    /* 2002-01-26 LEW: "Time remaining" was cut off in mid-"g" 
++    /* 2002-01-26 LEW: "Time remaining" was cut off in mid-"g"
+        so we'll provide that plus some space beyond it. */
+     // const int labelWidth = 96;
+     const int labelWidth = 110;
+@@ -127,7 +129,7 @@
+ 
+     _log = new LoggerWidget( i18n( "Backup log:" ), this );
+ 
+-    _ok = new QPushButton( i18n( "&OK" ), this );
++    _ok = new KPushButton( KStdGuiItem::ok(), this );
+     _ok->setFixedSize( 80, _ok->sizeHint().height() );
+     connect( _ok, SIGNAL( clicked() ), this, SLOT( slotOK() ) );
+     _ok->setEnabled( FALSE );
+@@ -137,7 +139,7 @@
+     connect( _save, SIGNAL( clicked() ), _log, SLOT( save() ) );
+     _save->setEnabled( FALSE );
+ 
+-    _abort = new QPushButton( i18n( "&Abort" ), this );
++    _abort = new KPushButton( KStdGuiItem::cancel(), this );
+     _abort->setFixedSize( 80, _abort->sizeHint().height() );
+     connect( _abort, SIGNAL( clicked() ), this, SLOT( slotAbort() ) );
+ 
+@@ -276,7 +278,7 @@
+         KMessageBox::information(this, i18n("No files to back up. Aborting."));
+         slotAbort();
+         return;
+-    }          
++    }
+ 
+     connect( _proc, SIGNAL( processExited( KProcess* ) ), this, SLOT( slotProcessExited( KProcess* ) ) );
+     connect( _proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ), this, SLOT( slotStdout( KProcess*, char*, int ) ) );
+diff -urN -x CVS kdeadmin.orig/kdat/BackupOptDlg.cpp kdeadmin/kdat/BackupOptDlg.cpp
+--- kdeadmin.orig/kdat/BackupOptDlg.cpp	Sun Aug 11 11:00:12 2002
++++ kdeadmin/kdat/BackupOptDlg.cpp	Mon Apr 12 19:04:25 2004
+@@ -1,4 +1,4 @@
+-// $Id$
++// $Id$
+ //
+ // KDat - a tar-based DAT archiver
+ // Copyright (C) 1998-2000  Sean Vyain, svyain@mail.tds.net
+@@ -19,9 +19,10 @@
+ // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ 
+ #include <qlayout.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "BackupOptDlg.h"
+ #include "BackupProfileWidget.h"
+@@ -40,10 +41,10 @@
+     _profile = new BackupProfileWidget( this );
+     _profile->setBackupProfile( backupProfile );
+ 
+-    QPushButton* ok = new QPushButton( i18n( "&OK" ), this );
++    QPushButton* ok = new KPushButton( KStdGuiItem::ok(), this );
+     ok->setFixedSize( 80, ok->sizeHint().height() );
+     connect( ok, SIGNAL( clicked() ), this, SLOT( accept() ) );
+-    QPushButton* cancel = new QPushButton( i18n( "&Cancel" ), this );
++    QPushButton* cancel = new KPushButton( KStdGuiItem::cancel(), this );
+     cancel->setFixedSize( 80, ok->sizeHint().height() );
+     connect( cancel, SIGNAL( clicked() ), this, SLOT( reject() ) );
+ 
+diff -urN -x CVS kdeadmin.orig/kdat/BackupProfileInfoWidget.cpp kdeadmin/kdat/BackupProfileInfoWidget.cpp
+--- kdeadmin.orig/kdat/BackupProfileInfoWidget.cpp	Sun Jan 20 20:56:13 2002
++++ kdeadmin/kdat/BackupProfileInfoWidget.cpp	Wed Apr 14 13:22:53 2004
+@@ -22,9 +22,10 @@
+ #include <qlabel.h>
+ #include <qlayout.h>
+ #include <qlineedit.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "BackupProfile.h"
+ #include "BackupProfileInfoWidget.h"
+@@ -56,7 +57,7 @@
+     QPushButton* setSelection = new QPushButton( i18n( "<< Files" ), this );
+     setSelection->setFixedSize( 80, setSelection->sizeHint().height() );
+ 
+-    _apply = new QPushButton( i18n( "Apply" ), this );
++    _apply = new KPushButton( KStdGuiItem::apply(), this );
+     _apply->setFixedSize( 80, _apply->sizeHint().height() );
+     _apply->setEnabled( FALSE );
+ 
+@@ -189,7 +190,7 @@
+     _backupProfile->setIncremental( _profile->isIncremental() );
+     _backupProfile->setSnapshotFile( _profile->getSnapshotFile() );
+     _backupProfile->setRemoveSnapshot( _profile->getRemoveSnapshot() );
+-    
++
+     _backupProfile->save();
+ 
+     _apply->setEnabled( FALSE );
+diff -urN -x CVS kdeadmin.orig/kdat/FormatOptDlg.cpp kdeadmin/kdat/FormatOptDlg.cpp
+--- kdeadmin.orig/kdat/FormatOptDlg.cpp	Sun Aug 11 11:00:12 2002
++++ kdeadmin/kdat/FormatOptDlg.cpp	Mon Apr 12 19:04:25 2004
+@@ -22,11 +22,12 @@
+ #include <qlabel.h>
+ #include <qlayout.h>
+ #include <qlineedit.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
+ #include <kglobal.h>
+ #include <klocale.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "Options.h"
+ #include "FormatOptDlg.h"
+@@ -60,9 +61,9 @@
+     _tapeSizeUnits->insertItem( "MB" );
+     _tapeSizeUnits->insertItem( "GB" );
+ 
+-    QPushButton* ok     = new QPushButton( i18n( "&OK" ), this );
++    QPushButton* ok     = new KPushButton( KStdGuiItem::ok(), this );
+     ok->setFixedSize( 80, ok->sizeHint().height() );
+-    QPushButton* cancel = new QPushButton( i18n( "&Cancel" ), this );
++    QPushButton* cancel = new KPushButton( KStdGuiItem::cancel(), this );
+     cancel->setFixedSize( 80, cancel->sizeHint().height() );
+ 
+     QVBoxLayout* l1 = new QVBoxLayout( this, 8, 4 );
+@@ -126,7 +127,7 @@
+         // GB
+         _size *= 1024*1024;
+     }
+-    
++
+     accept();
+ }
+ 
+diff -urN -x CVS kdeadmin.orig/kdat/IndexDlg.cpp kdeadmin/kdat/IndexDlg.cpp
+--- kdeadmin.orig/kdat/IndexDlg.cpp	Tue Jan 29 05:16:25 2002
++++ kdeadmin/kdat/IndexDlg.cpp	Wed Apr 14 13:22:53 2004
+@@ -23,11 +23,12 @@
+ 
+ #include <qlabel.h>
+ #include <qlayout.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
+ #include <klocale.h>
+ #include <kmessagebox.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "LoggerWidget.h"
+ #include "Options.h"
+@@ -106,7 +107,7 @@
+ 
+     _log = new LoggerWidget( i18n( "Index log:" ), this );
+ 
+-    _ok = new QPushButton( i18n( "OK" ), this );
++    _ok = new KPushButton( KStdGuiItem::ok(), this );
+     _ok->setFixedSize( 80, _ok->sizeHint().height() );
+     connect( _ok, SIGNAL( clicked() ), this, SLOT( slotOK() ) );
+     _ok->setEnabled( FALSE );
+diff -urN -x CVS kdeadmin.orig/kdat/KDat.cpp kdeadmin/kdat/KDat.cpp
+--- kdeadmin.orig/kdat/KDat.cpp	Sun Oct 26 10:58:41 2003
++++ kdeadmin/kdat/KDat.cpp	Wed Apr 14 13:22:53 2004
+@@ -38,6 +38,8 @@
+ #include <kconfig.h>
+ #include <kmessagebox.h>
+ #include <kstringhandler.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "ArchiveInfoWidget.h"
+ #include "BackupDlg.h"
+@@ -141,10 +143,10 @@
+     _fileMenu->insertItem( i18n( "Delete Backup Profile" ), this, SLOT( fileDeleteBackupProfile() ) );
+     _fileMenu->insertItem( i18n( "Format Tape..." )       , this, SLOT( fileFormatTape() ) );
+     _fileMenu->insertSeparator();
+-    _fileMenu->insertItem( i18n( "&Quit" )                , this, SLOT( fileQuit() ), CTRL + Key_Q );
++    _fileMenu->insertItem( SmallIcon("exit"), i18n( "&Quit" )                , this, SLOT( fileQuit() ), CTRL + Key_Q );
+ 
+     _editMenu = new QPopupMenu;
+-    _editMenu->insertItem( i18n( "Configure KDat..." )       , this, SLOT( editPreferences() ) );
++    _editMenu->insertItem( SmallIcon("configure"), i18n( "Configure KDat..." )       , this, SLOT( editPreferences() ) );
+ 
+     _menu = new KMenuBar( this );
+     _menu->insertItem( i18n( "&File" ), _fileMenu );
+@@ -1351,7 +1353,7 @@
+   //  _lbl->setGeometry( QRect( 30, 20, 350, 140 ) );  /* 2002-01-28 LEW */
+   _lbl->setGeometry( QRect( 30, 20, 350, 200 ) );
+ 
+-  _cancel = new QPushButton( i18n( "&Cancel" ), _backupdialog );
++  _cancel = new KPushButton( KStdGuiItem::cancel(), _backupdialog );
+   _cancel->setFixedSize( 80, _cancel->sizeHint().height() );
+   _cancel->setEnabled( TRUE );
+   /* 2002-01-24 LEW: looks like we can't increase the button width
+@@ -1360,7 +1362,7 @@
+   _cancel->setGeometry( QRect( 50, 230, 0, 0 ) );
+   connect( _cancel, SIGNAL( clicked() ), this, SLOT( backupCancel() ) );
+ 
+-  _continue = new QPushButton( i18n( "C&ontinue" ), _backupdialog );
++  _continue = new KPushButton( KStdGuiItem::cont(), _backupdialog );
+   _continue->setFixedSize( 80, _continue->sizeHint().height() );
+   _continue->setEnabled( TRUE );
+   _continue->setDefault( TRUE );
+diff -urN -x CVS kdeadmin.orig/kdat/OptionsDlg.cpp kdeadmin/kdat/OptionsDlg.cpp
+--- kdeadmin.orig/kdat/OptionsDlg.cpp	Fri Apr  4 15:40:12 2003
++++ kdeadmin/kdat/OptionsDlg.cpp	Mon Apr 12 19:04:25 2004
+@@ -1,4 +1,4 @@
+-// $Id$
++// $Id$
+ //
+ // KDat - a tar-based DAT archiver
+ // Copyright (C) 1998-2000  Sean Vyain, svyain@mail.tds.net
+@@ -26,11 +26,12 @@
+ #include <qlabel.h>
+ #include <qlayout.h>
+ #include <qlineedit.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
+ #include <kfiledialog.h>
+ #include <kmessagebox.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "Options.h"
+ #include "OptionsDlg.h"
+@@ -135,14 +136,14 @@
+     QHBoxLayout *h3 = new QHBoxLayout( ml, KDialog::spacingHint() );
+     h3->addStretch( 1 );
+ 
+-    QPushButton* ok     = new QPushButton( i18n( "&OK" )    , this );
++    QPushButton* ok     = new KPushButton( KStdGuiItem::ok() , this );
+     ok->setDefault(TRUE);
+     h3->addWidget( ok );
+ 
+-    apply  = new QPushButton( i18n( "&Apply" ) , this );
++    apply  = new KPushButton( KStdGuiItem::apply() , this );
+     h3->addWidget( apply );
+ 
+-    QPushButton* cancel = new QPushButton( i18n( "&Cancel" ), this );
++    QPushButton* cancel = new KPushButton( KStdGuiItem::cancel(), this );
+     h3->addWidget( cancel );
+ 
+     connect( browseTapeDevice, SIGNAL( clicked() ), this, SLOT( slotBrowseTapeDevice() ) );
+diff -urN -x CVS kdeadmin.orig/kdat/TapeInfoWidget.cpp kdeadmin/kdat/TapeInfoWidget.cpp
+--- kdeadmin.orig/kdat/TapeInfoWidget.cpp	Sun Aug 11 11:00:12 2002
++++ kdeadmin/kdat/TapeInfoWidget.cpp	Wed Apr 14 13:22:53 2004
+@@ -23,11 +23,12 @@
+ #include <qlabel.h>
+ #include <qlayout.h>
+ #include <qlineedit.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
+ #include <kglobal.h>
+ #include <klocale.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "Options.h"
+ #include "Tape.h"
+@@ -90,7 +91,7 @@
+     _spaceUsed = new QLabel( "???", this );
+     _spaceUsed->setFixedHeight( _spaceUsed->sizeHint().height() );
+ 
+-    _apply = new QPushButton( i18n( "&Apply" ), this );
++    _apply = new KPushButton( KStdGuiItem::apply(), this );
+     _apply->setFixedSize( 80, _apply->sizeHint().height() );
+     _apply->setEnabled( FALSE );
+ 
+diff -urN -x CVS kdeadmin.orig/kdat/VerifyDlg.cpp kdeadmin/kdat/VerifyDlg.cpp
+--- kdeadmin.orig/kdat/VerifyDlg.cpp	Sun Aug 11 11:00:12 2002
++++ kdeadmin/kdat/VerifyDlg.cpp	Mon Apr 12 19:04:25 2004
+@@ -1,4 +1,4 @@
+-// $Id$
++// $Id$
+ //
+ // KDat - a tar-based DAT archiver
+ // Copyright (C) 1998-2000  Sean Vyain, svyain@mail.tds.net
+@@ -26,13 +26,14 @@
+ 
+ #include <qlabel.h>
+ #include <qlayout.h>
+-#include <qpushbutton.h>
+ #include <qfile.h>
+ 
+ #include <kapplication.h>
+ #include <kprocess.h>
+ #include <klocale.h>
+ #include <kdebug.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "LoggerWidget.h"
+ #include "Options.h"
+@@ -75,8 +76,8 @@
+ 
+     resize( 500, 300 );
+ 
+-    /* 2002-01-26 LEW: "Time remaining" was cut off in mid-"g" 
+-       in BackupDlg.cpp, 
++    /* 2002-01-26 LEW: "Time remaining" was cut off in mid-"g"
++       in BackupDlg.cpp,
+        so we'll provide that plus some space beyond it. */
+     // const int labelWidth = 96;
+     const int labelWidth = 110;
+@@ -135,7 +136,7 @@
+         _log = new LoggerWidget( i18n( "Verify log:" ), this );
+     }
+ 
+-    _ok = new QPushButton( i18n( "&OK" ), this );
++    _ok = new KPushButton( KStdGuiItem::ok(), this );
+     _ok->setFixedSize( 80, _ok->sizeHint().height() );
+     connect( _ok, SIGNAL( clicked() ), this, SLOT( slotOK() ) );
+     _ok->setEnabled( FALSE );
+@@ -145,7 +146,7 @@
+     connect( _save, SIGNAL( clicked() ), _log, SLOT( save() ) );
+     _save->setEnabled( FALSE );
+ 
+-    _abort = new QPushButton( i18n( "&Abort" ), this );
++    _abort = new KPushButton( KStdGuiItem::cancel(), this );
+     _abort->setFixedSize( 80, _abort->sizeHint().height() );
+     connect( _abort, SIGNAL( clicked() ), this, SLOT( slotAbort() ) );
+ 
+diff -urN -x CVS kdeadmin.orig/kdat/VerifyOptDlg.cpp kdeadmin/kdat/VerifyOptDlg.cpp
+--- kdeadmin.orig/kdat/VerifyOptDlg.cpp	Tue Oct 21 23:56:07 2003
++++ kdeadmin/kdat/VerifyOptDlg.cpp	Mon Apr 12 19:04:25 2004
+@@ -22,10 +22,11 @@
+ #include <qlayout.h>
+ #include <qlineedit.h>
+ #include <qlistbox.h>
+-#include <qpushbutton.h>
+ 
+ #include <kapplication.h>
+ #include <kfiledialog.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "VerifyOptDlg.h"
+ #include <klocale.h>
+@@ -70,9 +71,9 @@
+     QListBox* fileList = new QListBox( this );
+     fileList->insertStringList(files);
+ 
+-    QPushButton* ok     = new QPushButton( i18n( "&OK" ), this );
++    QPushButton* ok     = new KPushButton( KStdGuiItem::ok(), this );
+     ok->setFixedSize( 80, ok->sizeHint().height() );
+-    QPushButton* cancel = new QPushButton( i18n( "&Cancel" ), this );
++    QPushButton* cancel = new KPushButton( KStdGuiItem::cancel(), this );
+     cancel->setFixedSize( 80, cancel->sizeHint().height() );
+ 
+     QVBoxLayout* l1 = new QVBoxLayout( this, 8, 4 );
+@@ -82,7 +83,7 @@
+     l1_1->addWidget( lbl1 );
+     l1_1->addWidget( _entry, 1 );
+     l1_1->addWidget( browse );
+-    
++
+     l1->addWidget( lbl2 );
+     l1->addWidget( fileList, 1 );
+ 
 diff -urN -x CVS kdeadmin.orig/kdat/kdat.desktop kdeadmin/kdat/kdat.desktop
---- kdeadmin.orig/kdat/kdat.desktop	Thu Jan 15 08:35:07 2004
-+++ kdeadmin/kdat/kdat.desktop	Fri Jan 30 18:29:19 2004
-@@ -32,6 +32,7 @@
- GenericName[hi]=टेप बैकअप उपकरण
- GenericName[hr]=Alat za sigurnosne kopije na traci
- GenericName[hu]=Szalagos mentés
-+GenericName[is]=Spólu afritunartól
- GenericName[it]=Programma per il backup su nastro
- GenericName[ja]=テープバックアップツール
- GenericName[ko]=테이프로 여벌 받는 도구
+--- kdeadmin.orig/kdat/kdat.desktop	Sun Mar  7 14:18:19 2004
++++ kdeadmin/kdat/kdat.desktop	Thu Apr 29 14:52:57 2004
+@@ -2,16 +2,19 @@
+ Encoding=UTF-8
+ Name=KDat
+ Name[af]=Kdat
++Name[ar]=برنامج KDat
+ Name[eo]=Surbendigilo
+ Name[hi]=के-डेट
+ Name[ko]=KDE Dat
+ Name[mn]=КДЕ Дат
+ Name[sv]=Kdat
+ Name[ta]=கேடாட்
++Name[tg]=KДат
+ Name[th]=เทปสำรองข้อมูล - K
+ Name[xx]=xxKDatxx
+ GenericName=Tape Backup Tool
+ GenericName[af]=Kaset Rugsteun Program
++GenericName[ar]=أداة حفظ شريط البيانات الإحتياطي
+ GenericName[bg]=Архивиращ инструмент за лентови устройства
+ GenericName[bs]=Alat za backup na traku
+ GenericName[ca]=Utilitat per a còpies de seguretat en cintes
+@@ -58,6 +61,7 @@
+ GenericName[sr@Latn]=Alat za arhiviranje na traku
+ GenericName[sv]=Verktyg för bandsäkerhetskopiering
+ GenericName[ta]=டேப் பிண்ண
++GenericName[tg]=Утилита барои архив кардан ба тасма
+ GenericName[th]=เครื่องมือเทปสำรองข้อมูล
+ GenericName[tr]=Teyp Yedekleme Aracı
+ GenericName[uk]=Засіб резервування на стрічку
+diff -urN -x CVS kdeadmin.orig/kfile-plugins/deb/kfile_deb.desktop kdeadmin/kfile-plugins/deb/kfile_deb.desktop
+--- kdeadmin.orig/kfile-plugins/deb/kfile_deb.desktop	Fri Mar  5 13:49:39 2004
++++ kdeadmin/kfile-plugins/deb/kfile_deb.desktop	Thu Apr 29 14:52:59 2004
+@@ -2,6 +2,7 @@
+ Type=Service
+ Name=DEB Stats
+ Name[af]=Deb Statistiek
++Name[ar]=إحصائيَات DEB
+ Name[bs]=DEB statistika
+ Name[ca]=L'estat dels DEB
+ Name[cs]=DEB statistiky
+@@ -18,6 +19,7 @@
+ Name[gl]=Estatísticas DEB
+ Name[he]=סטטיסטיקת DEB
+ Name[hi]=डीईबी स्टेट्स
++Name[hr]=DEB Statistike
+ Name[hu]=DEB-statisztika
+ Name[it]=Statistiche DEB
+ Name[lt]=DEB statistika
+@@ -39,6 +41,7 @@
+ Name[sr@Latn]=DEB Statistike
+ Name[sv]=DEB-statistik
+ Name[ta]=டியிபி புள்ளி விவரம்
++Name[tg]=Статистикаи DEB
+ Name[th]=สถิติของ DEB
+ Name[tr]=DEB İstatistikleri
+ Name[uk]=Дані DEB
+diff -urN -x CVS kdeadmin.orig/kfile-plugins/rpm/kfile_rpm.desktop kdeadmin/kfile-plugins/rpm/kfile_rpm.desktop
+--- kdeadmin.orig/kfile-plugins/rpm/kfile_rpm.desktop	Fri Mar  5 13:49:42 2004
++++ kdeadmin/kfile-plugins/rpm/kfile_rpm.desktop	Thu Apr 29 14:53:01 2004
+@@ -2,6 +2,7 @@
+ Type=Service
+ Name=RPM Stats
+ Name[af]=Rpm Statistiek
++Name[ar]=إحصائيَات RPMS
+ Name[bs]=RPM statistika
+ Name[ca]=L'estat dels RPM
+ Name[cs]=RPM statistiky
+@@ -41,6 +42,7 @@
+ Name[sr@Latn]=RPM Statistike
+ Name[sv]=RPM-statistik
+ Name[ta]=ஆர்பியம் புள்ளி விவரம்
++Name[tg]=Статистикаи RPM
+ Name[th]=สถิติของ RPM
+ Name[tr]=RPM İstatistikleri
+ Name[uk]=Дані RPM
 diff -urN -x CVS kdeadmin.orig/kpackage/kpackage.desktop kdeadmin/kpackage/kpackage.desktop
---- kdeadmin.orig/kpackage/kpackage.desktop	Thu Jan 15 08:35:13 2004
-+++ kdeadmin/kpackage/kpackage.desktop	Fri Jan 30 18:29:21 2004
-@@ -5,7 +5,6 @@
+--- kdeadmin.orig/kpackage/kpackage.desktop	Fri Mar  5 13:49:44 2004
++++ kdeadmin/kpackage/kpackage.desktop	Thu Apr 29 14:53:03 2004
+@@ -2,6 +2,7 @@
+ Encoding=UTF-8
+ Name=KPackage
+ Name[af]=Kpackage
++Name[ar]=برنامج KPackage
  Name[eo]=Pakaĵadministrilo
  Name[fo]=KPakka
  Name[hi]=के-पैकेज
--Name[is]=PakkastjÃ³ri
- Name[ko]=KDE 꾸러미
- Name[lv]=KPakotne
- Name[mn]=КДЕ Багц
-@@ -39,7 +38,7 @@
- GenericName[hi]=पैकेज प्रबंधक
- GenericName[hr]=Alat za upravljanje paketima
- GenericName[hu]=Telepítő
--GenericName[is]=PakkastjÃ³ri
-+GenericName[is]=Pakkastjóri
- GenericName[it]=Gestione pacchetti
- GenericName[ja]=パッケージマネージャー
- GenericName[ko]=꾸러미 관리자
+@@ -18,6 +19,7 @@
+ Name[zu]=kphakethe
+ GenericName=Package Manager
+ GenericName[af]=Paket Bestuurder
++GenericName[ar]=مدير الرَزم
+ GenericName[bg]=Мениджър на пакети
+ GenericName[bs]=Upravitelj paketima
+ GenericName[ca]=Gestor de paquets
+@@ -64,6 +66,7 @@
+ GenericName[sr@Latn]=Menadžer paketa
+ GenericName[sv]=Pakethanterare
+ GenericName[ta]=தொகுப்பு மேலாளர்
++GenericName[tg]=Роҳбари Package
+ GenericName[th]=เครื่องมือจัดการแพ็คเกจ
+ GenericName[tr]=Paket Yöneticisi
+ GenericName[uk]=Менеджер пакунків
+diff -urN -x CVS kdeadmin.orig/kpackage/kplview.cpp kdeadmin/kpackage/kplview.cpp
+--- kdeadmin.orig/kpackage/kplview.cpp	Wed Jan  7 20:57:21 2004
++++ kdeadmin/kpackage/kplview.cpp	Sun Apr  4 16:36:21 2004
+@@ -182,8 +182,10 @@
+   marked = mark;
+   if (mark)
+     setPixmap(1,info->interface->markInst);
+-  else
+-    setPixmap(1,info->interface->markUnInst);
++  else {
++    if (info)
++      setPixmap(1,info->interface->markUnInst);
++  }
+ }
+ 
+ void KPLVItem::hide() 
 diff -urN -x CVS kdeadmin.orig/kpackage/mimetypes/x-debian-package.desktop kdeadmin/kpackage/mimetypes/x-debian-package.desktop
---- kdeadmin.orig/kpackage/mimetypes/x-debian-package.desktop	Thu Jan 15 08:35:15 2004
-+++ kdeadmin/kpackage/mimetypes/x-debian-package.desktop	Sat Feb  7 13:40:11 2004
-@@ -27,7 +27,7 @@
- Comment[hr]=Debian paket
- Comment[hu]=Debian csomag
- Comment[id]=Paket Debian
--Comment[is]=Debian-pakki
-+Comment[is]=Debian pakki
- Comment[it]=Pacchetto Debian
- Comment[ja]=Debianパッケージ
- Comment[ko]=데비안 꾸러미
+--- kdeadmin.orig/kpackage/mimetypes/x-debian-package.desktop	Fri Mar  5 13:49:46 2004
++++ kdeadmin/kpackage/mimetypes/x-debian-package.desktop	Thu Apr 29 14:53:05 2004
+@@ -4,6 +4,7 @@
+ MimeType=application/x-debian-package
+ Comment=Debian Package
+ Comment[af]=Debian Paket
++Comment[ar]=رزمة دبيان
+ Comment[az]=Debian Paketi
+ Comment[bg]=Пакет на Дебиан
+ Comment[br]=Pakad Debian
+@@ -53,6 +54,7 @@
+ Comment[sr@Latn]=Programski paket za Debian
+ Comment[sv]=Debian-paket
+ Comment[ta]=டெபியன் தொகுப்பு
++Comment[tg]=Қуттии Debian
+ Comment[th]=แพ็คเกจเดเบียน
+ Comment[tr]=Debian Paketi
+ Comment[uk]=Пакунок Debian 
+diff -urN -x CVS kdeadmin.orig/kpackage/pkgOptions.cpp kdeadmin/kpackage/pkgOptions.cpp
+--- kdeadmin.orig/kpackage/pkgOptions.cpp	Wed Jan  7 20:57:21 2004
++++ kdeadmin/kpackage/pkgOptions.cpp	Wed Apr 14 13:22:54 2004
+@@ -36,6 +36,8 @@
+ #include <klistview.h>
+ #include <kseparator.h>
+ #include <kdebug.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "pkgOptions.h"
+ #include "managementWidget.h"
+@@ -82,7 +84,7 @@
+   //  title->update();
+ 
+   installButton = new QPushButton(insType,this);
+-  cancelButton = new QPushButton(i18n("Cancel"),this);
++  cancelButton = new KPushButton(KStdGuiItem::cancel(),this);
+   // count number of buttons
+   bnumber = pars.count();
+ 
+@@ -207,7 +209,7 @@
+     //    kdDebug() << "P=" << *pit << "\n";
+     new QListViewItem(packages, *pit);
+   }
+-  cancelButton->setText(i18n("Cancel"));
++  cancelButton->setGuiItem(KStdGuiItem::cancel());
+ }
+ 
+ // install button has been clicked....so install the package
+@@ -242,7 +244,7 @@
+ 
+     if (term->run(s, r)) {
+       running = TRUE;
+-      cancelButton->setText(i18n("Cancel"));
++      cancelButton->setGuiItem(KStdGuiItem::cancel());
+     } else {
+       reset();
+     }
+@@ -265,7 +267,7 @@
+ 
+ void pkgOptions::reset() {
+   installButton->setEnabled(TRUE);
+-  cancelButton->setText(i18n("Done"));
++  cancelButton->setGuiItem(KGuiItem(i18n("Done")));  //clear icon
+   disconnect(term,SIGNAL(result(QStringList &, int)),
+ 	 this,SLOT(slotResult(QStringList &, int)));
+   running = FALSE;
+@@ -300,7 +302,7 @@
+ 
+ void pkgOptions::hideEvent ( QHideEvent *h ) {
+   terminate();
+-    
++
+   QWidget::hideEvent (h);
+ }
+ 
+diff -urN -x CVS kdeadmin.orig/kpackage/pkgOptions.h kdeadmin/kpackage/pkgOptions.h
+--- kdeadmin.orig/kpackage/pkgOptions.h	Wed Jan  7 20:57:21 2004
++++ kdeadmin/kpackage/pkgOptions.h	Wed Apr 14 13:22:54 2004
+@@ -48,6 +48,7 @@
+ #include "kpTerm.h"
+ 
+ class KListView;
++class KPushButton;
+ 
+ class pkgOptions : public KDialog
+ {
+@@ -67,7 +68,7 @@
+   // options buttons
+ 
+   QCheckBox *Keep;
+-  // keep window 
++  // keep window
+ 
+   KListView *packages;
+ 
+@@ -89,7 +90,7 @@
+   // This sets up the sub-widgets
+   void setupWidgets(QPtrList<param> &pars);
+ 
+-private slots:  
++private slots:
+   virtual void pkginstallButtonClicked();
+   virtual void cancelButtonClicked();
+   void slotSearch(QListViewItem *item);
+@@ -107,7 +108,8 @@
+   QBoxLayout *layout, *hlayout, *vlayout;
+ 
+   // Sub widgets
+-  QPushButton *installButton, *cancelButton;
++  QPushButton *installButton;
++  KPushButton *cancelButton;
+ 
+   QString insType;
+   bool installer;
+diff -urN -x CVS kdeadmin.orig/ksysv/PreferencesDialog.cpp kdeadmin/ksysv/PreferencesDialog.cpp
+--- kdeadmin.orig/ksysv/PreferencesDialog.cpp	Wed Oct 22 00:17:29 2003
++++ kdeadmin/ksysv/PreferencesDialog.cpp	Mon Apr 12 19:04:25 2004
+@@ -158,8 +158,7 @@
+                                                    "You can continue if you want to, "
+                                                    "or you can click Cancel "
+                                                    "to select a new folder."),
+-                                             i18n ("Warning"),
+-                                             i18n ("Continue"))
++                                             i18n ("Warning"))
+           != KMessageBox::Cancel);
+ 
+   return result;
+@@ -221,11 +220,11 @@
+     if (rp != mConfig->runlevelPath ())
+       {
+         mConfig->setRunlevelPath (rp);
+-        
++
+         emit updateRunlevelsPath ();
+       }
+   }
+-  
++
+   // if necessary, update miscellaneous settings
+   {
+     mConfig->setShowMessage (ksv::RunlevelsReadOnly,
+@@ -240,7 +239,7 @@
+     QColor ns = newSelected();
+     QColor cn = changedNormal();
+     QColor cs = changedSelected();
+-    
++
+     if (nn != mConfig->newNormalColor() ||
+         ns != mConfig->newSelectedColor() ||
+         cn != mConfig->changedNormalColor() ||
+@@ -250,16 +249,16 @@
+         mConfig->setNewSelectedColor (ns);
+         mConfig->setChangedNormalColor (cn);
+         mConfig->setChangedSelectedColor (cs);
+-        
++
+         emit updateColors ();
+       }
+   }
+-  
++
+   // if necessary, update fonts
+   {
+     const QFont& sf = mLookAndFeel->serviceFont();
+     const QFont& ns = mLookAndFeel->numberFont();
+-    
++
+     if (sf != mConfig->serviceFont() || ns != mConfig->numberFont())
+       {
+         mConfig->setServiceFont (sf);
+@@ -273,7 +272,7 @@
+ void KSVPreferences::showAllMessages ()
+ {
+   KMessageBox::enableAllMessages ();
+-  
++
+   // update checkboxes
+   reReadMessages();
+ }
+diff -urN -x CVS kdeadmin.orig/ksysv/TopWidget.cpp kdeadmin/ksysv/TopWidget.cpp
+--- kdeadmin.orig/ksysv/TopWidget.cpp	Tue Oct  7 19:08:16 2003
++++ kdeadmin/ksysv/TopWidget.cpp	Mon Apr 12 19:04:25 2004
+@@ -5,7 +5,7 @@
+     Copyright (C) 1997-2000 Peter Putzer
+                             putzer@kde.org
+ 
+-	$Id$
++	$Id$
+ 
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of version 2 of the GNU General Public License
+@@ -306,8 +306,8 @@
+     res = KMessageBox::warningYesNo(kapp->mainWidget(),
+ 				    i18n("There are unsaved changes. Are you sure you want to quit?"),
+ 				    i18n("Quit"),
+-				    i18n("&Quit"),
+-				    i18n("&Cancel"));
++				    KStdGuiItem::quit(),
++				    KStdGuiItem::cancel());
+ 
+   }
+ 
+@@ -323,7 +323,7 @@
+ 				 i18n("Do you really want to revert all unsaved changes?"),
+ 				 i18n("Revert Configuration"),
+ 				 i18n("&Revert"),
+-				 i18n("&Cancel")))
++				 KStdGuiItem::cancel()))
+     {
+       mUndoList->undoAll();
+ 	  mRedoList->clear();
+@@ -338,8 +338,8 @@
+ 				     "make your system hang on startup.\n"
+ 				     "Do you wish to continue?"),
+ 				i18n("Save Configuration"),
+-				i18n("&Save"),
+-				i18n("&Cancel")))
++				KStdGuiItem::save(),
++				KStdGuiItem::cancel()))
+     {
+       mView->slotWriteSysV();
+       initView();
 diff -urN -x CVS kdeadmin.orig/ksysv/ksysv.desktop kdeadmin/ksysv/ksysv.desktop
---- kdeadmin.orig/ksysv/ksysv.desktop	Thu Jan 15 08:35:17 2004
-+++ kdeadmin/ksysv/ksysv.desktop	Mon Feb  2 11:09:21 2004
-@@ -24,9 +24,9 @@
- Name[hr]=SysV Init Uređivač
- Name[hu]=KSysV
- Name[id]=Editor SysV init
--Name[is]=SysV Init-stjÃ³ri
-+Name[is]=SysV Init-stjóri
- Name[it]=Editor per SysV-Init
--Name[ja]=SysV-Init エディタ
-+Name[ja]=SystemV起動スクリプト エディタ
- Name[ko]=SysV Init 편집기
- Name[lt]=SysV-Init redaktorius
- Name[lv]=SysV-Init Redaktors
-diff -urN -x CVS kdeadmin.orig/ksysv/x-ksysv-log.desktop kdeadmin/ksysv/x-ksysv-log.desktop
---- kdeadmin.orig/ksysv/x-ksysv-log.desktop	Thu Jan 15 08:35:19 2004
-+++ kdeadmin/ksysv/x-ksysv-log.desktop	Wed Feb  4 14:37:57 2004
+--- kdeadmin.orig/ksysv/ksysv.desktop	Sun Feb 29 15:43:09 2004
++++ kdeadmin/ksysv/ksysv.desktop	Thu Apr 29 14:53:07 2004
 @@ -2,6 +2,7 @@
  Encoding=UTF-8
- Comment=SysV-Init Editor Log File
- Comment[bg]=Редактор на инициализиращите нива (SysV-Init)
-+Comment[bs]=SysV-Init Editor log datoteka
- Comment[ca]=Fitxer de registre de l'editor init SysV
- Comment[cs]=Záznamový soubor programu SysV-Init editoru
- Comment[cy]=Ffeil Cofnodi Golygydd SysV-Init
-@@ -16,7 +17,9 @@
+ Name=SysV-Init Editor
+ Name[af]=SysV-Init Redigeerder
++Name[ar]=محرَر SysV-Init
+ Name[az]=SysV-Init Editoru
+ Name[br]=Aozer deraouiÃ± SysV
+ Name[bs]=SysV Init Editor
+@@ -47,6 +48,7 @@
+ Name[sr@Latn]=Uređivač SysV-init-a
+ Name[sv]=Sysv-starteditor
+ Name[ta]=சிஸ் வி-இன்ட் திரித்துபவர்
++Name[tg]=Муҳаррири вазъияти SysV
+ Name[th]=แก้ไขการเริ่มระบบแบบ SysV
+ Name[tr]=SysV-Init Düzenleyici
+ Name[uk]=Редактор SysV-Init
+diff -urN -x CVS kdeadmin.orig/ksysv/x-ksysv-log.desktop kdeadmin/ksysv/x-ksysv-log.desktop
+--- kdeadmin.orig/ksysv/x-ksysv-log.desktop	Sun Feb 29 15:43:11 2004
++++ kdeadmin/ksysv/x-ksysv-log.desktop	Thu Apr 29 14:53:09 2004
+@@ -15,7 +15,8 @@
+ Comment[fi]=SysV-init-editorin lokitiedosto
+ Comment[fr]=Journal de l'éditeur de configuration de démarrage SysV
  Comment[gl]=Ficheiro de Rexistro do Editor de Incicio SysV
- Comment[hi]=सिस-वी-इनिट संपादक लाग फाइल
+-Comment[hi]=सिस-वी-इनिट संपादक लाग फाइल
++Comment[hi]=सिस-वी-इनिट संपादक लाग फ़ाइल
++Comment[hr]=Dnevnik uređivača SysV-init-a
  Comment[hu]=SysV-Init (szolgáltatásszerkesztő) naplófájl
-+Comment[is]=SysV-Init ritlaannáll
+ Comment[is]=SysV-Init ritlaannáll
  Comment[it]=File di log dell'editor di SysV-Init
-+Comment[ja]=SystemV起動スクリプトエディタのログファイル
- Comment[nb]=Loggfil for SysV-init-redigering
- Comment[nl]=Logbestand van SysV-Init Editor
- Comment[nn]=Loggfil for SysV-init-redigering
+@@ -33,6 +34,7 @@
+ Comment[sr@Latn]=Dnevnik uređivača SysV-init-a
+ Comment[sv]=Editor för Sysv-Init-loggfiler
+ Comment[ta]=சிஸ்வி-இன்ட் திரித்துபவர் பதிவுக்கோப்பை
++Comment[tg]=Муҳаррири Файли Вориди SysV-Init
+ Comment[tr]=SysV-Inıt Düzenleyici Günlük Dosyası
+ Comment[uk]=Файл журналу редактора SysV-Init
+ Comment[wa]=Fitchî djournå di l' aspougneu po SysV-Init
 diff -urN -x CVS kdeadmin.orig/ksysv/x-ksysv.desktop kdeadmin/ksysv/x-ksysv.desktop
---- kdeadmin.orig/ksysv/x-ksysv.desktop	Thu Jan 15 08:35:21 2004
-+++ kdeadmin/ksysv/x-ksysv.desktop	Mon Feb  2 11:09:25 2004
-@@ -25,9 +25,9 @@
+--- kdeadmin.orig/ksysv/x-ksysv.desktop	Sun Mar  7 14:18:21 2004
++++ kdeadmin/ksysv/x-ksysv.desktop	Thu Apr 29 14:53:11 2004
+@@ -2,6 +2,7 @@
+ Encoding=UTF-8
+ Comment=Saved Init Configuration
+ Comment[af]=Gestoor Init Opstelling
++Comment[ar]=إعدادات Init المحفوظة
+ Comment[az]=Qeyd Edilmiş Init Quraşdırması
+ Comment[bg]=Записани инициализиращи настройки
+ Comment[br]=KefluniaÃ± deraouiÃ± enrollet
+@@ -22,7 +23,7 @@
+ Comment[ga]=Cumraíocht Tosaithe Sábháilte
+ Comment[gl]=Configuración do Init Gardada
+ Comment[he]=תצורת איתחול שמורה
+-Comment[hi]=इनिट कॉन्फिगरेशन सहेजा
++Comment[hi]=इनिट कॉन्फ़िगरेशन सहेजा
  Comment[hr]=Spremljena Init postava
  Comment[hu]=Elmentett Init beállítás
  Comment[id]=Konfigurasi Saved Init
--Comment[is]=VistaÃ°ar Init stillingar
-+Comment[is]=Vistaðar Init stillingar
- Comment[it]=Configurazione di Init salvata
--Comment[ja]=保存されているInitの設定
-+Comment[ja]=保存されている起動スクリプトの設定
- Comment[ko]=Init 설정을 저장했습니다
- Comment[lt]=Įrašytos Init parinktys
- Comment[lv]=Saglabātā Init Konfigurācija
+@@ -51,6 +52,7 @@
+ Comment[sr@Latn]=Sačuvana početna podešavanja
+ Comment[sv]=Sparad startinställning
+ Comment[ta]=உள்ளெ காக்கப்பட்ட உள்ளமைவு
++Comment[tg]=Танзимотҳои оғози нигоҳ дошта
+ Comment[th]=บันทึกค่าปรับแต่งของการเริ่มระบบ
+ Comment[tr]=Kaydedilmiş Init Yapılandırması
+ Comment[uk]=Збережена конфігурація процесу Init
+diff -urN -x CVS kdeadmin.orig/kuser/addUser.cpp kdeadmin/kuser/addUser.cpp
+--- kdeadmin.orig/kuser/addUser.cpp	Tue Dec  9 22:51:20 2003
++++ kdeadmin/kuser/addUser.cpp	Wed Apr 14 13:22:54 2004
+@@ -69,7 +69,7 @@
+   uint newuid;
+   tmp = leid->text();
+   newuid = tmp.toInt();
+-  
++
+   if (kug->getUsers().lookup(newuid) != 0) {
+     err->addMsg(i18n("User with UID %1 already exists").arg(newuid));
+     err->display();
+@@ -87,7 +87,7 @@
+   }
+ 
+   check();
+-  
++
+   if (user->getCreateHome() && !checkHome())
+      return;
+ 
+@@ -110,7 +110,7 @@
+   if (r == 0) {
+     if (S_ISDIR(s.st_mode)) {
+        if (KMessageBox::
+-         warningContinueCancel (0, i18n("Folder %1 already exists!\n%2 may become owner and permissions may change.\nDo you really want to use %3?").arg(h_dir).arg(user->getName()).arg(h_dir), QString::null, i18n("&Continue")) == KMessageBox::Cancel)
++         warningContinueCancel (0, i18n("Folder %1 already exists!\n%2 may become owner and permissions may change.\nDo you really want to use %3?").arg(h_dir).arg(user->getName()).arg(h_dir), QString::null, KStdGuiItem::cont()) == KMessageBox::Cancel)
+                   return false;
+             else
+                   return true;
+@@ -118,7 +118,7 @@
+ 	  err->addMsg(i18n("%1 is not a folder").arg(h_dir));
+   } else
+     err->addMsg(QString::fromLatin1("checkHome: stat: %1 ").arg(QString::fromLocal8Bit(strerror(errno))));
+-  
++
+   err->display();
+ 
+   return false;
+@@ -132,7 +132,7 @@
+ 
+   mailboxpath = QString::fromLatin1("%1/%2").arg(QFile::decodeName(MAIL_SPOOL_DIR)).arg(user->getName());
+   r = stat(QFile::encodeName(mailboxpath), &s);
+-  
++
+   if ((r == -1) && (errno == ENOENT))
+     return true;
+ 
+@@ -146,7 +146,7 @@
+                  .arg(mailboxpath));
+   else
+     err->addMsg(QString::fromLatin1("checkMail: stat: %1 ").arg(QString::fromLocal8Bit(strerror(errno))));
+-  
++
+   err->display();
+ 
+   return false;
+diff -urN -x CVS kdeadmin.orig/kuser/kuser.cpp kdeadmin/kuser/kuser.cpp
+--- kdeadmin.orig/kuser/kuser.cpp	Tue Dec  9 23:02:48 2003
++++ kdeadmin/kuser/kuser.cpp	Wed Apr 14 13:22:54 2004
+@@ -58,7 +58,7 @@
+ #include <kstandarddirs.h>
+ #include <kmessagebox.h>
+ #include <kprocess.h>
+-#include "editDefaults.h"	
++#include "editDefaults.h"
+ 
+ #ifdef _KU_QUOTA
+ #include "mnt.h"
+@@ -69,8 +69,8 @@
+ // uid's for regular users start at 500 <duncan@kde.org>
+ #ifdef KU_FIRST_USER
+ #define _KU_FIRST_UID KU_FIRST_USER
+-#else 
+-#define _KU_FIRST_UID 1001 
++#else
++#define _KU_FIRST_UID 1001
+ #endif
+ 
+ // class KUser
+@@ -83,7 +83,7 @@
+   p_uid     = 0;
+   p_gid     = 100;
+ 
+-#ifdef HAVE_SHADOW   
++#ifdef HAVE_SHADOW
+   s_lstchg  = 0;
+   s_min     = 0;
+   s_max     = 99999;
+@@ -99,7 +99,7 @@
+   isDeleteHome = false;
+   isDeleteMailBox = false;
+ }
+-  
++
+ KUser::KUser(const KUser *user) {
+   copy(user);
+ }
+@@ -125,7 +125,7 @@
+   p_uid     = user->p_uid;
+   p_gid     = user->p_gid;
+ 
+-#ifdef HAVE_SHADOW   
++#ifdef HAVE_SHADOW
+   s_pwd = user->s_pwd;
+   s_lstchg  = user->s_lstchg;
+   s_min     = user->s_min;
+@@ -140,7 +140,7 @@
+   isCreateMailBox = user->isCreateMailBox;
+   isCopySkel = user->isCopySkel;
+ }
+-  
++
+ KUser::~KUser() {
+ }
+ 
+@@ -259,17 +259,17 @@
+ * Return the number of days from the epoch until the
+ * password expires.
+ */
+-int KUser::getExpire() const 
++int KUser::getExpire() const
+ {
+ #if defined(__FreeBSD__) || defined(__bsdi__)
+   time_t secondsToExpiry = p_expire;
+   QDate epoch(1970,1,1);
+   QDateTime expiryDate;
+-  
++
+   expiryDate.setTime_t(secondsToExpiry);
+ 
+   return epoch.daysTo(expiryDate.date());
+-#elif defined(HAVE_SHADOW) 
++#elif defined(HAVE_SHADOW)
+   return s_expire;
+ #else
+   return 0;
+@@ -399,8 +399,8 @@
+ }
+ 
+ KUsers::KUsers() {
+-  pw_backuped = FALSE;		
+-  pn_backuped = FALSE;		
++  pw_backuped = FALSE;
++  pn_backuped = FALSE;
+   s_backuped = FALSE;
+ 
+   pwd_mode = 0644;
+@@ -465,36 +465,36 @@
+   passwd *p;
+   KUser *tmpKU = 0;
+   struct stat st;
+-  QString filename;				
+-  QString passwd_filename;			
+-  QString nispasswd_filename;			
+-  int rc = 0;					
+-  int passwd_errno = 0;				
+-  int nispasswd_errno = 0;			
+-  char processing_file = '\0';			
+-  #define PASSWD    0x01			
+-  #define NISPASSWD 0x02			
++  QString filename;
++  QString passwd_filename;
++  QString nispasswd_filename;
++  int rc = 0;
++  int passwd_errno = 0;
++  int nispasswd_errno = 0;
++  char processing_file = '\0';
++  #define PASSWD    0x01
++  #define NISPASSWD 0x02
+   #define MAXFILES 2
+ 
+-  // Read KUser configuration	
++  // Read KUser configuration
+ 
+-  config->setGroup("sources");		
+-  passwd_filename = config->readEntry("passwdsrc");	
+-  nispasswd_filename = config->readEntry("nispasswdsrc");	
++  config->setGroup("sources");
++  passwd_filename = config->readEntry("passwdsrc");
++  nispasswd_filename = config->readEntry("nispasswdsrc");
+ 
+   // Handle unconfigured environments
+ 
+   if(passwd_filename.isEmpty() && nispasswd_filename.isEmpty()) {
+     config->writeEntry("passwdsrc", PASSWORD_FILE);
+     config->writeEntry("groupsrc", GROUP_FILE);
+-    passwd_filename = config->readEntry("passwdsrc");	
++    passwd_filename = config->readEntry("passwdsrc");
+     err->addMsg(i18n("KUser Sources were not configured.\nLocal passwd source set to %1\nLocal group source set to %2\n").arg(config->readEntry("passwdsrc")).arg(config->readEntry("groupsrc")));
+     err->display();
+   }
+ 
+-  if(!passwd_filename.isEmpty()) {			
+-    processing_file = processing_file | PASSWD;		
+-    filename.append(passwd_filename);			
++  if(!passwd_filename.isEmpty()) {
++    processing_file = processing_file | PASSWD;
++    filename.append(passwd_filename);
+   }
+ 
+   // Start reading passwd file(s)
+@@ -508,25 +508,25 @@
+ #endif
+ 
+   for(int i = 0; i < MAXFILES; i++) {
+-    rc = stat(QFile::encodeName(filename), &st);		
+-    if(rc != 0) {						
+-      err->addMsg(i18n("stat call on file %1 failed: %2\nCheck KUser Settings (Sources)\n").arg(filename).arg(QString::fromLocal8Bit(strerror(errno))));	
+-      err->display();						
+-      if( (processing_file & PASSWD) != 0 ) {			
+-        passwd_errno = errno;					
+-        if(!nispasswd_filename.isEmpty()) {			
+-          processing_file = processing_file & ~PASSWD;		
+-          processing_file = processing_file | NISPASSWD;	
+-          filename.truncate(0);					
+-          filename.append(nispasswd_filename);	
+-        } 
+-        continue;				
+-      }						
+-      else{					
+-        nispasswd_errno = errno;					
+-        break;					
++    rc = stat(QFile::encodeName(filename), &st);
++    if(rc != 0) {
++      err->addMsg(i18n("stat call on file %1 failed: %2\nCheck KUser Settings (Sources)\n").arg(filename).arg(QString::fromLocal8Bit(strerror(errno))));
++      err->display();
++      if( (processing_file & PASSWD) != 0 ) {
++        passwd_errno = errno;
++        if(!nispasswd_filename.isEmpty()) {
++          processing_file = processing_file & ~PASSWD;
++          processing_file = processing_file | NISPASSWD;
++          filename.truncate(0);
++          filename.append(nispasswd_filename);
++        }
++        continue;
+       }
+-    }						
++      else{
++        nispasswd_errno = errno;
++        break;
++      }
++    }
+ 
+     pwd_mode = st.st_mode & 0666;
+     pwd_uid = st.st_uid;
+@@ -535,9 +535,9 @@
+     // We are reading our configuration specified passwd file
+     QString tmp;
+ #ifdef HAVE_FGETPWENT
+-    FILE *fpwd = fopen(QFile::encodeName(filename), "r");		
++    FILE *fpwd = fopen(QFile::encodeName(filename), "r");
+     if(fpwd == NULL) {
+-      err->addMsg(i18n("Error opening %1 for reading").arg(filename));	
++      err->addMsg(i18n("Error opening %1 for reading").arg(filename));
+       return FALSE;
+     }
+ 
+@@ -561,33 +561,33 @@
+       tmpKU->setExpire(p->pw_expire);
+ #endif
+ 
+-      if ((p->pw_gecos != 0) && (p->pw_gecos[0] != 0)) 
++      if ((p->pw_gecos != 0) && (p->pw_gecos[0] != 0))
+         fillGecos(tmpKU, p->pw_gecos);
+       allUsers.append(tmpKU);
+     }
+ 
+-    // End reading passwd_filename				
++    // End reading passwd_filename
+ 
+ #ifdef HAVE_FGETPWENT
+     fclose(fpwd);
+ #endif
+     if((!nispasswd_filename.isEmpty()) && (nispasswd_filename != passwd_filename)) {
+       processing_file = processing_file & ~PASSWD;
+-      processing_file = processing_file | NISPASSWD;		
+-      filename.truncate(0);				
+-      filename.append(nispasswd_filename);		
+-    } 
+-    else						
+-      break;						
++      processing_file = processing_file | NISPASSWD;
++      filename.truncate(0);
++      filename.append(nispasswd_filename);
++    }
++    else
++      break;
+ 
+-  }	// end of processing files, for loop			
++  }	// end of processing files, for loop
+ 
+-  if( (passwd_errno == 0) && (nispasswd_errno == 0) )	
++  if( (passwd_errno == 0) && (nispasswd_errno == 0) )
+     return (TRUE);
+-  if( (passwd_errno != 0) && (nispasswd_errno != 0) )	
++  if( (passwd_errno != 0) && (nispasswd_errno != 0) )
+     return (FALSE);
+   else
+-    return(TRUE);						
++    return(TRUE);
+ }
+ 
+ // Load shadow passwords
+@@ -717,70 +717,70 @@
+ // Save password file
+ 
+ bool KUsers::savepwd() {
+-  FILE *passwd_fd = NULL;			
+-  FILE *nispasswd_fd = NULL;			
+-  int minuid = 0;			
+-  int nis_users_written = 0;		
+-  uid_t tmp_uid = 0;			
++  FILE *passwd_fd = NULL;
++  FILE *nispasswd_fd = NULL;
++  int minuid = 0;
++  int nis_users_written = 0;
++  uid_t tmp_uid = 0;
+   QString s;
+   QString s1;
+   QString tmp;
+-  QString passwd_filename;		
++  QString passwd_filename;
+   QString nispasswd_filename;
+-  QString qs_minuid;			
++  QString qs_minuid;
+ 
+ 
+-  char errors_found = '\0';		
+-    #define NOMINUID    0x01		
+-    #define NONISPASSWD 0x02		
++  char errors_found = '\0';
++    #define NOMINUID    0x01
++    #define NONISPASSWD 0x02
+ 
+-  // Read KUser configuration info	
++  // Read KUser configuration info
+ 
+-  config->setGroup("sources");		
+-  passwd_filename = config->readEntry("passwdsrc");		
+-  nispasswd_filename = config->readEntry("nispasswdsrc");	
++  config->setGroup("sources");
++  passwd_filename = config->readEntry("passwdsrc");
++  nispasswd_filename = config->readEntry("nispasswdsrc");
+   qs_minuid = config->readEntry("nisminuid");
+   QCString tmp1 = QFile::encodeName(passwd_filename);
+-  const char *pw_filename = tmp1.data();   
++  const char *pw_filename = tmp1.data();
+   QCString tmp2 = QFile::encodeName(nispasswd_filename);
+   const char *pn_filename = tmp2.data();
+ 
+   if( (!qs_minuid.isEmpty()) && (nispasswd_filename != passwd_filename) ) {
+-    minuid = atoi(qs_minuid.latin1());		
++    minuid = atoi(qs_minuid.latin1());
+   }
+ 
+-  // Backup file(s)			
++  // Backup file(s)
+ 
+-  if(!passwd_filename.isEmpty()) {	
+-    if (!pw_backuped) {			
++  if(!passwd_filename.isEmpty()) {
++    if (!pw_backuped) {
+       backup(passwd_filename);
+-      pw_backuped = TRUE;		
++      pw_backuped = TRUE;
+     }
+   }
+-  if(!nispasswd_filename.isEmpty() && (nispasswd_filename != passwd_filename)){	
+-    if (!pn_backuped) {			
++  if(!nispasswd_filename.isEmpty() && (nispasswd_filename != passwd_filename)){
++    if (!pn_backuped) {
+       backup(nispasswd_filename);
+-      pn_backuped = TRUE;		
++      pn_backuped = TRUE;
+     }
+   }
+ 
+-  // Open file(s)			
++  // Open file(s)
+ 
+-  if(!passwd_filename.isEmpty()) {	
+-    if ((passwd_fd = fopen(pw_filename,"w")) == NULL) 
++  if(!passwd_filename.isEmpty()) {
++    if ((passwd_fd = fopen(pw_filename,"w")) == NULL)
+       err->addMsg(i18n("Error opening %1 for writing").arg(passwd_filename));
+-  }					
++  }
+ 
+-  if(!nispasswd_filename.isEmpty() && (nispasswd_filename != passwd_filename)){	
+-    if ((nispasswd_fd = fopen(pn_filename,"w")) == NULL) 
++  if(!nispasswd_filename.isEmpty() && (nispasswd_filename != passwd_filename)){
++    if ((nispasswd_fd = fopen(pn_filename,"w")) == NULL)
+       err->addMsg(i18n("Error opening %1 for writing").arg(nispasswd_filename));
+-  }					
++  }
+ 
+     umask(0077);
+ 
+     for (unsigned int i=0; i<allUsers.count(); i++) {
+       KUser *user = allUsers.at(i);
+-      tmp_uid = user->getUID();	 	
++      tmp_uid = user->getUID();
+ 
+ #if defined(__FreeBSD__) || defined(__bsdi__)
+       s = QString::fromLatin1("%1:%2:%3:%4:%5:%6:%7:")
+@@ -826,53 +826,53 @@
+ 
+       if( (nispasswd_fd != 0) && (minuid != 0) ) {
+         if (minuid <= tmp_uid) {
+-      	  fputs(s.local8Bit().data(), nispasswd_fd);	
+-          nis_users_written++;		
+-          continue;				
++      	  fputs(s.local8Bit().data(), nispasswd_fd);
++          nis_users_written++;
++          continue;
+         }
+         else{
+-      	  fputs(s.local8Bit().data(), passwd_fd);	
+-          continue;				
++      	  fputs(s.local8Bit().data(), passwd_fd);
++          continue;
+         }
+       }
+ 
+       if( (nispasswd_fd != 0) && (minuid == 0) ) {
+-	errors_found = errors_found | NOMINUID;  
+-      	fputs(s.local8Bit().data(), passwd_fd);	
++	errors_found = errors_found | NOMINUID;
++      	fputs(s.local8Bit().data(), passwd_fd);
+         continue;
+       }
+ 
+       if( (nispasswd_fd == 0) && (minuid != 0) ) {
+-	errors_found = errors_found | NONISPASSWD;	
+-      	fputs(s.local8Bit().data(), passwd_fd);	
++	errors_found = errors_found | NONISPASSWD;
++      	fputs(s.local8Bit().data(), passwd_fd);
+         continue;
+       }
+ 
+-      fputs(s.local8Bit().data(), passwd_fd);	
++      fputs(s.local8Bit().data(), passwd_fd);
+ 
+     }		/* end for i loop */
+ 
+-    if(passwd_fd) {					
++    if(passwd_fd) {
+       fclose(passwd_fd);
+-      chmod(pw_filename, pwd_mode);	
+-      chown(pw_filename, pwd_uid, pwd_gid);	
+-    }							
+-
+-    if(nispasswd_fd) {					
+-      fclose(nispasswd_fd);				
+-      chmod(pn_filename, pwd_mode);	
+-      chown(pn_filename, pwd_uid, pwd_gid);	
+-    }							
+-
+-    if( (errors_found & NOMINUID) != 0 ) {	
+-      err->addMsg(i18n("Unable to process NIS passwd file without a minimum UID specified.\nPlease update KUser Settings (Sources)"));	
+-      err->display();				
+-    }						
++      chmod(pw_filename, pwd_mode);
++      chown(pw_filename, pwd_uid, pwd_gid);
++    }
++
++    if(nispasswd_fd) {
++      fclose(nispasswd_fd);
++      chmod(pn_filename, pwd_mode);
++      chown(pn_filename, pwd_uid, pwd_gid);
++    }
++
++    if( (errors_found & NOMINUID) != 0 ) {
++      err->addMsg(i18n("Unable to process NIS passwd file without a minimum UID specified.\nPlease update KUser Settings (Sources)"));
++      err->display();
++    }
+ 
+     if( (errors_found & NONISPASSWD) != 0 ) {
+-      err->addMsg(i18n("Specifying NIS minimum UID requires NIS file(s).\nPlease update KUser Settings (Sources)"));	
+-      err->display();				
+-    }						
++      err->addMsg(i18n("Specifying NIS minimum UID requires NIS file(s).\nPlease update KUser Settings (Sources)"));
++      err->display();
++    }
+ 
+   // need to run a utility program to build /etc/passwd, /etc/pwd.db
+   // and /etc/spwd.db from /etc/master.passwd
+@@ -887,7 +887,7 @@
+       err->addMsg(i18n("Unable to build password databases"));
+       return FALSE;
+     }
+-  }					
++  }
+ #endif
+ 
+   return TRUE;
+@@ -921,7 +921,7 @@
+ 
+   s.sp_namp = (char *)malloc(200);
+   s.sp_pwdp = (char *)malloc(200);
+-    
++
+   for (uint index = 0; index < allUsers.count(); index++) {
+     up = allUsers.at(index);
+     if (up->getSPwd().isNull()) {
+@@ -1044,8 +1044,8 @@
+ 
+ int KUser::createKDE() {
+ 
+-	QStringList levels;	
+-	QStringList types;		
++	QStringList levels;
++	QStringList types;
+ 	QString k_dir = p_dir;
+ 	KStandardDirs kstddirs;
+ 	const char *KDEHOME = "KDEHOME";
+@@ -1074,7 +1074,7 @@
+ 	}
+ 
+ 	for (uint level=0; level<levels.count(); level++) {
+-		k_dir.append(levels[level]);	
++		k_dir.append(levels[level]);
+ 		if (tryCreate(k_dir))
+ 			return(-1);
+  	}
+@@ -1106,7 +1106,7 @@
+    	if (S_ISDIR(sb.st_mode)) {
+ 	    if (KMessageBox::
+ 		warningContinueCancel(0, i18n("Folder %1 already exists!\nWill make %2 owner and change permissions.\nDo you want to continue?")
+-.arg(dir).arg(p_name), QString::null, i18n("&Continue")) ==
++.arg(dir).arg(p_name), QString::null, KStdGuiItem::cont()) ==
+ KMessageBox::Continue) {
+  		if (chown(QFile::encodeName(dir), p_uid, p_gid) != 0) {
+    		    err->addMsg(i18n("Cannot change owner of %1 folder\nError: %2")
 diff -urN -x CVS kdeadmin.orig/kuser/kuser.desktop kdeadmin/kuser/kuser.desktop
---- kdeadmin.orig/kuser/kuser.desktop	Thu Jan 15 08:35:23 2004
-+++ kdeadmin/kuser/kuser.desktop	Sat Feb  7 13:40:13 2004
-@@ -5,6 +5,7 @@
+--- kdeadmin.orig/kuser/kuser.desktop	Fri Mar  5 13:49:48 2004
++++ kdeadmin/kuser/kuser.desktop	Thu Apr 29 14:53:13 2004
+@@ -2,6 +2,7 @@
+ Encoding=UTF-8
+ Name=KUser
+ Name[af]=Kuser
++Name[ar]=برنامج KUser
  Name[eo]=Uzantoadministrilo
  Name[fo]=KNýtari
  Name[hi]=के-यूज़र
-+Name[is]=KNotandi
- Name[ko]=KDE 사용자
- Name[lv]=KLietotājs
- Name[mn]=КДЕ Хэрэглэгч
-@@ -38,6 +39,7 @@
- GenericName[hi]=उपयोगकर्ता प्रबंधक
- GenericName[hr]=Upravitelj korisnicima
- GenericName[hu]=Felhasználókezelő
-+GenericName[is]=Notandastjóri
- GenericName[it]=Gestione utenti
- GenericName[ja]=ユーザーマネージャー
- GenericName[ko]=사용자 관리자
+@@ -15,11 +16,13 @@
+ Name[ro]=Manager de utilizatori
+ Name[sv]=Kuser
+ Name[ta]=கேபயனீட்டாளர்
++Name[tg]=KИстифодакунанда
+ Name[th]=จัดการบัญชีผู้ใช้ - K
+ Name[uz]=Фойдаланувчилар
+ Name[xx]=xxKUserxx
+ GenericName=User Manager
+ GenericName[af]=Gebruiker Bestuurder
++GenericName[ar]=مدير المستخدمين
+ GenericName[bg]=Управление на потребителите
+ GenericName[bs]=Upravljanje korisnicima
+ GenericName[ca]=Gestor d'usuaris
+@@ -66,6 +69,7 @@
+ GenericName[sr@Latn]=Menadžer korisnika
+ GenericName[sv]=Användarhanterare
+ GenericName[ta]=பயனீட்டாளர் மேலாளர்
++GenericName[tg]=Роҳбари Истифодакунанда
+ GenericName[th]=เครื่องมือจัดการบัญชีผู้ใช้
+ GenericName[tr]=Kullanıcı Yöneticisi
+ GenericName[uk]=Менеджер користувачів
+diff -urN -x CVS kdeadmin.orig/kuser/mainView.cpp kdeadmin/kuser/mainView.cpp
+--- kdeadmin.orig/kuser/mainView.cpp	Tue Dec  9 22:51:21 2003
++++ kdeadmin/kuser/mainView.cpp	Wed Apr 14 13:22:54 2004
+@@ -260,7 +260,7 @@
+     tq = 0;
+   }
+ #endif // _KU_QUOTA
+-  
++
+ #ifdef _KU_QUOTA
+   addUser au(tk, tq, this, "userin");
+ #else
+@@ -306,7 +306,7 @@
+ void mainView::save() {
+   if (!changed)
+     return;
+-    
++
+   kug->getUsers().save();
+   kug->getGroups().save();
+ #ifdef _KU_QUOTA
+@@ -322,17 +322,17 @@
+ {
+   if (!changed)
+     return true;
+-    
++
+   int result = KMessageBox::warningYesNoCancel(0, i18n("Would you like to save your changes?"),
+                                i18n("Data Was Modified"),
+-                               i18n("&Save"), i18n("&Discard Changes"));
++                               KStdGuiItem::save(), KStdGuiItem::discard());
+ 
+   if (result == KMessageBox::Cancel)
+     return false;
+-    
++
+   if (result == KMessageBox::Yes)
+     save();
+-    
++
+   return true;
+ }
+ 
+@@ -349,7 +349,7 @@
+ 
+   config->setGroup("template");
+   eddlg.setShell(config->readEntry("shell", QString::fromLatin1("/bin/sh")));
+-  eddlg.setHomeBase(config->readEntry("homeBase", QString::fromLatin1("/home")));	
++  eddlg.setHomeBase(config->readEntry("homeBase", QString::fromLatin1("/home")));
+   eddlg.setCreateHomeDir(config->readBoolEntry("createHomeDir", true));
+   eddlg.setCopySkel(config->readBoolEntry("copySkel", true));
+   eddlg.setUserPrivateGroup(config->readBoolEntry("userPrivateGroup", KU_USERPRIVATEGROUP));
+@@ -401,7 +401,7 @@
+   KUser *tmpKU;
+ 
+   tmpKU =  lbusers->getCurrentUser();
+-  if (!tmpKU) 
++  if (!tmpKU)
+     return;
+ 
+ #ifdef _KU_QUOTA
+@@ -414,7 +414,7 @@
+       return;
+     }
+   }
+-  
++
+   propdlg editUser(tmpKU, tmpQ, this, "userin");
+ #else
+   propdlg editUser(tmpKU, this, "userin");
+@@ -437,7 +437,7 @@
+ 
+   KGroup *tk = new KGroup();
+   tk->setGID(gid);
+-  
++
+   grpnamedlg gd(*tk, this);
+   if (gd.exec() == 0) {
+     delete tk;
 diff -urN -x CVS kdeadmin.orig/lilo-config/kde/lilo.desktop kdeadmin/lilo-config/kde/lilo.desktop
---- kdeadmin.orig/lilo-config/kde/lilo.desktop	Thu Jan 15 08:35:25 2004
-+++ kdeadmin/lilo-config/kde/lilo.desktop	Fri Jan 30 18:29:31 2004
-@@ -32,7 +32,7 @@
- Name[hr]=Upravitelj pokretanjem sustava (LILO)
- Name[hu]=Rendszerindító (LILO)
- Name[id]=Manajer Boot (LILO)
--Name[is]=RÃ¦sistjÃ³ri (LILO)
-+Name[is]=Ræsistjóri (LILO)
- Name[it]=Gestore avvio (LILO)
- Name[ja]=ブートマネージャ (LILO)
- Name[ko]=부트 관리자 (리로)
-@@ -83,6 +83,7 @@
+--- kdeadmin.orig/lilo-config/kde/lilo.desktop	Sun Mar  7 14:18:23 2004
++++ kdeadmin/lilo-config/kde/lilo.desktop	Thu Apr 29 14:53:15 2004
+@@ -11,6 +11,7 @@
+ 
+ Name=Boot Manager (LILO)
+ Name[af]=Boot Bestuurder (Lilo)
++Name[ar]=مدير إنطلاق النظام (LILO)
+ Name[az]=Açılış İdarəcisi (LILO)
+ Name[bg]=Мениджър за зареждане (LILO)
+ Name[ca]=Gestor d'arrencada (LILO)
+@@ -57,6 +58,7 @@
+ Name[sr@Latn]=But menadžer (LILO)
+ Name[sv]=Starthanterare (Lilo)
+ Name[ta]=இயக்க மேலாளர்(LILO)
++Name[tg]=Роҳбари Пурборкардан (LILO)
+ Name[th]=จัดการการบูต (LILO)
+ Name[tr]=Açılış Yöneticisi (LILO)
+ Name[uk]=Менеджер завантаження (LILO)
+@@ -69,6 +71,7 @@
+ Name[zu]=Umphathi Wesingxobo (LILO)
+ Comment=Configure LILO (the Linux boot manager)
+ Comment[af]=Konfigureer Lilo (die Linux boot bestuurder)
++Comment[ar]=إعدادات LILO (مدير إنطلاق نظام لينكس)
+ Comment[bg]=Конфигуриране зареждането на Линукс (LILO - Linux boot manager)
+ Comment[bs]=Podesi LILO (Linux boot manager)
+ Comment[ca]=Aquí podreu configurar el LILO (el gestor d'arrencada de Linux)
+@@ -85,7 +88,8 @@
+ Comment[ga]=Cumraigh LILO (bainisteoir tosaithe Linux)
+ Comment[gl]=Configurar LILO (O xestor de arranque de linux)
  Comment[he]=שינוי הגדרות LILO (מנהל האיתחול של לינוקס)
- Comment[hi]=लिलो कॉन्फिगर करें (लिनक्स बूट प्रबंधक)
+-Comment[hi]=लिलो कॉन्फिगर करें (लिनक्स बूट प्रबंधक)
++Comment[hi]=लिलो कॉन्फ़िगर करें (लिनक्स बूट प्रबंधक)
++Comment[hr]=Podesite LILO (Linux upravitelj podizanja sustava)
  Comment[hu]=a LILO beállításai
-+Comment[is]=Stilla LILO (Linux ræsistjórann)
+ Comment[is]=Stilla LILO (Linux ræsistjórann)
  Comment[it]=Configura LILO (il gestore dell'avvio di Linux)
- Comment[ja]=LILO(Linuxブートマネージャ)の設定
- Comment[lt]=Konfigūruoti LILO (Linux užkrovos tvarkyklę)
-@@ -131,7 +132,7 @@
- Keywords[hi]=लिलो, बूट, बूटअप,बूट प्रबंधक, लिनक्स, अन्य OS, एमबीआर, प्रारंभ में, प्रारंभ
- Keywords[hu]=lilo,boot,rendszerindítás,rendszerindítás-kezelő,Linux,más operációs rendszerek,MBR,indulás,start
- Keywords[id]=lilo,boot,bootup,manajer boot,linux,OS Lainnya,MBR,startup,start
--Keywords[is]=lilo,boot,bootup,boot manager,linux,Other OS,MBR,startup,start,rÃ¦sa
-+Keywords[is]=lilo,boot,bootup,boot manager,linux,Other OS,MBR,startup,start,ræsa
- Keywords[it]=lilo,boot,boot manager,linux,altri sistemi operativi,MBR,avvio,gestore avvio
- Keywords[ja]=lilo,ブート,ブート,ブートマネージャ,linux,他のOS,MBR,起動,開始
- Keywords[ko]=lilo,boot,bootup,boot manager,linux,Other OS,MBR,startup,start,리로,부트,부팅,부트 관리자,리눅스,다른 OS,다른 운영체제,시작
+@@ -110,6 +114,7 @@
+ Comment[sr@Latn]=Podesite LILO (Linuks but menadžer)
+ Comment[sv]=Anpassa Lilo (starthanterare för Linux)
+ Comment[ta]=உள்ளமை LILO(லினக்ஸ் இயக்க மேலாளர்)
++Comment[tg]=Танзимоти LILO (Роҳбари Пурборкунии Линукс)
+ Comment[tr]=LILO'yu Yapılandır
+ Comment[uk]=Налаштувати LILO (менеджер завантаження Linux)
+ Comment[ven]=Dzudzanyani LILO (mulanguli wa boot ya Linux)
