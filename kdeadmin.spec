@@ -35,6 +35,7 @@ Requires:	kdelibs = %{version}
 Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	awk
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
