@@ -10,7 +10,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -22,6 +22,7 @@ Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	8b94d8742a12687bbfd87a4e2b4ca6ed
 Source2:	%{name}-extra_icons.tar.bz2
 # Source2-md5:	6204a64084d5f5fdb05d65f0998e4a15
+Patch0:		%{name}-crontab_path.patch
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -211,6 +212,7 @@ Narz阣zie do konfiguracji X Window..
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
