@@ -1,26 +1,18 @@
 Summary:	K Desktop Environment - administrative tools
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Name:		kdeadmin
-Version:	1.1.1
-Release:	3
+Version:	1.1.2
+Release:	1
 Copyright:	GPL
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
 Vendor:		The KDE Team
-#ftp:		ftp.kde.org/
-#patch:		pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
-Source:		%{name}-%{version}.tar.bz2
-BuildRequires:	kdelibs-devel = %{version}
-BuildRequires:	qt-devel >= 1.44
-BuildRequires:	libstdc++-devel
-BuildRequires:	XFree86-devel
-BuildRequires:  pam-devel
-BuildRequires:  pwdb-devel
-Requires:	qt >= 1.44
-Requires:	kdelibs = %{version}
+Source:		ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
+Requires:	qt >= 1.44, kdelibs = %{version}, pam
+BuildRequires:	kdelibs-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define 	_prefix		/usr/X11R6
+%define _prefix	/usr/X11R6
 
 %description
 KDE administrative tools.
@@ -37,12 +29,11 @@ Pakiet zawiera:
   KSYSV - Program do konfiguracji startu systemu
 
 %package kdat
-Summary:	KDE tar-based tape archiver
-Summary(pl):	Program archiwizuj±cy
-Group:		X11/KDE/Utilities
-Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 1.44
-Requires:	kdelibs = %{version}
+Summary:     KDE tar-based tape archiver
+Summary(pl): Program archiwizuj±cy
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 1.44, kdelibs = %{version}
 
 %description kdat
 KDat is a tar-based tape archiver, designed to work with multiple archives
@@ -52,12 +43,11 @@ on a single tape.
 Program archiwizujacy oparty na programie tar.
 
 %package kuser
-Summary:	KDE User management tool
-Summary(pl):	administracja kontami dla KDE
-Group:		X11/KDE/Utilities
-Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 1.44
-Requires:	kdelibs = %{version}
+Summary:     KDE User management tool
+Summary(pl): administracja kontami dla KDE
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 1.44, kdelibs = %{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing
@@ -67,13 +57,11 @@ user information.
 Narzêdzie do dodawania/usuwania u¿ytkowników oraz do zmiany danych o nich.
 
 %package ksysv
-Summary:	KDE Sys V Init configurator	
-Summary(pl):	Konfigurator Sys V Init dla KDE
-Group:		X11/KDE/Utilities
-Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 1.44
-Requires:	kdelibs = %{version}
-
+Summary:     KDE Sys V Init configurator	
+Summary(pl): Konfigurator Sys V Init dla KDE
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 1.44, kdelibs = %{version}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -86,10 +74,11 @@ Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init
 
 %build
 export KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall" \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" \
 ./configure %{_target_platform} \
 	--prefix=$KDEDIR \
+	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
  	--with-pam="yes"
 
@@ -120,11 +109,11 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kdat -f kdat.lang
-%defattr(644,root,root,755)
+%defattr(644, root, root, 755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/kdat.kdelnk
 
-%attr(755,root,root) %{_bindir}/kdat
+%attr(755, root, root) %{_bindir}/kdat
 
 %{_datadir}/kde/icons/kdat.xpm
 %{_datadir}/kde/icons/mini/kdat.xpm
@@ -134,13 +123,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kuser -f kuser.lang
-%defattr(644,root,root,755)
+%defattr(644, root, root, 755)
 
 %config(missingok) /etc/X11/kde/applnk/System/kuser.kdelnk
 
-%attr(755,root,root) %{_bindir}/kuser
+%attr(755, root, root) %{_bindir}/kuser
 
-%{_datadir}/kde/doc/HTML/en/kuser
+%lang(en) %{_datadir}/kde/doc/HTML/en/kuser
 %lang(ru) %{_datadir}/kde/doc/HTML/ru/kuser
 
 %{_datadir}/kde/apps/kuser/
@@ -153,13 +142,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files ksysv -f ksysv.lang
-%defattr(644,root,root,755)
+%defattr(644, root, root, 755)
 
 %config(missingok) /etc/X11/kde/applnk/System/ksysv.kdelnk
 
-%attr(755,root,root) %{_bindir}/ksysv
+%attr(755, root, root) %{_bindir}/ksysv
 
-%{_datadir}/kde/doc/HTML/en/ksysv
+%lang(en) %{_datadir}/kde/doc/HTML/en/ksysv
 
 %{_datadir}/kde/apps/ksysv/
 %{_datadir}/kde/icons/ksysv.xpm
