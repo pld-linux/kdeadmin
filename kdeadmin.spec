@@ -26,7 +26,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
 %endif
-Patch0:		%{name}-vcategories.patch
+Patch0:		%{name}-3.2branch.diff
+Patch1:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -312,6 +313,7 @@ Pliki umiêdzynarodawiaj±ce dla kcmlinuz.
 %prep
 %setup -q 
 %patch0 -p1
+%patch1 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
