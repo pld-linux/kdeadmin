@@ -1,0 +1,21 @@
+--- kdeadmin-2.2/kuser/kuser.cpp.config	Thu Aug  9 15:40:08 2001
++++ kdeadmin-2.2/kuser/kuser.cpp	Thu Aug  9 15:40:59 2001
+@@ -451,8 +451,6 @@
+     config->writeEntry("passwdsrc", PASSWORD_FILE);
+     config->writeEntry("groupsrc", GROUP_FILE);
+     passwd_filename = config->readEntry("passwdsrc");	
+-    err->addMsg(i18n("KUser Sources were not configured.\nLocal passwd source set to %1\nLocal group source set to %2\n").arg(config->readEntry("passwdsrc")).arg(config->readEntry("groupsrc")));
+-    err->display();
+   }
+ 
+   if(!passwd_filename.isEmpty()) {			
+--- kdeadmin-2.2/kuser/globals.h.config	Thu Aug  9 15:41:25 2001
++++ kdeadmin-2.2/kuser/globals.h	Thu Aug  9 15:42:07 2001
+@@ -61,6 +61,6 @@
+ 
+ #define KU_MAILBOX_GID 0
+ 
+-#define KU_FIRST_USER 1001
++#define KU_FIRST_USER 500
+ 
+ #endif // _KU_GLOBALS_H_
