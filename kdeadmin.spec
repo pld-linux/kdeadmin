@@ -1,5 +1,6 @@
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
+Summary(ja):	K¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ - ´ÉÍý¥Ä¡¼¥ë
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Name:		kdeadmin
@@ -47,6 +48,13 @@ KDE administrative tools. Package includes:
 Herramientas administrativas para KDE. Incluidos en este paquete:
 - KSYSV - editor de los archivos de iniciación sysV,
 - KUser - herramienta de gestión de usuarios.
+
+%description -l ja
+KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ÍÑ¤Î´ÉÍý¥Ä¡¼¥ë¡£
+°Ê²¼¤Î¤è¤¦¤Ê¥Ñ¥Ã¥±¡¼¥¸¤¬Æþ¤Ã¤Æ¤¤¤Þ¤¹¡£
+
+- ksysv - ¥é¥ó¥ì¥Ù¥ë¥µ¡¼¥Ó¥¹¥¨¥Ç¥£¥¿
+- kuser - ¥æ¡¼¥¶´ÉÍý¥Ä¡¼¥ë
 
 %description -l pl
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
