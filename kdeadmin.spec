@@ -10,7 +10,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	0.1
+Release:	0.2
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
