@@ -13,7 +13,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -223,15 +223,16 @@ Ferramenta de administra玢o gr醘ica do WU-FTPD (servidor FTP).
 %setup -q
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
-./kdat/kdat.desktop
-
+	-e 's/Terminal=0/Terminal=false/' \
+	kdat/kdat.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;/' \
-./kcron/kcron.desktop \
-./kpackage/kpackage.desktop
-
+	-e 's/Terminal=0/Terminal=false/' \
+	kcron/kcron.desktop \
+	kpackage/kpackage.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;SystemSetup;/' \
-./ksysv/ksysv.desktop \
-./kuser/kuser.desktop
+	-e 's/Terminal=0/Terminal=false/' \
+	ksysv/ksysv.desktop \
+	kuser/kuser.desktop
 
 %build
 cp /usr/share/automake/config.sub admin
