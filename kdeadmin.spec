@@ -57,7 +57,7 @@ Summary:     KDE tar-based tape archiver
 Summary(pl): Program archiwizuj±cy
 Group:       X11/KDE/Utilities
 Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.44, kdelibs = %{version}
+Requires:    qt >= 2.1, kdelibs = %{version}
 
 %description kdat
 KDat is a tar-based tape archiver, designed to work with multiple archives
@@ -71,7 +71,7 @@ Summary:     KDE User management tool
 Summary(pl): administracja kontami dla KDE
 Group:       X11/KDE/Utilities
 Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.44, kdelibs = %{version}
+Requires:    qt >= 2.1, kdelibs = %{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing
@@ -79,6 +79,19 @@ user information.
 
 %description -l pl kuser
 Narzêdzie do dodawania/usuwania u¿ytkowników oraz do zmiany danych o nich.
+
+%package kpackage
+Summary:     RPM front-end KDE
+Summary(pl): Program do manipulacji pakietami.
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 2.1, kdelibs = %{version}
+
+%description kpackage
+Package front-end for KDE
+
+%description -l pl kpackage
+Program do manipulowania pakietami w ¶rodowisku KDE.
 
 %package ksysv
 Summary:     KDE Sys V Init configurator	
@@ -92,6 +105,19 @@ A Sys V Init configurator for KDE.
 
 %description -l pl ksysv
 Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init
+
+%package kwuftpd
+Summary:     KDE FTP daemon
+Summary(pl): Wu-FTP daemon for KDE
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 2.1, kdelibs = %{version}
+
+%description kwuftpd
+Wu-FTP daemon for KDE.
+
+%description -l pl kwuftpd
+Zamiennik demona wu-ftp dla KDE.
 
 %prep
 %setup -q -n %{name}
@@ -123,15 +149,17 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 export KDEDIR=%{_prefix}
-cd kuser
-make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
-cd ..
-make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
+make DESTDIR=$RPM_BUILD_ROOT install
 
-%find_lang kcron
-%find_lang kdat
-%find_lang kuser
-%find_lang ksysv
+#cd kuser
+#make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
+#cd ..
+#make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
+
+#%find_lang kcron
+#%find_lang kdat
+#%find_lang kuser
+#%find_lang ksysv
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -141,10 +169,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
+
 #################################################
 #             KDAT
 #################################################
-
 %files kdat -f kdat.lang
 %defattr(644, root, root, 755)
 
@@ -175,6 +203,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde/icons/kuser.xpm
 
 #################################################
+#             KPACKAGE
+#################################################
+%files kpackage
+%defattr(644,root,root,755)
+
+#################################################
 #             KSYSV
 #################################################
 
@@ -190,3 +224,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde/apps/ksysv/
 %{_datadir}/kde/icons/ksysv.xpm
 %{_datadir}/kde/icons/mini/ksysv.xpm
+
+#################################################
+#             KWUFTPD
+#################################################
+%files kwuftpd
+%defattr(644,root,root,755)
