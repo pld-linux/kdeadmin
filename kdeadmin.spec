@@ -16,6 +16,7 @@ Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}, pam 
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	pam-devel 
+BuildRequires:	rpm-devel
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
