@@ -1,7 +1,6 @@
 
-%define		_state		unstable
+%define		_state		stable
 %define		_ver		3.3.0
-%define		_snap		rc2
 
 %define		_minlibsevr	9:3.3.0
 %define		_minbaseevr	9:3.3.0
@@ -14,14 +13,14 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	0.%{_snap}.1
+Release:	1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-# Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2	
-Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
-# Source0-md5:	3ea2eb506d78f3feda89b09ad62111a3
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2	
+# Source0-md5:	7a4480c4e3b73206252397345d2055b2
+#Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
 Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -261,7 +260,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir} \
+	kde_libs_htmldir=%{_kdedocdir}
 
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
@@ -300,7 +300,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdat
 %{_desktopdir}/kde/kdat.desktop
 %{_iconsdir}/[!l]*/*/*/kdat*
-%{_kdedocdir}/en/kdat
 
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
@@ -312,7 +311,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kfile*
 %{_desktopdir}/kde/kpackage.desktop
 %{_iconsdir}/*/*/*/kpackage.png
-%{_kdedocdir}/en/kpackage
 
 %files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
@@ -324,7 +322,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/ksysv.desktop
 %{_iconsdir}/*/*/*/ksysv.png
 %{_iconsdir}/*/*/*/toggle_log.png
-%{_kdedocdir}/en/ksysv
 
 %files kuser -f kuser.lang
 %defattr(644,root,root,755)
@@ -333,4 +330,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kuser.kcfg
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
-%{_kdedocdir}/en/kuser
