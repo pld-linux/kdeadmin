@@ -17,7 +17,7 @@ BuildRequires:	pam-devel >= 0.71
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define _prefix	/usr/X11R6
+%define		_prefix		/usr/X11R6
 
 %description
 KDE administrative tools. Package includes:
@@ -138,10 +138,9 @@ Zamiennik demona wu-ftp dla KDE.
 %build
 %{__make} -f Makefile.cvs
 KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall"
-CFLAGS="$RPM_OPT_FLAGS -Wall"
-LDFLAGS="-s"
-export KDEDIR CXXFLAGS CFLAGS LDFLAGS
+CXXFLAGS="%{rpmcflags} -Wall"
+CFLAGS="%{rpmcflags} -Wall"
+export KDEDIR
 
 %configure \
 	--prefix=%{_prefix} \
@@ -157,9 +156,8 @@ export KDEDIR CXXFLAGS CFLAGS LDFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export KDEDIR=%{_prefix}
-#%{__make} DESTDIR=$RPM_BUILD_ROOT install
-make DESTDIR=$RPM_BUILD_ROOT install
+KDEDIR=%{_prefix} ; export KDEDIR
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
