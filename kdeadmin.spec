@@ -180,18 +180,18 @@ nich.
 Ferramenta para administração de usuários do sistema.
 
 %package kwuftpd
-Summary:	KDE FTP daemon
-Summary(pl):	Wu-FTP daemon for KDE
+Summary:	KDE FTP daemon configurator
+Summary(pl):	Konfigurator demona WU-FTP dla KDE
 Summary(pt_BR):	Ferramenta de administração gráfica do WU-FTPD
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
 Requires:	wu-ftpd
 
 %description kwuftpd
-Wu-FTP daemon for KDE.
+WU-FTP daemon configurator for KDE.
 
 %description kwuftpd -l pl
-Zamiennik demona wu-ftp dla KDE.
+Konfigurator demona WU-FTP dla KDE.
 
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
