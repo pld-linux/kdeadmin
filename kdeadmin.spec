@@ -83,10 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kuser
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/System/kuser.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdekuser
-%attr(755, root, root) /usr/X11R6/bin/kuser
+%attr(755,root,root) /usr/X11R6/bin/kuser
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kuser
 %lang(ru) /usr/X11R6/share/kde/doc/HTML/ru/kuser
 /usr/X11R6/share/kde/apps/kuser/
@@ -114,10 +114,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n ksysv
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/System/ksysv.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeksysv
-%attr(755, root, root) /usr/X11R6/bin/ksysv
+%attr(755,root,root) /usr/X11R6/bin/ksysv
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/ksysv
 /usr/X11R6/share/kde/apps/ksysv/
 /usr/X11R6/share/kde/icons/ksysv.xpm
