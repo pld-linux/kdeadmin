@@ -24,7 +24,6 @@ Patch0:		%{name}-vcategories.patch
 Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
-BuildRequires:	unsermake >= 040511
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	ed
@@ -36,6 +35,7 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
