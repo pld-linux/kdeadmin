@@ -21,7 +21,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	184ebe0c6c61854f934d7e9ad40b77e3
 Source2:	%{name}-extra_icons.tar.bz2
-# Source2-md5:	dbdea972f6cc98f58f3a93369f13df6a
+# Source2-md5:	eba8c1f88acc2d41b00f769819f31c91
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
