@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030610
+%define		_snap		030613
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,7 +18,7 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	b436ec72e229aabbc6a6bee0a547c996
+# Source0-md5:	09ab92a3b9615ba52a19b58069be736a
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
@@ -40,6 +40,7 @@ Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_htmldir	%{_docdir}/kde/HTML
+%define		_icondir	%{_datadir}/icons
 
 %define		no_install_post_chrpath		1
 
@@ -208,9 +209,6 @@ Narzêdzie do konfiguracji X Window..
 %patch1 -p1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 for plik in `find ./ -name *.desktop` ; do
 
@@ -230,14 +228,17 @@ done
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
+	kde_htmldir=%{_htmldir}
 
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/KDE-Settings/Peripherals/kxconfig.desktop \
     $RPM_BUILD_ROOT%{_desktopdir}
 
-cd $RPM_BUILD_ROOT%{_pixmapsdir}
+cd $RPM_BUILD_ROOT%{_icondir}
 mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
 cd -
 
@@ -263,14 +264,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_desktopdir}/kcron.desktop
-%{_pixmapsdir}/*/*/*/kcron.png
+%{_icondir}/*/*/*/kcron.png
 
 %files kdat -f kdat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
 %{_desktopdir}/kdat.desktop
-%{_pixmapsdir}/[!l]*/*/*/kdat*
+%{_icondir}/[!l]*/*/*/kdat*
 
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
@@ -281,7 +282,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk/application/x-debian-package.desktop
 %{_datadir}/services/kfile*
 %{_desktopdir}/kpackage.desktop
-%{_pixmapsdir}/*/*/*/kpackage.png
+%{_icondir}/*/*/*/kpackage.png
 
 %files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
@@ -291,19 +292,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
 %{_desktopdir}/ksysv.desktop
-%{_pixmapsdir}/*/*/*/ksysv.png
-%{_pixmapsdir}/*/*/*/toggle_log.png
+%{_icondir}/*/*/*/ksysv.png
+%{_icondir}/*/*/*/toggle_log.png
 
 %files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
 %{_desktopdir}/kuser.desktop
-%{_pixmapsdir}/*/*/*/kuser.png
+%{_icondir}/*/*/*/kuser.png
 
 %files kxconfig -f kxconfig.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kxconfig
 %{_datadir}/apps/kxconfig
 %{_desktopdir}/kxconfig.desktop
-%{_pixmapsdir}/*/*/*/kxconfig*
+%{_icondir}/*/*/*/kxconfig*
