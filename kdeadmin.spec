@@ -1,17 +1,17 @@
-Summary:     K Desktop Environment - administrative tools
-Summary(pl): K Desktop Environment - narzêdzia administratora
-Name:        kdeadmin
-Version:     1.1.1
-Release:     2
-Copyright:   GPL
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Vendor:      The KDE Team
-#ftp:	     ftp.kde.org/
-#patch:      pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
-Source:      %{name}-%{version}.tar.bz2
-Requires:    qt >= 1.44, kdelibs = %{version}
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	K Desktop Environment - administrative tools
+Summary(pl):	K Desktop Environment - narzêdzia administratora
+Name:		kdeadmin
+Version:	1.1.1
+Release:	3
+Copyright:	GPL
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Vendor:		The KDE Team
+#ftp:		ftp.kde.org/
+#patch:		pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
+Source:		%{name}-%{version}.tar.bz2
+Requires:	qt >= 1.44, kdelibs = %{version}
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define _prefix	/usr/X11R6
 
@@ -75,7 +75,7 @@ Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init
 
 %build
 export KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -fno-exceptions" \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" \
 ./configure %{_target_platform} \
 	--prefix=$KDEDIR \
