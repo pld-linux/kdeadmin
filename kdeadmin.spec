@@ -1,7 +1,10 @@
-#
-%define		_state		stable
-%define		_ver		3.2.3
-##%define		_snap		040110
+
+%define		_state		unstable
+%define		_ver		3.3.0
+%define		_snap		rc2
+
+%define		_minlibsevr	9:3.3.0
+%define		_minbaseevr	9:3.3.0
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -11,26 +14,25 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	3
+Release:	0.%{_snap}.1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2	
-# Source0-md5:	52cac3afb5ae527f7d65cdd27937ecf4
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-Patch100:	%{name}-branch.diff
-Patch0:		%{name}-vcategories.patch
+# Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2	
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+# Source0-md5:	3ea2eb506d78f3feda89b09ad62111a3
 Icon:		kde-admin.xpm
+Patch0:		%{name}-vcategories.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-BuildRequires:	kdelibs-devel >= 9:%{version}
+BuildRequires:	ed
+BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-#BuildRequires:	lilo
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -67,9 +69,9 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 Summary:	LILO Configurator
 Summary(pl):	Konfigurator LILO
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	lilo
-Obsoletes:	%{name}-kcmlinuz < 8:3.1.93.031105-3
+Obsoletes:	kdeadmin-kcmlinuz < 8:3.1.93.031105-3
 
 %description kcmlilo
 LILO configuration module for KDE Control Centre.
@@ -82,7 +84,7 @@ Summary:	KDE Linux Kernel Configuration
 Summary(pl):	Konfigurator j眃ra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kcmlinuz
 A Linux kernel configuration module for KDE Control Centre.
@@ -97,7 +99,7 @@ Configurador do Kernel Linux.
 Summary:	Tape backup tool
 Summary(pl):	Narz阣zie do wykonywania kopii zapasowych na ta秏ie
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kdat
 
 %description kdat
@@ -130,7 +132,7 @@ Summary:	KDE cron daemon
 Summary(pl):	Program cron dla KDE
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kcron
 KCron is an application for scheduling programs to run in the
@@ -150,7 +152,7 @@ Summary:	Package management front-end KDE
 Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Provides:	kpackage
 Obsoletes:	kpackage
 
@@ -172,7 +174,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administra玢o da inicializa玢o System V
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -190,7 +192,7 @@ Summary:	KDE User management tool
 Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administra玢o de usu醨ios
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kuser
 A simple tool for managin system groups and user accounts from system.
@@ -202,16 +204,32 @@ nich.
 %description kuser -l pt_BR
 Ferramenta para administra玢o de usu醨ios do sistema.
 
+%package kwuftpd
+Summary:	KDE WU-FTP daemon configurator
+Summary(pl):	Konfigurator demona WU-FTP dla KDE
+Summary(pt_BR):	Ferramenta de administra玢o gr醘ica do WU-FTPD
+Group:		X11/Applications
+Requires:	kdelibs >= %{_minlibsevr}
+Requires:	wu-ftpd
+
+%description kwuftpd
+WU-FTP daemon configurator for KDE.
+
+%description kwuftpd -l pl
+Narz阣zie do konfiguracji demona WU-FTP dla KDE.
+
+%description kwuftpd -l pt_BR
+Ferramenta de administra玢o gr醘ica do WU-FTPD (servidor FTP).
+
 %prep
 %setup -q
-%patch100 -p1
 %patch0 -p1
 
-for f in `find . -name *.desktop | xargs grep -l '^Terminal=0'`; do
-	%{__sed} -i -e 's/^Terminal=0/Terminal=false/' $f
-done
-
 %build
+cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
 # Do not check for lilo
 rm lilo-config/configure.in.in
 cp %{_datadir}/automake/config.sub admin
@@ -234,8 +252,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir} \
-	kde_libs_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir}
+
+%find_lang kcron	--with-kde
+%find_lang kdat		--with-kde
+%find_lang kpackage	--with-kde
+%find_lang ksysv	--with-kde
+%find_lang kuser	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -255,14 +278,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kcmlinuz
 %{_desktopdir}/kde/linuz.desktop
 
-%files kcron
+%files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
 %{_kdedocdir}/en/kcron
 
-%files kdat
+%files kdat -f kdat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
@@ -270,7 +293,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/[!l]*/*/*/kdat*
 %{_kdedocdir}/en/kdat
 
-%files kpackage
+%files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
 %{_libdir}/kde3/kfile*.la
@@ -282,7 +305,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/kpackage.png
 %{_kdedocdir}/en/kpackage
 
-%files ksysv
+%files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
@@ -294,10 +317,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/toggle_log.png
 %{_kdedocdir}/en/ksysv
 
-%files kuser
+%files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
+%{_datadir}/config.kcfg/kuser.kcfg
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
 %{_kdedocdir}/en/kuser
