@@ -32,6 +32,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
+BuildRequires:	sed >= 4.0
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -213,11 +214,10 @@ for plik in `find ./ -name *.desktop` ; do
 
 if [ -d $plik ]; then
 	echo $plik
-	sed -ie "s/[nb]/[no]/g" $plik
+	sed -ie 's/\[nb\]/\[no\]/g' $plik
 	fi
 
 done
-				
 
 %configure \
 	--with-qt-dir=%{_prefix} \
