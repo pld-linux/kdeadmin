@@ -210,10 +210,11 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
 
-for plik in `find ./ -name *.desktop` ; do
+for plik in `find ./ -name \*.desktop` ; do
 	if [ -d $plik ]; then
 		echo $plik
-		sed -ie 's/\[nb\]/\[no\]/g' $plik
+		sed -e "s/[nb]/[no]/g" > $plik.1
+		mv -f $plik.1 $plik
 	fi
 done
 
