@@ -10,14 +10,14 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	1.1
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # generated from kde-i18n
-#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -249,22 +249,22 @@ cd $RPM_BUILD_ROOT%{_pixmapsdir}
 mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
 cd -
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-#%find_lang kcmlilo	--with-kde
-#%find_lang kcmlinuz	--with-kde
-#cat kcmlilo.lang >> kcmlinuz.lang
+%find_lang kcmlilo	--with-kde
+%find_lang kcmlinuz	--with-kde
+cat kcmlilo.lang >> kcmlinuz.lang
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
-#%find_lang ksysctrl	--with-kde
+%find_lang ksysctrl	--with-kde
 %find_lang ksysv	--with-kde
-#cat ksysctrl.lang >> ksysv.lang
+cat ksysctrl.lang >> ksysv.lang
 %find_lang kuser	--with-kde
 %find_lang kwuftpd	--with-kde
 %find_lang kxconfig	--with-kde
-#%find_lang secpolicy	--with-kde
-#cat secpolicy.lang >> ksysv.lang
+%find_lang secpolicy	--with-kde
+cat secpolicy.lang >> ksysv.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -272,8 +272,8 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCMLINUZ
 #################################################
-#%files kcmlinuz -f kcmlinuz.lang
-%files kcmlinuz
+%files kcmlinuz -f kcmlinuz.lang
+#%files kcmlinuz
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_li*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
