@@ -1,6 +1,6 @@
 
 %define		_state		stable
-%define		_ver		3.1.4
+%define		_ver		3.1.5
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -10,16 +10,16 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	8e0d2eedc7bd785ffdd428209a6ea9b8
+# Source0-md5:	abaa80f34c3b4cbeac18c598cbfe79de
 # generated from kde-i18n
-Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	184ebe0c6c61854f934d7e9ad40b77e3
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	8b94d8742a12687bbfd87a4e2b4ca6ed
 Source2:	%{name}-extra_icons.tar.bz2
 # Source2-md5:	6204a64084d5f5fdb05d65f0998e4a15
 Icon:		kde-icon.xpm
