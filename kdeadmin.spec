@@ -17,6 +17,7 @@ Requires:	kdelibs = %{version}, pam
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	pam-devel 
 BuildRequires:	rpm-devel
+BuildRequires:	db1-devel
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
