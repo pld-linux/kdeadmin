@@ -1,6 +1,4 @@
-
 # TODO:
-# - *.mo files.
 
 %define         _state          stable
 %define         _ver		3.1.1
@@ -34,8 +32,8 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
-BuildRequires:	rpm-devel
 BuildRequires:	perl
+BuildRequires:	rpm-devel
 Requires:	kdelibs >= %{version}
 Requires:	pam
 Requires:	shadow
@@ -211,7 +209,6 @@ Narzêdzie do konfiguracji X Window..
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
 
@@ -236,7 +233,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,System/Administration}
 
 KDEDIR=%{_prefix} ; export KDEDIR
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
 mv -f $ALD/System/{More/*.desktop,.}
@@ -256,31 +254,24 @@ cd -
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang kcmlinuz	--with-kde
-%find_lang kcmlilo	--with-kde
-cat kcmlilo.lang >> kcmlinuz.lang
-%find_lang desktop_kdeadmin --with-kde
-cat desktop_kdeadmin.lang >> kcmlinuz.lang
+%find_lang kcmlinuz		--with-kde
+%find_lang kcmlilo		--with-kde
+%find_lang desktop_kdeadmin	--with-kde
+cat kcmlilo.lang desktop_kdeadmin.lang >> kcmlinuz.lang
 
-
-%find_lang kcron	--with-kde
-%find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
-
 %find_lang kfile_deb	--with-kde
-cat kfile_deb.lang >> kpackage.lang
 %find_lang kfile_rpm	--with-kde
-cat kfile_rpm.lang >> kpackage.lang
+cat kfile_deb.lang kfile_rpm.lang >> kpackage.lang
 
-#%%find_lang ksysctrl	--with-kde # no i18nal file found
 %find_lang ksysv	--with-kde
-# cat ksysctrl.lang >> ksysv.lang
-
-%find_lang kuser	--with-kde
-#%%find_lang kwuftpd	--with-kde 
-%find_lang kxconfig	--with-kde
 %find_lang secpolicy	--with-kde
 cat secpolicy.lang >> ksysv.lang
+
+%find_lang kuser	--with-kde
+%find_lang kxconfig	--with-kde
+%find_lang kcron	--with-kde
+%find_lang kdat		--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
