@@ -1,6 +1,6 @@
 
 %define         _state          unstable                                        
-%define         _kdever         kde-3.1-beta1 
+%define         _kdever         kde-3.1-rc2 
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -9,7 +9,7 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	3.0.8
+Version:	3.0.98
 Release:	1
 Epoch:		7
 License:	GPL
@@ -82,7 +82,7 @@ Configurador do Kernel Linux.
 Summary:	Tape backup tool
 Summary(pl):	Narz阣zie do wykonywania kopii zapasowych na ta秏ie
 Group:		X11/Applications
-Requires:       kdelibs = %{version}
+Requires:       kdelibs >= %{version}
 
 %description kdat
 Tape backup tool.
@@ -95,7 +95,7 @@ Summary:	KDE cron daemon
 Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kcron
 Kde version of "CRON".
@@ -111,7 +111,7 @@ Summary:	RPM front-end KDE
 Summary(pl):	Program do manipulacji pakietami.
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 Provides:	kpackage
 Obsoletes:	kpackage
 
@@ -129,7 +129,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administra玢o da inicializa玢o System V
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -147,7 +147,7 @@ Summary:	KDE User management tool
 Summary(pl):	administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administra玢o de usu醨ios
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -165,7 +165,7 @@ Summary:	KDE FTP daemon
 Summary(pl):	Wu-FTP daemon for KDE
 Summary(pt_BR):	Ferramenta de administra玢o gr醘ica do WU-FTPD
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 Requires:	wu-ftpd
 
 %description kwuftpd
@@ -181,7 +181,7 @@ Ferramenta de administra玢o gr醘ica do WU-FTPD (servidor FTP).
 Summary:	X Window Configuration
 Summary(pl):	Konfiguracja X Window
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kxconfig
 X Window Configuration Tool.
@@ -260,7 +260,7 @@ mv -f $ALD/Settings/{[!K]*,KDE}
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_applnkdir}/System/kcron.desktop
-%{_datadir}/pixmaps/*color/*x*/apps/kcron.png
+%{_datadir}/pixmaps/*/*/*/kcron.png
 
 #################################################
 #             KDAT
