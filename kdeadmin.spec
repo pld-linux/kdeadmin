@@ -252,7 +252,7 @@ cd -
 #cat secpolicy.lang >> ksysv.lang
 
 %clean
-%{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
+rm -rf $RPM_BUILD_ROOT
 
 #################################################
 #             KCMLINUZ
@@ -260,10 +260,10 @@ cd -
 #%files kcmlinuz -f kcmlinuz.lang
 %files kcmlinuz
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{_libdir}/libkcm*
-%attr(755,root,root) %{_libdir}/kde3/kcm_li*.??
-%{_applnkdir}/Settings/KDE/System/li*.desktop
+%{_libdir}/kde3/kcm_li*.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
 %{_datadir}/apps/kcmlinuz
+%{_applnkdir}/Settings/KDE/System/li*.desktop
 
 #################################################
 #             KCRON
@@ -271,8 +271,8 @@ cd -
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-%{_applnkdir}/System/kcron.desktop
 %{_datadir}/pixmaps/*/*/*/kcron.png
+%{_applnkdir}/System/kcron.desktop
 
 #################################################
 #             KDAT
@@ -281,9 +281,9 @@ cd -
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
-%{_pixmapsdir}/[!l]*/*/*/kdat*
 %{_applnkdir}/System/kdat.desktop
 %{_applnkdir}/Utilities/kdat.desktop
+%{_pixmapsdir}/[!l]*/*/*/kdat*
 
 #################################################
 #             KPACKAGE
@@ -291,12 +291,13 @@ cd -
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
-%attr(755,root,root) %{_libdir}/kde3/kfile*
+%{_libdir}/kde3/kfile*.la
+%attr(755,root,root) %{_libdir}/kde3/kfile*.so
 %{_datadir}/apps/kpackage
 %{_datadir}/mimelnk/application/x-debian-package.desktop
 %{_datadir}/services/kfile*
-%{_pixmapsdir}/*/*/*/kpackage.png
 %{_applnkdir}/System/kpackage.desktop
+%{_pixmapsdir}/*/*/*/kpackage.png
 
 #################################################
 #             KSYSV
@@ -308,9 +309,9 @@ cd -
 %{_datadir}/apps/ksysv
 %{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
+%{_applnkdir}/System/Administration/ksysv.desktop
 %{_pixmapsdir}/*/*/*/ksysv.png
 %{_pixmapsdir}/*/*/*/toggle_log.png
-%{_applnkdir}/System/Administration/ksysv.desktop
 
 #################################################
 #             KUSER
@@ -319,8 +320,8 @@ cd -
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
-%{_pixmapsdir}/*/*/*/kuser.png
 %{_applnkdir}/System/Administration/kuser.desktop
+%{_pixmapsdir}/*/*/*/kuser.png
 
 #################################################
 #             KWUFTPD
@@ -337,5 +338,5 @@ cd -
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kxconfig
 %{_datadir}/apps/kxconfig
-%{_pixmapsdir}/*/*/*/kxconfig*
 %{_applnkdir}/System/Administration/kxconfig.desktop
+%{_pixmapsdir}/*/*/*/kxconfig*
