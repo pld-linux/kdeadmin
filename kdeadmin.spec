@@ -180,7 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755, root, root) %{_bindir}/kdat
 
-%config(missingok) %{_applnkdir}/Utilities/kdat.kdelnk
+%config(missingok) %{_applnkdir}/Utilities/kdat.desktop
 
 %attr(644,root,root) %{_datadir}/icons/hicolor/*x*/apps/kdat.png
 %attr(644,root,root) %{_datadir}/icons/locolor/*x*/apps/kdat.png
@@ -228,7 +228,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/audio.png
 %attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/cdrom.png
 %attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/conflict.png
-%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/connector.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/connectors.png
 %attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/display.png
 %attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/drivectrl.png
 %attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/network.png
@@ -242,11 +242,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %{_datadir}/toolbar/audio.png
 %attr(644,root,root) %{_datadir}/toolbar/cdrom.png
 %attr(644,root,root) %{_datadir}/toolbar/confmark.png
-%attr(644,root,root) %{_datadir}/toolbar/connector.png
+%attr(644,root,root) %{_datadir}/toolbar/connectors.png
 %attr(644,root,root) %{_datadir}/toolbar/display.png
 %attr(644,root,root) %{_datadir}/toolbar/network.png
 %attr(644,root,root) %{_datadir}/toolbar/printer.png
-%attr(644,root,root) %{_datadir}/toolbar/scaner.png
+%attr(644,root,root) %{_datadir}/toolbar/scanner.png
 %attr(644,root,root) %{_datadir}/toolbar/scsi.png
 %attr(644,root,root) %{_datadir}/toolbar/storage.png
 %attr(644,root,root) %{_datadir}/toolbar/system.png
@@ -259,10 +259,12 @@ rm -rf $RPM_BUILD_ROOT
 %files ksysv
 %defattr(644, root, root, 755)
 
+%attr(755,root,root) %{_bindir}/secpolicy
+
 %{_datadir}/apps/ksysv/
 
-%{_datadir}/icons/hicolor/*x*/ksysv.png
-%{_datadir}/icons/locolor/*x*/ksysv.png
+%{_datadir}/icons/hicolor/*x*/apps/ksysv.png
+%{_datadir}/icons/locolor/*x*/apps/ksysv.png
 
 #################################################
 #             KUSER
@@ -276,9 +278,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/apps/kuser/
 
-%{_datadir}/icons/hicolor/*x*/kuser.png
-%{_datadir}/icons/locolor/16x16/kuser.png
-%{_datadir}/icons/locolor/32x32/kuser.png
+%{_datadir}/icons/hicolor/*x*/apps/kuser.png
+%{_datadir}/icons/locolor/16x16/apps/kuser.png
+%{_datadir}/icons/locolor/32x32/apps/kuser.png
 
 %{_datadir}/icons/locolor/22x22/actions/add_*.png
 %{_datadir}/icons/locolor/22x22/actions/delete_*.png
@@ -292,4 +294,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_bindir}/kwuftpd
 
-%config(missingok) %{_allpnkdir}/System/kwuftpd.desktop
+%config(missingok) %{_applnkdir}/System/kwuftpd.desktop
