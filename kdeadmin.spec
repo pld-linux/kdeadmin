@@ -17,7 +17,7 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://www.kernel.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	b545553ef226727885074400a659bdb9	
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
