@@ -1,7 +1,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.94
-%define		_snap		031204
+%define		_snap		040110
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -17,8 +17,8 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	7c8ac0b2c77a7b80adcd220c482207f0
+Source0:	http://www.kernel.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	b545553ef226727885074400a659bdb9	
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
@@ -196,7 +196,7 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 %patch0 -p1
 
 %build
-
+cp /usr/share/automake/config.sub admin
 for f in `find . -name \*.desktop | xargs grep -l '\[nb\]'` ; do
 	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $f 2>/dev/null
 done
@@ -210,6 +210,7 @@ rm lilo-config/configure.in.in
 	--disable-rpath \
 	--enable-final \
  	--with-pam=yes \
+	--with-qt-libraries=%{_libdir} \\
 	--with-shadow
 
 %{__make}
