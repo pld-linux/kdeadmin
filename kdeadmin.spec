@@ -13,7 +13,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.
 Patch0:		%{name}-am15.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}
-Requires:	pam 
+Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
@@ -26,7 +26,7 @@ BuildRequires:	db1-devel
 BuildRequires:	db3-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	libtool
-BuildRequires:	pam-devel 
+BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -70,10 +70,10 @@ Requires:	kdelibs = %{version}
 %description kcron
 Kde version of "CRON".
 
-%description -l pl kcron
+%description kcron -l pl
 Program "cron" w wersji dla KDE.
 
-%description -l pt_BR kcron
+%description kcron -l pt_BR
 Gerenciador/agendador de tarefas e interface para o cron.
 
 %package kuser
@@ -87,11 +87,11 @@ Requires:	kdelibs = %{version}
 A simple tool for adding/removing users from system and changing user
 information.
 
-%description -l pl kuser
+%description kuser -l pl
 Narzêdzie do dodawania/usuwania u¿ytkowników oraz do zmiany danych o
 nich.
 
-%description -l pt_BR kuser
+%description kuser -l pt_BR
 Ferramenta para administração de usuários do sistema.
 
 %package kpackage
@@ -104,10 +104,10 @@ Requires:	kdelibs = %{version}
 %description kpackage
 Package front-end for KDE.
 
-%description -l pl kpackage
+%description kpackage -l pl
 Program do manipulowania pakietami w ¶rodowisku KDE.
 
-%description -l pt_BR kpackage
+%description kpackage -l pt_BR
 Interface para gerenciamento de pacotes RPM/DEB.
 
 %package kcmlinuz
@@ -120,14 +120,14 @@ Requires:	kdelibs = %{version}
 %description kcmlinuz
 A Linux kernel configurator for KDE.
 
-%description -l pl kcmlinuz
+%description kcmlinuz -l pl
 Program do konfiguracji j±dra Linuxa.
 
-%description -l pt_BR kcmlinuz
+%description kcmlinuz -l pt_BR
 Configurador do Kernel Linux.
 
 %package ksysv
-Summary:	KDE Sys V Init configurator	
+Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administração da inicialização System V
 Group:		X11/Applications
@@ -136,10 +136,10 @@ Requires:	kdelibs = %{version}
 %description ksysv
 A Sys V Init configurator for KDE.
 
-%description -l pl ksysv
+%description ksysv -l pl
 Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init
 
-%description -l pt_BR ksysv
+%description ksysv -l pt_BR
 Interface para administração da inicialização System V, com
 visualização e manipulação gráfica e facilitada dos serviços
 disponíveis bem como dos níveis de execução.
@@ -155,10 +155,10 @@ Requires:	wu-ftpd
 %description kwuftpd
 Wu-FTP daemon for KDE.
 
-%description -l pl kwuftpd
+%description kwuftpd -l pl
 Zamiennik demona wu-ftp dla KDE.
 
-%description -l pt_BR kwuftpd
+%description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
 %prep
