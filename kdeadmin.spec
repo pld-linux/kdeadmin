@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030518
+%define		_snap		030602
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -17,8 +17,8 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://team.pld.org.pl/~adgor/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	aeaabbf9310d4c495672b03df2b9027a
+# Source0-md5:	3f5881f290ec1c594a4cc7fe43c5374f
+Source0:	http://www.kernel.pl/~adgor/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
