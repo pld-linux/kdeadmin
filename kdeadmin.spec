@@ -11,7 +11,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE¹ÜÀí¹¤¾ß
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -76,7 +76,7 @@ Obsoletes:	%{name}-kcmlinuz < 8:3.1.93.031105-3
 LILO configuration module for KDE Control Centre.
 
 %description kcmlilo -l pl
-Konfigurator LILO dla KDE.
+Konfigurator LILO dla Centrum Sterowania KDE.
 
 %package kcmlinuz
 Summary:	KDE Linux Kernel Configuration
@@ -89,7 +89,7 @@ Requires:	kdebase-core >= 9:%{version}
 A Linux kernel configuration module for KDE Control Centre.
 
 %description kcmlinuz -l pl
-Program do konfiguracji j±dra Linuksa.
+Program do konfiguracji j±dra Linuksa dla Centrum Sterowania KDE.
 
 %description kcmlinuz -l pt_BR
 Configurador do Kernel Linux.
@@ -114,7 +114,17 @@ features of the dds2tar program. It features:
 - tape backup tool.
 
 %description kdat -l pl
-Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
+KDat to oparty na tarze program do wykonywania kopii zapasowych na
+ta¶mie. Jest przeznaczony do dzaia³ania z wieloma archiwami na
+jednej tasiemce. By³ projektowany, by zapewniæ mi³y, graficzny
+interfejs do tara, obs³uguj±cy mo¿liwo¶ci najszybszego, selektywnego
+odczytywania z programu dds2tar. Mo¿liwo¶ci programu KDat:
+- prosty graficzny interfejs dla zawarto¶ci systemu plików i ta¶my
+- obs³uga wielu archiwów na tej samej fizycznej ta¶mie
+- pe³ny indeks archiwów i plików zapisywany na lokalnym dysku
+- wybiórcze odtwarzanie plików z archiwum
+- profile backupów dla czêsto u¿ywanych kopii
+- narzêdzie do tworzenia kopii zapasowych na ta¶mie.
 
 %package kcron
 Summary:	KDE cron daemon
@@ -129,13 +139,15 @@ background. It is a graphical user interface to cron, the UNIX system
 scheduler.
 
 %description kcron -l pl
-Program "cron" w wersji dla KDE.
+KCron to aplikacja do planowania uruchamiania programów w tle. Jest to
+graficzny interfejs do crona - systemowego programu do planowego
+uruchamiania programów w systemach uniksowych.
 
 %description kcron -l pt_BR
 Gerenciador/agendador de tarefas e interface para o cron.
 
 %package kpackage
-Summary:	RPM front-end KDE
+Summary:	Package management front-end KDE
 Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
@@ -149,7 +161,9 @@ package managers. KPackage is part of the K Desktop Environment and,
 as a result, it is designed to integrate with the KDE file manager.
 
 %description kpackage -l pl
-Program do manipulowania pakietami w ¶rodowisku KDE.
+KPackage to graficzny interfejs do zarz±dców pakietów RPM, Debiana,
+Slackware'a i BSD. KPackage to czê¶æ ¶rodowiska KDE, dziêki czemu
+integruje siê z zarz±dc± plików KDE.
 
 %description kpackage -l pt_BR
 Interface para gerenciamento de pacotes RPM/DEB.
@@ -188,23 +202,6 @@ nich.
 
 %description kuser -l pt_BR
 Ferramenta para administração de usuários do sistema.
-
-%package kwuftpd
-Summary:	KDE WU-FTP daemon configurator
-Summary(pl):	Konfigurator demona WU-FTP dla KDE
-Summary(pt_BR):	Ferramenta de administração gráfica do WU-FTPD
-Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
-Requires:	wu-ftpd
-
-%description kwuftpd
-WU-FTP daemon configurator for KDE.
-
-%description kwuftpd -l pl
-Narzêdzie do konfiguracji demona WU-FTP dla KDE.
-
-%description kwuftpd -l pt_BR
-Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
 %prep
 %setup -q
