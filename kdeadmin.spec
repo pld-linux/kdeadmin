@@ -11,7 +11,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -217,7 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kcm_li*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
 %{_datadir}/apps/kcmlinuz
-%{_desktopdir}/kde/lilo.desktop
+#%%{_desktopdir}/kde/lilo.desktop
 %{_desktopdir}/kde/linuz.desktop
 
 %files kcron -f kcron.lang
