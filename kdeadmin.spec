@@ -36,7 +36,7 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
