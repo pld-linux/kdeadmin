@@ -57,9 +57,6 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - Kwuftpd - Demon FTP dla KDE
 - Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
 
-%description -l pt_BR
-Ferramentas administrativas para o KDE.
-
 %package kcron
 Summary:	KDE cron daemon
 Summary(pl):	Program cron
