@@ -55,7 +55,7 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KSYSV - Program do konfiguracji startu systemu
 - KPackage - Przegl±darka pakietów
 - Kwuftpd - Demon FTP dla KDE
-- Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
+- Kcmlinuz - Konfigurator j±dra Linuksa dla KDE
 
 %package kcron
 Summary:	KDE cron daemon
@@ -109,7 +109,7 @@ Interface para gerenciamento de pacotes RPM/DEB.
 
 %package kcmlinuz
 Summary:	KDE Linux Kernel Configuration
-Summary(pl):	Konfigurator j±dra Linuxa dla KDE
+Summary(pl):	Konfigurator j±dra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Requires:	kdelibs = %{version}
@@ -118,7 +118,7 @@ Requires:	kdelibs = %{version}
 A Linux kernel configurator for KDE.
 
 %description kcmlinuz -l pl
-Program do konfiguracji j±dra Linuxa.
+Program do konfiguracji j±dra Linuksa.
 
 %description kcmlinuz -l pt_BR
 Configurador do Kernel Linux.
