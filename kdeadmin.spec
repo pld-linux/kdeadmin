@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -217,7 +217,6 @@ Summary:	Internationalization and localization files for kcron
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kcrona
 Group:		X11/Applications
 Requires:	%{name}-kcron = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kcron-i18n
@@ -231,7 +230,6 @@ Summary:	Internationalization and localization files for kdat
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kdat
 Group:		X11/Applications
 Requires:	%{name}-kdat = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kdat-i18n
@@ -245,7 +243,6 @@ Summary:	Internationalization and localization files for kpackage
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kpackage
 Group:		X11/Applications
 Requires:	%{name}-kpackage = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kpackage-i18n
@@ -259,7 +256,6 @@ Summary:	Internationalization and localization files for ksysv
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla ksysv
 Group:		X11/Applications
 Requires:	%{name}-ksysv = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description ksysv-i18n
@@ -273,7 +269,6 @@ Summary:	Internationalization and localization files for kuser
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kusera
 Group:		X11/Applications
 Requires:	%{name}-kuser = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kuser-i18n
@@ -287,7 +282,6 @@ Summary:	Internationalization and localization files for kcmlilo
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kcmlilo
 Group:		X11/Applications
 Requires:	%{name}-kcmlilo = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kcmlilo-i18n
@@ -301,7 +295,6 @@ Summary:	Internationalization and localization files for kcmlinuz
 Summary(pl):	Pliki umi阣zynarodawiaj眂e dla kcmlinuz
 Group:		X11/Applications
 Requires:	%{name}-kcmlinuz = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kcmlinuz-i18n
