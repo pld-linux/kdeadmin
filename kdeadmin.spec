@@ -141,7 +141,7 @@ CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
 export KDEDIR
 
-%configure \
+%configure2_13 \
 	--prefix=%{_prefix} \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
