@@ -10,7 +10,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	0.3
+Release:	0.4
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -20,6 +20,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 # generated from kde-i18n
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	184ebe0c6c61854f934d7e9ad40b77e3
+Source2:	%{name}-extra_icons.tar.bz2
+# Source2-md5:	dbdea972f6cc98f58f3a93369f13df6a
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -248,15 +250,14 @@ mv -f $ALD/System/{{ksysv,kuser}.desktop,Administration}
 mv -f $ALD/{Settings/Peripherals/kxconfig.desktop,System/Administration}
 mv -f $ALD/Settings/{[!K]*,KDE}
 
-cd $ALD/System/Administration
-cat kxconfig.desktop |sed -e 's/Icon=xapp/Icon=kxconfig/' \
-	> kxconfig.desktop.tmp
-mv kxconfig.desktop.tmp kxconfig.desktop
-cd -
+echo -e ',s/Icon=xapp/Icon=kxconfig/\n,w' | ed $ALD/System/Administration/kxconfig.desktop
 
-cd $RPM_BUILD_ROOT%{_pixmapsdir}
-mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
-cd -
+mv $RPM_BUILD_ROOT%{_pixmapsdir}/{locolor,crystalsvg}/16x16/apps/kxconfig.png
+
+bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
+for i in {kdat,kpackage,ksysv,kuser}.png; do
+	ln -s crystalsvg/48x48/apps/$i $RPM_BUILD_ROOT%{_pixmapsdir}/$i
+done
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
@@ -293,6 +294,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcm_li*.so
 %{_datadir}/apps/kcmlinuz
 %{_applnkdir}/Settings/KDE/System/li*.desktop
+%{_pixmapsdir}/penguin.png
 
 #################################################
 #             KCRON
@@ -300,8 +302,9 @@ rm -rf $RPM_BUILD_ROOT
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-%{_pixmapsdir}/*/*/*/kcron.png
 %{_applnkdir}/System/kcron.desktop
+%{_pixmapsdir}/*/*/*/kcron.png
+%{_pixmapsdir}/kcron.png
 
 #################################################
 #             KDAT
@@ -312,7 +315,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdat
 %{_applnkdir}/System/kdat.desktop
 %{_applnkdir}/Utilities/kdat.desktop
-%{_pixmapsdir}/[!l]*/*/*/kdat*
+%{_pixmapsdir}/[!l]*/*/*/kdat.png
+%{_pixmapsdir}/kdat.png
 
 #################################################
 #             KPACKAGE
@@ -327,6 +331,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kfile*
 %{_applnkdir}/System/kpackage.desktop
 %{_pixmapsdir}/*/*/*/kpackage.png
+%{_pixmapsdir}/kpackage.png
 
 #################################################
 #             KSYSV
@@ -341,6 +346,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/System/Administration/ksysv.desktop
 %{_pixmapsdir}/*/*/*/ksysv.png
 %{_pixmapsdir}/*/*/*/toggle_log.png
+%{_pixmapsdir}/ksysv.png
 
 #################################################
 #             KUSER
@@ -351,6 +357,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kuser
 %{_applnkdir}/System/Administration/kuser.desktop
 %{_pixmapsdir}/*/*/*/kuser.png
+%{_pixmapsdir}/kuser.png
 
 #################################################
 #             KWUFTPD
@@ -368,4 +375,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kxconfig
 %{_datadir}/apps/kxconfig
 %{_applnkdir}/System/Administration/kxconfig.desktop
-%{_pixmapsdir}/*/*/*/kxconfig*
+%{_pixmapsdir}/*/*/*/kxconfig.png
+%{_pixmapsdir}/kxconfig.png
