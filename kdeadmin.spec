@@ -98,6 +98,8 @@ Summary(pl):	Program do manipulacji pakietami.
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
 Requires:	kdelibs = %{version}
+Provides:	kpackage
+Obsoletes:	kpackage
 
 %description kpackage
 Package front-end for KDE.
