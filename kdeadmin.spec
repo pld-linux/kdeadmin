@@ -3,7 +3,7 @@
 %bcond_without	i18n	# don't build i18n subpackages
 #
 %define		_state		stable
-%define		_ver		3.2.1
+%define		_ver		3.2.2
 ##%define		_snap		040110
 
 Summary:	K Desktop Environment - administrative tools
@@ -20,11 +20,11 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	1ff46933b955cb4bc71cd533c6f730d1
+# Source0-md5:	4a39ce0d9abdd2dccb4531466ee7f229
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
 Source1:        kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	eed79dbaa88ff33cf37d86edb3c6e767
+# Source1-md5:	1095b044a325a63d640255695ab2a6b4
 %endif
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-vcategories.patch
