@@ -117,10 +117,8 @@ Zamiennik demona wu-ftp dla KDE.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
-#%{__make} -f Makefile.cvs
 KDEDIR=%{_prefix}
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
@@ -176,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcmlinuz
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkcm*
-%attr(755,root,root) %{_libdir/kde2/libkcm*
+%attr(755,root,root) %{_libdir}/kde2/libkcm*
 
 %{_applnkdir}/Settings/System/li*.desktop
 %{_datadir}/apps/kcmlinuz
