@@ -10,7 +10,14 @@ Vendor:		The KDE Team
 #ftp:		ftp.kde.org/
 #patch:		pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
 Source:		%{name}-%{version}.tar.bz2
-Requires:	qt >= 1.44, kdelibs = %{version}
+BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	qt-devel >= 1.44
+BuildRequires:	libstdc++-devel
+BuildRequires:	XFree86-devel
+BuildRequires:  pam-devel
+BuildRequires:  pwdb-devel
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define 	_prefix		/usr/X11R6
@@ -30,11 +37,12 @@ Pakiet zawiera:
   KSYSV - Program do konfiguracji startu systemu
 
 %package kdat
-Summary:     KDE tar-based tape archiver
-Summary(pl): Program archiwizuj±cy
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.44, kdelibs = %{version}
+Summary:	KDE tar-based tape archiver
+Summary(pl):	Program archiwizuj±cy
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kdat
 KDat is a tar-based tape archiver, designed to work with multiple archives
@@ -44,11 +52,12 @@ on a single tape.
 Program archiwizujacy oparty na programie tar.
 
 %package kuser
-Summary:     KDE User management tool
-Summary(pl): administracja kontami dla KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.44, kdelibs = %{version}
+Summary:	KDE User management tool
+Summary(pl):	administracja kontami dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing
@@ -58,11 +67,13 @@ user information.
 Narzêdzie do dodawania/usuwania u¿ytkowników oraz do zmiany danych o nich.
 
 %package ksysv
-Summary:     KDE Sys V Init configurator	
-Summary(pl): Konfigurator Sys V Init dla KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.44, kdelibs = %{version}
+Summary:	KDE Sys V Init configurator	
+Summary(pl):	Konfigurator Sys V Init dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
+
 
 %description ksysv
 A Sys V Init configurator for KDE.
