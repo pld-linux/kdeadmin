@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030329
+%define		_snap		030403
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -17,8 +17,9 @@ License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://team.pld.org.pl/~adgor/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-vcategories.patch
+Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs >= %{version}
 Requires:	pam
@@ -203,14 +204,12 @@ Narzêdzie do konfiguracji X Window..
 %prep
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
+%patch1 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
-CXXFLAGS="%{rpmcflags} -Wall"
-CFLAGS="%{rpmcflags} -Wall"
 
 for plik in `find ./ -name *.desktop` ; do
 
@@ -218,7 +217,6 @@ if [ -d $plik ]; then
 	echo $plik
 	sed -ie 's/\[nb\]/\[no\]/g' $plik
 	fi
-
 done
 
 %configure \
@@ -238,6 +236,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
+
+mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE/Peripherals/kxconfig.desktop \
+    $RPM_BUILD_ROOT%{_desktopdir}
 
 cd $RPM_BUILD_ROOT%{_pixmapsdir}
 mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
@@ -337,5 +338,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kxconfig
 %{_datadir}/apps/kxconfig
-%{_applnkdir}/Settings/KDE/Peripherals/kxconfig.desktop
+%{_desktopdir}/kxconfig.desktop
 %{_pixmapsdir}/*/*/*/kxconfig*
