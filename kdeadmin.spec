@@ -26,7 +26,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
