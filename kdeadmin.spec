@@ -1,6 +1,6 @@
 
-%define         _state          snapshots
-%define         _ver		3.1.93
+%define		_state		snapshots
+%define		_ver		3.1.93
 %define		_snap		031105
 
 Summary:	K Desktop Environment - administrative tools
@@ -24,6 +24,7 @@ Icon:		kde-icon.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	ed
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -32,19 +33,18 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	sed >= 4.0
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 KDE administrative tools. Package includes:
-- KCron - KDE Cron daemon
-- KDat - Tape backup tool
-- KUser - KDE user setup tool
-- KSYSV - SYS V Init configuration
-- KPackage - KDE support for RPM
-- Kwuftpd - KDE ftp daemon
-- Kcmlinuz - KDE Linux Kernel Configuration
+- KCron - KDE Cron daemon,
+- KDat - Tape backup tool,
+- KUser - KDE user setup tool,
+- KSYSV - SYS V Init configuration,
+- KPackage - KDE support for RPM,
+- Kwuftpd - KDE ftp daemon,
+- Kcmlinuz - KDE Linux Kernel Configuration.
 
 %description -l es
 Herramientas administrativas para KDE. Incluidos en este paquete:
@@ -53,13 +53,13 @@ Herramientas administrativas para KDE. Incluidos en este paquete:
 
 %description -l pl
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
-- KCron - Program cron
-- KDat - Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
-- KUser - Program do zarz±dzania kontami u¿ytkowników
-- KSYSV - Program do konfiguracji startu systemu
-- KPackage - Program do zarz±dzania pakietami
-- Kwuftpd - Demon FTP dla KDE
-- Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
+- KCron - program cron,
+- KDat - narzêdzie do wykonywania kopii zapasowych na ta¶mie,
+- KUser - program do zarz±dzania kontami u¿ytkowników,
+- KSYSV - program do konfiguracji startu systemu,
+- KPackage - program do zarz±dzania pakietami,
+- Kwuftpd - demon FTP dla KDE,
+- Kcmlinuz - konfigurator j±dra Linuxa dla KDE.
 
 %package kcmlilo
 Summary:	LILO Configurator
@@ -95,7 +95,7 @@ Configurador do Kernel Linux.
 Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
-Requires:       kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kdat
 
 %description kdat
@@ -106,7 +106,7 @@ Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
 
 %package kcron
 Summary:	KDE cron daemon
-Summary(pl):	Program cron
+Summary(pl):	Program cron dla KDE
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
@@ -175,18 +175,18 @@ nich.
 Ferramenta para administração de usuários do sistema.
 
 %package kwuftpd
-Summary:	KDE FTP daemon
-Summary(pl):	Wu-FTP daemon for KDE
+Summary:	KDE WU-FTP daemon configurator
+Summary(pl):	Konfigurator demona WU-FTP dla KDE
 Summary(pt_BR):	Ferramenta de administração gráfica do WU-FTPD
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
 Requires:	wu-ftpd
 
 %description kwuftpd
-Wu-FTP daemon for KDE.
+WU-FTP daemon configurator for KDE.
 
 %description kwuftpd -l pl
-Zamiennik demona wu-ftp dla KDE.
+Narzêdzie do konfiguracji demona WU-FTP dla KDE.
 
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
@@ -197,8 +197,8 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
 %build
 
-for f in `find . -name *.desktop` ; do
-	sed -i 's/\[nb\]/\[no\]/g' $f
+for f in `find . -name *.desktop | grep -l '\[nb\]'` ; do
+	echo -e ',s/\[nb\]/[no]/\n,w' | ed $f
 done
 
 # Do not check for lilo
