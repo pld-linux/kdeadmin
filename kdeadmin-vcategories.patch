@@ -14,3 +14,11 @@
  X-KDE-SubstituteUID=true
 -Categories=Qt;KDE;System
 +Categories=Qt;KDE;System;Administration
+--- kdeadmin-030403/kxconfig/kxconfig.desktop~	Tue Mar 11 08:09:33 2003
++++ kdeadmin-030403/kxconfig/kxconfig.desktop	Fri Apr  4 10:14:50 2003
+@@ -108,3 +108,5 @@
+ Keywords[xh]=X11,XFree,Uboniso,Isisombululo,Imizobo,Ikhadi, Ikhusi
+ Keywords[zh_CN]=X11,XFree,Display,Resolution,Graphic,Card,Monitor,Screen,显示器,分辨率,图像,显示卡,监视器,屏幕
+ keywords[zh_TW.Big5]=X11,XFree,顯示器,解析度,圖形,介面卡,監視器,螢幕
++
++Categories=Qt;KDE;System;Administration
