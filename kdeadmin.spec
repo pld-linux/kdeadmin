@@ -93,12 +93,25 @@ Package front-end for KDE
 %description -l pl kpackage
 Program do manipulowania pakietami w ¶rodowisku KDE.
 
+%package ksysctrl
+Summary:     KDE System configurator	
+Summary(pl): Konfigurator Systemudla KDE
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
+Requires:    qt >= 2.1, kdelibs = %{version}
+
+%description ksysctrl
+A System configurator for KDE.
+
+%description -l pl ksysctrl
+Program do konfiguracji systemu.
+
 %package ksysv
 Summary:     KDE Sys V Init configurator	
 Summary(pl): Konfigurator Sys V Init dla KDE
 Group:       X11/KDE/Utilities
 Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.44, kdelibs = %{version}
+Requires:    qt >= 2.1, kdelibs = %{version}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -133,33 +146,17 @@ export CXXFLAGS CFLAGS LDFLAGS
 	--prefix=$KDEDIR \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
-	--with-rpm \
 	--with-quota \
 	--with-shadow \
  	--with-pam="yes"
 
 make
-#cd kdat
-#make KDEDIR=$KDEDIR
-#cd  ../ksysv
-#make KDEDIR=$KDEDIR
-#cd ../kuser
-#make KDEDIR=$KDEDIR
 
 %install
 rm -rf $RPM_BUILD_ROOT
 export KDEDIR=%{_prefix}
 make DESTDIR=$RPM_BUILD_ROOT install
 
-#cd kuser
-#make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
-#cd ..
-#make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
-
-#%find_lang kcron
-#%find_lang kdat
-#%find_lang kuser
-#%find_lang ksysv
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -170,37 +167,28 @@ rm -rf $RPM_BUILD_ROOT
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 
+%attr(755,root,root) %{_bindir}/kcron
+%config(missingok) %{_applnkdir}/System/kcron.desktop
+
+%attr(644,root,root) %{_datadir}/icons/locolor/*x*/apps/kcron.png
+
 #################################################
 #             KDAT
 #################################################
 %files kdat -f kdat.lang
 %defattr(644, root, root, 755)
 
-%config(missingok) /etc/X11/kde/applnk/Utilities/kdat.kdelnk
-
 %attr(755, root, root) %{_bindir}/kdat
 
-%{_datadir}/kde/icons/kdat.xpm
-%{_datadir}/kde/icons/mini/kdat.xpm
+%config(missingok) %{_applnkdir}/Utilities/kdat.kdelnk
 
-#################################################
-#             KUSER
-#################################################
+%attr(644,root,root) %{_datadir}/icons/hicolor/*x*/apps/kdat.png
+%attr(644,root,root) %{_datadir}/icons/locolor/*x*/apps/kdat.png
 
-%files kuser -f kuser.lang
-%defattr(644, root, root, 755)
-
-%config(missingok) /etc/X11/kde/applnk/System/kuser.kdelnk
-
-%attr(755, root, root) %{_bindir}/kuser
-
-%lang(en) %{_datadir}/kde/doc/HTML/en/kuser
-%lang(ru) %{_datadir}/kde/doc/HTML/ru/kuser
-
-%{_datadir}/kde/apps/kuser/
-
-%{_datadir}/kde/icons/mini/kuser.xpm
-%{_datadir}/kde/icons/kuser.xpm
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/kdat_*.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/closed.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/open.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/package.png
 
 #################################################
 #             KPACKAGE
@@ -208,25 +196,100 @@ rm -rf $RPM_BUILD_ROOT
 %files kpackage
 %defattr(644,root,root,755)
 
+%attr(755,root,root) %{_bindir}/kpackage*
+
+%config(missingok) %{_applnkdir}/Utilities/kpackage.desktop
+
+%{_datadir}/apps/kpackage/
+
+%attr(644,root,root) %{_datadir}/icons/locolor/*x*/apps/kpackage.png
+
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/mimetypes/*file.png
+%attr(644,root,root) %{_datadir}/icons/locolor/32x32/apps/*file.png
+
+%{_datadir}/mimelnk/application/x-debian-package.kdelnk
+%{_datadir}/mimelnk/application/x-rpm.kdelnk
+
+#################################################
+#             KSYSCONTROL
+#################################################
+%files ksyscontrol
+%defattr(644, root, root, 755)
+
+%attr(755,root,root) %{_bindir}/ksysctrl
+%attr(755,root,root) %{_bindir}/printversion
+
+%config(missingok) %{_applnkdir}/System/ksysctrl.desktop
+
+%{_datadir}/apps/ksysctrl/
+
+%attr(644,root,root) %{_datadir}/icons/locolor/*x*/apps/kpackage.png
+
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/audio.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/cdrom.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/conflict.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/connector.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/display.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/drivectrl.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/network.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/printer.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/res.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/scsi.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/storage.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/system.png
+%attr(644,root,root) %{_datadir}/icons/locolor/16x16/apps/usb.png
+
+%attr(644,root,root) %{_datadir}/toolbar/audio.png
+%attr(644,root,root) %{_datadir}/toolbar/cdrom.png
+%attr(644,root,root) %{_datadir}/toolbar/confmark.png
+%attr(644,root,root) %{_datadir}/toolbar/connector.png
+%attr(644,root,root) %{_datadir}/toolbar/display.png
+%attr(644,root,root) %{_datadir}/toolbar/network.png
+%attr(644,root,root) %{_datadir}/toolbar/printer.png
+%attr(644,root,root) %{_datadir}/toolbar/scaner.png
+%attr(644,root,root) %{_datadir}/toolbar/scsi.png
+%attr(644,root,root) %{_datadir}/toolbar/storage.png
+%attr(644,root,root) %{_datadir}/toolbar/system.png
+%attr(644,root,root) %{_datadir}/toolbar/tuxscreen.png
+%attr(644,root,root) %{_datadir}/toolbar/usb.png
+
 #################################################
 #             KSYSV
 #################################################
-
-%files ksysv -f ksysv.lang
+%files ksysv
 %defattr(644, root, root, 755)
 
-%config(missingok) /etc/X11/kde/applnk/System/ksysv.kdelnk
+%{_datadir}/apps/ksysv/
 
-%attr(755, root, root) %{_bindir}/ksysv
+%{_datadir}/icons/hicolor/*x*/ksysv.png
+%{_datadir}/icons/locolor/*x*/ksysv.png
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/ksysv
+#################################################
+#             KUSER
+#################################################
+%files kuser
+%defattr(644, root, root, 755)
 
-%{_datadir}/kde/apps/ksysv/
-%{_datadir}/kde/icons/ksysv.xpm
-%{_datadir}/kde/icons/mini/ksysv.xpm
+%attr(755, root, root) %{_bindir}/kuser
+
+%config(missingok) %{_applnkdir}/System/kuser.desktop
+
+%{_datadir}/apps/kuser/
+
+%{_datadir}/icons/hicolor/*x*/kuser.png
+%{_datadir}/icons/locolor/16x16/kuser.png
+%{_datadir}/icons/locolor/32x32/kuser.png
+
+%{_datadir}/icons/locolor/22x22/actions/add_*.png
+%{_datadir}/icons/locolor/22x22/actions/delete_*.png
+%{_datadir}/icons/locolor/22x22/actions/edit_*.png
 
 #################################################
 #             KWUFTPD
 #################################################
 %files kwuftpd
 %defattr(644,root,root,755)
+
+%attr(755,root,root) %{_bindir}/kwuftpd
+
+%config(missingok) %{_allpnkdir}/System/kwuftpd.desktop
