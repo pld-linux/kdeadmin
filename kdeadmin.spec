@@ -1,31 +1,29 @@
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
-Summary(ja):	K¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ - ´ÉÍý¥Ä¡¼¥ë
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
+Summary(zh_CN):	KDE¹ÜÀí¹¤¾ß
 Name:		kdeadmin
-Version:	2.2.2
-Release:	6
+Version:	3.0.3
+Release:	3
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-am15.patch
+# generated from kde-i18n
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Icon:		kde-icon.xpm
 Requires:	kdelibs = %{version}
 Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	kdelibs-devel >= %{version}
-BuildRequires:	zlib-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libjpeg-devel
+BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	db1-devel
-BuildRequires:	db3-devel
-BuildRequires:	bzip2-devel
+BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
@@ -38,6 +36,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 KDE administrative tools. Package includes:
 - KCron - KDE Cron daemon
+- KDat - Tape backup tool
 - KUser - KDE user setup tool
 - KSYSV - SYS V Init configuration
 - KPackage - KDE support for RPM
@@ -49,21 +48,15 @@ Herramientas administrativas para KDE. Incluidos en este paquete:
 - KSYSV - editor de los archivos de iniciación sysV,
 - KUser - herramienta de gestión de usuarios.
 
-%description -l ja
-KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ÍÑ¤Î´ÉÍý¥Ä¡¼¥ë¡£
-°Ê²¼¤Î¤è¤¦¤Ê¥Ñ¥Ã¥±¡¼¥¸¤¬Æþ¤Ã¤Æ¤¤¤Þ¤¹¡£
-
-- ksysv - ¥é¥ó¥ì¥Ù¥ë¥µ¡¼¥Ó¥¹¥¨¥Ç¥£¥¿
-- kuser - ¥æ¡¼¥¶´ÉÍý¥Ä¡¼¥ë
-
 %description -l pl
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KCron - Program cron
+- KDat - Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
 - KUser - Program do zarz±dzania kontami u¿ytkowników
 - KSYSV - Program do konfiguracji startu systemu
-- KPackage - Przegl±darka pakietów
+- KPackage - Program do zarz±dzania pakietami
 - Kwuftpd - Demon FTP dla KDE
-- Kcmlinuz - Konfigurator j±dra Linuksa dla KDE
+- Kcmlinuz - Konfigurator j±dra Linuxa dla KDE
 
 %package kcron
 Summary:	KDE cron daemon
@@ -117,7 +110,7 @@ Interface para gerenciamento de pacotes RPM/DEB.
 
 %package kcmlinuz
 Summary:	KDE Linux Kernel Configuration
-Summary(pl):	Konfigurator j±dra Linuksa dla KDE
+Summary(pl):	Konfigurator j±dra Linuxa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Requires:	kdelibs = %{version}
@@ -126,7 +119,7 @@ Requires:	kdelibs = %{version}
 A Linux kernel configurator for KDE.
 
 %description kcmlinuz -l pl
-Program do konfiguracji j±dra Linuksa.
+Program do konfiguracji j±dra Linuxa.
 
 %description kcmlinuz -l pt_BR
 Configurador do Kernel Linux.
@@ -166,15 +159,24 @@ Zamiennik demona wu-ftp dla KDE.
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
+%package kdat
+Summary:	Tape backup tool
+Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
+Group:		X11/Applications
+Requires:       kdelibs = %{version}
+
+%description kdat
+Tape backup tool.
+
+%description kdat -l pl
+Narzêdzie do wykonywania kopii zapasowych na ta¶mie.
+
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
-%{__make} -f Makefile.cvs
 
 CXXFLAGS="%{rpmcflags} -Wall"
 CFLAGS="%{rpmcflags} -Wall"
@@ -191,11 +193,28 @@ CFLAGS="%{rpmcflags} -Wall"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+
 KDEDIR=%{_prefix} ; export KDEDIR
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 mv -f $RPM_BUILD_ROOT%{_applnkdir}/Settings/{[!K]*,KDE}
+
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+
+%find_lang kcmlilo	--with-kde
+%find_lang kcmlinuz	--with-kde
+cat kcmlilo.lang >> kcmlinuz.lang
+%find_lang kcron	--with-kde
+%find_lang kdat		--with-kde
+%find_lang kpackage	--with-kde
+%find_lang ksysctrl	--with-kde
+%find_lang ksysv	--with-kde
+cat ksysctrl.lang >> ksysv.lang
+%find_lang kuser	--with-kde
+%find_lang kwuftpd	--with-kde
+%find_lang secpolicy	--with-kde
+cat secpolicy.lang >> ksysv.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -203,22 +222,18 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCRON
 #################################################
-%files kcron
+%files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
-
-%{_htmldir}/en/kcron
 %{_applnkdir}/System/kcron.desktop
 %{_datadir}/pixmaps/*color/*x*/apps/kcron.png
 
 #################################################
 #             KPACKAGE
 #################################################
-%files kpackage
+%files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
-
-%{_htmldir}/en/kpackage
 %{_applnkdir}/System/kpackage.desktop
 %{_datadir}/apps/kpackage
 %{_datadir}/pixmaps/*color/*x*/apps/kpackage.png
@@ -227,24 +242,20 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KCMLINUZ
 #################################################
-%files kcmlinuz
+%files kcmlinuz -f kcmlinuz.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libkcm*
-%ifarch %{ix86}
-%attr(755,root,root) %{_libdir}/kde2/libkcm_lilo*
-%endif
+#%attr(755,root,root) %{_libdir}/libkcm*
+%attr(755,root,root) %{_libdir}/kde3/kcm_li*.??
 %{_applnkdir}/Settings/KDE/System/li*.desktop
 %{_datadir}/apps/kcmlinuz
 
 #################################################
 #             KSYSV
 #################################################
-%files ksysv
+%files ksysv -f ksysv.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
 %attr(755,root,root) %{_bindir}/ksysv
-
-%{_htmldir}/en/ksysv
 %{_datadir}/apps/ksysv
 %{_datadir}/pixmaps/*color/*x*/apps/ksysv.png
 %{_datadir}/pixmaps/*color/*x*/actions/toggle_log.png
@@ -255,11 +266,9 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KUSER
 #################################################
-%files kuser
+%files kuser -f kuser.lang
 %defattr(644,root,root,755)
 %attr(755, root, root) %{_bindir}/kuser
-
-%{_htmldir}/en/kuser
 %{_applnkdir}/System/kuser.desktop
 %{_datadir}/apps/kuser
 %{_datadir}/pixmaps/*color/*x*/apps/kuser.png
@@ -267,9 +276,17 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KWUFTPD
 #################################################
-%files kwuftpd
+%files kwuftpd -f kwuftpd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwuftpd
-
-%{_htmldir}/en/kwuftpd
 %{_applnkdir}/System/kwuftpd.desktop
+
+#################################################
+#             KWUFTPD
+#################################################
+%files kdat -f kdat.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kdat
+%{_datadir}/apps/kdat
+%{_pixmapsdir}/*/*/*/kdat*
+%{_applnkdir}/Utilities/kdat.desktop
