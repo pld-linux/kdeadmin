@@ -134,7 +134,7 @@ Zamiennik demona wu-ftp dla KDE.
 %setup -q -n %{name}
 
 %build
-make -f Makefile.cvs
+%{__make} -f Makefile.cvs
 export KDEDIR=%{_prefix}
 CXXFLAGS="$RPM_OPT_FLAGS -Wall"
 CFLAGS="$RPM_OPT_FLAGS -Wall"
@@ -153,7 +153,7 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 export KDEDIR=%{_prefix}
-make DESTDIR=$RPM_BUILD_ROOT install
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 
 %clean
