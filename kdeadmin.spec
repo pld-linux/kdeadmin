@@ -10,7 +10,7 @@ Vendor:		The KDE Team
 Source:		ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
 Requires:	qt >= 1.44, kdelibs = %{version}, pam
 BuildRequires:	kdelibs-devel
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _prefix	/usr/X11R6
 
