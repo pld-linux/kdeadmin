@@ -1,14 +1,15 @@
-%define		REV	20000418
 Summary:	K Desktop Environment - administrative tools
 Summary(pl):	K Desktop Environment - narzêdzia administratora
 Name:		kdeadmin
 Version:	2.0
-Release:	1.pre_%{REV}
+Release:	1
 License:	GPL
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
 Vendor:		The KDE Team
-Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/%{name}-%{REV}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0/distribution/tar/generic/source/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-nokdat.patch
+Icon:		kde-icon.xpm
 Requires:	qt >= 2.1, kdelibs = %{version}, pam
 BuildRequires:	kdelibs-devel
 BuildRequires:	rpm-devel >= 3.0.4
@@ -131,30 +132,34 @@ Wu-FTP daemon for KDE.
 Zamiennik demona wu-ftp dla KDE.
 
 %prep
-%setup -q -n %{name}
+%setup -q
+%patch0 -p1
 
 %build
 %{__make} -f Makefile.cvs
-export KDEDIR=%{_prefix}
+KDEDIR=%{_prefix}
 CXXFLAGS="$RPM_OPT_FLAGS -Wall"
 CFLAGS="$RPM_OPT_FLAGS -Wall"
 LDFLAGS="-s"
-export CXXFLAGS CFLAGS LDFLAGS
+export KDEDIR CXXFLAGS CFLAGS LDFLAGS
+
 %configure \
-	--prefix=$KDEDIR \
+	--prefix=%{_prefix} \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
 	--with-quota \
 	--with-shadow \
- 	--with-pam="yes"
+	--with-rpm \
+ 	--with-pam="yes" \
+	--with-final
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 export KDEDIR=%{_prefix}
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
-
+#%{__make} DESTDIR=$RPM_BUILD_ROOT install
+make DESTDIR=$RPM_BUILD_ROOT install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -164,10 +169,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 %files kcron
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_bindir}/kcron
-%{_applnkdir}/System/kcron.desktop
 
+%{_datadir}/doc/HTML/en/kcron/*
+%{_applnkdir}/System/kcron.desktop
 %{_datadir}/icons/locolor/*x*/apps/kcron.png
 
 #################################################
@@ -177,88 +182,45 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 
+%{_datadir}/doc/HTML/en/kdat/*
 %{_applnkdir}/Utilities/kdat.desktop
-
-%{_datadir}/icons/hicolor/*x*/apps/kdat.png
-%{_datadir}/icons/locolor/*x*/apps/kdat.png
-
-%{_datadir}/icons/locolor/16x16/apps/kdat_*.png
-%{_datadir}/icons/locolor/16x16/apps/closed.png
-%{_datadir}/icons/locolor/16x16/apps/open.png
-%{_datadir}/icons/locolor/16x16/apps/package.png
+%{_datadir}/apps/kdat/icons
 
 #################################################
 #             KPACKAGE
 #################################################
 %files kpackage
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_bindir}/kpackage*
 
+%{_datadir}/doc/HTML/en/kpackage/*
 %{_applnkdir}/Utilities/kpackage.desktop
-
 %{_datadir}/apps/kpackage
-
+%{_datadir}/icons/hicolor/*x*/apps/kpackage.png
 %{_datadir}/icons/locolor/*x*/apps/kpackage.png
-%{_datadir}/icons/locolor/16x16/mimetypes/*file.png
-%{_datadir}/icons/locolor/32x32/apps/*file.png
-
 %{_datadir}/mimelnk/application/x-debian-package.kdelnk
-%{_datadir}/mimelnk/application/x-rpm.kdelnk
 
 #################################################
 #             KSYSCONTROL
 #################################################
 %files ksysctrl
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_bindir}/ksysctrl
 %attr(755,root,root) %{_bindir}/printversion
 
 %{_applnkdir}/System/ksysctrl.desktop
-
 %{_datadir}/apps/ksysctrl
-
-%{_datadir}/icons/locolor/*x*/apps/kpackage.png
-
-%{_datadir}/icons/locolor/16x16/apps/audio.png
-%{_datadir}/icons/locolor/16x16/apps/cdrom.png
-%{_datadir}/icons/locolor/16x16/apps/conflict.png
-%{_datadir}/icons/locolor/16x16/apps/connectors.png
-%{_datadir}/icons/locolor/16x16/apps/display.png
-%{_datadir}/icons/locolor/16x16/apps/drivectrl.png
-%{_datadir}/icons/locolor/16x16/apps/network.png
-%{_datadir}/icons/locolor/16x16/apps/printer.png
-%{_datadir}/icons/locolor/16x16/apps/res.png
-%{_datadir}/icons/locolor/16x16/apps/scsi.png
-%{_datadir}/icons/locolor/16x16/apps/storage.png
-%{_datadir}/icons/locolor/16x16/apps/system.png
-%{_datadir}/icons/locolor/16x16/apps/usb.png
-
-%{_datadir}/toolbar/audio.png
-%{_datadir}/toolbar/cdrom.png
-%{_datadir}/toolbar/confmark.png
-%{_datadir}/toolbar/connectors.png
-%{_datadir}/toolbar/display.png
-%{_datadir}/toolbar/network.png
-%{_datadir}/toolbar/printer.png
-%{_datadir}/toolbar/scanner.png
-%{_datadir}/toolbar/scsi.png
-%{_datadir}/toolbar/storage.png
-%{_datadir}/toolbar/system.png
-%{_datadir}/toolbar/tuxscreen.png
-%{_datadir}/toolbar/usb.png
 
 #################################################
 #             KSYSV
 #################################################
 %files ksysv
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_bindir}/secpolicy
+%attr(755,root,root) %{_bindir}/ksysv
 
+%{_datadir}/doc/HTML/en/ksysv/*
 %{_datadir}/apps/ksysv
-
 %{_datadir}/icons/hicolor/*x*/apps/ksysv.png
 %{_datadir}/icons/locolor/*x*/apps/ksysv.png
 
@@ -267,20 +229,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 %files kuser
 %defattr(644,root,root,755)
-
 %attr(755, root, root) %{_bindir}/kuser
 
+%{_datadir}/doc/HTML/en/kuser/*
 %{_applnkdir}/System/kuser.desktop
-
 %{_datadir}/apps/kuser
-
 %{_datadir}/icons/hicolor/*x*/apps/kuser.png
-%{_datadir}/icons/locolor/16x16/apps/kuser.png
-%{_datadir}/icons/locolor/32x32/apps/kuser.png
-
-%{_datadir}/icons/locolor/22x22/actions/add_*.png
-%{_datadir}/icons/locolor/22x22/actions/delete_*.png
-%{_datadir}/icons/locolor/22x22/actions/edit_*.png
+%{_datadir}/icons/locolor/*x*/apps/kuser.png
 
 #################################################
 #             KWUFTPD
@@ -288,4 +243,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kwuftpd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwuftpd
+
+%{_datadir}/doc/HTML/en/kwuftpd/*
 %{_applnkdir}/System/kwuftpd.desktop
