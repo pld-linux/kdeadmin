@@ -1,7 +1,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.93
-%define		_snap		031105
+%define		_snap		031114
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,7 +18,7 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	7c93ded2807dbd77898a92c92d7da88e
+# Source0-md5:	b9f2ab6271e675ca3941ca35eca8a4a5
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
