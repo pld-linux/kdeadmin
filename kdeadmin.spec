@@ -45,7 +45,7 @@ KDE administrative tools. Package includes:
 - KUser - KDE user setup tool,
 - KSYSV - SYS V Init configuration,
 - KPackage - KDE support for RPM,
-- Kwuftpd - KDE ftp daemon configuration,
+- Kwuftpd - KDE FTP daemon configuration,
 - Kcmlinuz - KDE Linux Kernel Configuration.
 
 %description -l es
