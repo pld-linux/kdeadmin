@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.90
-%define		_snap		030622
+%define		_snap		030726
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,9 +18,8 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	3b284d1cea4518f5c5bfcb9b8c924278	
+# Source0-md5:	0cd4995fa8ac4a8a5da53965c615bf42
 Patch0:		%{name}-vcategories.patch
-Patch1:		%{name}-fix-kdat-Makefile.patch
 Icon:		kde-icon.xpm
 Requires:	kdelibs >= %{version}
 Requires:	pam
@@ -75,7 +74,6 @@ Summary(pl):	Konfigurator j±dra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 
 %description kcmlinuz
 A Linux kernel configurator for KDE.
@@ -91,7 +89,6 @@ Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
 Requires:       kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 Obsoletes:	kdat
 
 %description kdat
@@ -106,7 +103,6 @@ Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 
 %description kcron
 Kde version of "CRON".
@@ -125,7 +121,6 @@ Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
 Provides:	kpackage
 Obsoletes:	kpackage
-Obsoletes:	%{name}-kwuftpd
 
 %description kpackage
 Package front-end for KDE.
@@ -142,7 +137,6 @@ Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administração da inicialização System V
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -161,7 +155,6 @@ Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administração de usuários
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -196,7 +189,6 @@ Summary:	X Window Configuration
 Summary(pl):	Konfiguracja X Window
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
-Obsoletes:	%{name}-kwuftpd
 
 %description kxconfig
 X Window Configuration Tool.
@@ -207,7 +199,6 @@ Narzêdzie do konfiguracji X Window..
 %prep
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
-%patch1 -p1
 
 %build
 
