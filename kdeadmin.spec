@@ -190,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/doc/HTML/en/ksysv/*
 %{_datadir}/apps/ksysv
 %{_datadir}/icons/*color/*x*/apps/ksysv.png
-%{_datadir}/mimelnk/application/x-ksysv-log.desktop
+%{_datadir}/mimelnk/application/x-ksysv.desktop
 %{_datadir}/mimelnk/text/x-ksysv-log.desktop
 %{_applnkdir}/System/ksysv.desktop
 
