@@ -1,9 +1,9 @@
 
 %define		_state		stable
-%define		_ver		3.3.2
+%define		_ver		3.4.0
 
-%define		_minlibsevr	9:3.3.2
-%define		_minbaseevr	9:3.3.2
+%define		_minlibsevr	9:3.4.0
+%define		_minbaseevr	9:3.4.0
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -13,13 +13,13 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2	
-# Source0-md5:	d12b12925dda1f4e6ba162e856730a5e
+# Source0-md5:	d1db9fac4faca194cbda1e8189453363
 Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -33,7 +33,7 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -241,15 +241,12 @@ done
 %build
 cp /usr/share/automake/config.sub admin
 
-export UNSERMAKE=/usr/share/unsermake/unsermake
-
 # Do not check for lilo
-
 rm lilo-config/configure.in.in
 
 cp %{_datadir}/automake/config.sub admin
 
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -273,6 +270,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
+rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
+
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
@@ -290,26 +289,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/lilo.desktop
 %endif
 
-%files kcmlinuz
-%defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_linuz.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_linuz.so
-%{_datadir}/apps/kcmlinuz
-%{_desktopdir}/kde/linuz.desktop
+#%files kcmlinuz
+#%defattr(644,root,root,755)
+#{_libdir}/kde3/kcm_linuz.la
+#%attr(755,root,root) %{_libdir}/kde3/kcm_linuz.so
+#%{_datadir}/apps/kcmlinuz
+#%{_desktopdir}/kde/linuz.desktop
 
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
+%{_datadir}/apps/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
-%{_kdedocdir}/en/kcron
 
 %files kdat -f kdat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdat
 %{_datadir}/apps/kdat
 %{_desktopdir}/kde/kdat.desktop
-%{_iconsdir}/[!l]*/*/*/kdat*
+%{_iconsdir}/*/*/*/kdat*
 
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
