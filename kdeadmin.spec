@@ -1,6 +1,6 @@
 
 %define         _state          stable
-%define         _ver		3.1.2
+%define         _ver		3.1.3
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -10,13 +10,13 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		7
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	94c2981cd54bd02549664852fb82dd05
+# Source0-md5:	e733972693e1f9196a11cc90953a93d8
 #
 # generated from kde-i18n
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
@@ -26,7 +26,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel = %{version}
+#BuildRequires:	kdelibs-devel = %{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
