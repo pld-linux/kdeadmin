@@ -4,7 +4,11 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040506
+%define		_snap		040511
+%define		_packager	adgor
+
+%define		_minlibsevr	9:3.2.90.040508
+%define		_minbaseevr	9:3.2.90.040508
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -14,15 +18,15 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-#Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
-Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	216d8d0448a8c25e1a03a440d8cad276
+Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	%{name}-%{_snap}.tar.bz2
+##%% Source0-md5:	216d8d0448a8c25e1a03a440d8cad276
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	0cd7b623cb2de76f4042b18bb638c809
 Patch0:		%{name}-vcategories.patch
@@ -31,7 +35,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	ed
-BuildRequires:	kdelibs-devel >= 9:%{version}
+BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -71,9 +75,9 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 Summary:	LILO Configurator
 Summary(pl):	Konfigurator LILO
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	lilo
-Obsoletes:	%{name}-kcmlinuz < 8:3.1.93.031105-3
+Obsoletes:	kdeadmin-kcmlinuz < 8:3.1.93.031105-3
 
 %description kcmlilo
 LILO configurator for KDE.
@@ -86,7 +90,7 @@ Summary:	KDE Linux Kernel Configuration
 Summary(pl):	Konfigurator j眃ra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kcmlinuz
 A Linux kernel configurator for KDE.
@@ -101,7 +105,7 @@ Configurador do Kernel Linux.
 Summary:	Tape backup tool
 Summary(pl):	Narz阣zie do wykonywania kopii zapasowych na ta秏ie
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kdat
 
 %description kdat
@@ -115,7 +119,7 @@ Summary:	KDE cron daemon
 Summary(pl):	Program cron dla KDE
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kcron
 Kde version of "CRON".
@@ -131,7 +135,7 @@ Summary:	RPM front-end KDE
 Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Provides:	kpackage
 Obsoletes:	kpackage
 
@@ -149,7 +153,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administra玢o da inicializa玢o System V
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -167,7 +171,7 @@ Summary:	KDE User management tool
 Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administra玢o de usu醨ios
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -185,7 +189,7 @@ Summary:	KDE WU-FTP daemon configurator
 Summary(pl):	Konfigurator demona WU-FTP dla KDE
 Summary(pt_BR):	Ferramenta de administra玢o gr醘ica do WU-FTPD
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
+Requires:	kdelibs >= %{_minlibsevr}
 Requires:	wu-ftpd
 
 %description kwuftpd
@@ -336,6 +340,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
+
+# Workaround for doc caches (unsermake bug?)
+cd doc
+for i in `find . -name index.cache.bz2`; do
+	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
+done
+cd -	 
 
 %if %{with i18n}
 if [ -f "%{SOURCE1}" ] ; then
