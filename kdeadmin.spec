@@ -34,7 +34,7 @@ BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
 BuildRequires:	sed >= 4.0
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Requires:	pam
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -254,7 +254,7 @@ cd $RPM_BUILD_ROOT%{_pixmapsdir}
 mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
 cd -
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 #%find_lang kcmlilo	--with-kde
 #%find_lang kcmlinuz	--with-kde
