@@ -21,14 +21,12 @@ Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	0cd4995fa8ac4a8a5da53965c615bf42
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
-Requires:	kdelibs >= %{version}
-Requires:	pam
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 # Required by kpackage (RPM frontend). Dependency taken from librpm.la
 # by libtool.
-BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
