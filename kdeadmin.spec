@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
-%define         _ver		3.1.91
-%define		_snap		030918
+%define         _ver		3.1.92
+%define		_snap		030930
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,7 +18,7 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	b77c2e8902db0bed4de478cbfd7cf940
+# Source0-md5:	84b45a4b08bf75221ebeab8ce8df3cc7
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
@@ -68,7 +68,7 @@ Summary:	KDE Linux Kernel Configuration
 Summary(pl):	Konfigurator j±dra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 9:%{version}
 
 %description kcmlinuz
 A Linux kernel configurator for KDE.
@@ -83,7 +83,7 @@ Configurador do Kernel Linux.
 Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
-Requires:       kdebase-core >= %{version}
+Requires:       kdebase-core >= 9:%{version}
 Obsoletes:	kdat
 
 %description kdat
@@ -97,7 +97,7 @@ Summary:	KDE cron daemon
 Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 9:%{version}
 
 %description kcron
 Kde version of "CRON".
@@ -113,7 +113,7 @@ Summary:	RPM front-end KDE
 Summary(pl):	Program do manipulacji pakietami
 Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 9:%{version}
 Provides:	kpackage
 Obsoletes:	kpackage
 
@@ -131,7 +131,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administração da inicialização System V
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 9:%{version}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -149,7 +149,7 @@ Summary:	KDE User management tool
 Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administração de usuários
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 9:%{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -167,7 +167,7 @@ Summary:	KDE FTP daemon
 Summary(pl):	Wu-FTP daemon for KDE
 Summary(pt_BR):	Ferramenta de administração gráfica do WU-FTPD
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 9:%{version}
 Requires:	wu-ftpd
 
 %description kwuftpd
@@ -183,7 +183,7 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 Summary:	X Window Configuration
 Summary(pl):	Konfiguracja X Window
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 9:%{version}
 
 %description kxconfig
 X Window Configuration Tool.
@@ -221,16 +221,16 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_docdir}/kde/HTML
 
-cd $RPM_BUILD_ROOT%{_iconsdir}
-mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
-cd -
+#cd $RPM_BUILD_ROOT%{_iconsdir}
+#mv {locolor,crystalsvg}/16x16/apps/kxconfig.png
+#cd -
 
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
 %find_lang kpackage	--with-kde
 %find_lang ksysv	--with-kde
 %find_lang kuser	--with-kde
-%find_lang kxconfig	--with-kde
+#%find_lang kxconfig	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -285,9 +285,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
 
-%files kxconfig -f kxconfig.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kxconfig
-%{_datadir}/apps/kxconfig
-%{_desktopdir}/kde/kxconfig.desktop
-%{_iconsdir}/*/*/*/kxconfig*
+#%files kxconfig -f kxconfig.lang
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/kxconfig
+#%{_datadir}/apps/kxconfig
+#%{_desktopdir}/kde/kxconfig.desktop
+#%{_iconsdir}/*/*/*/kxconfig*
