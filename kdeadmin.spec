@@ -210,7 +210,7 @@ rm lilo-config/configure.in.in
 	--disable-rpath \
 	--enable-final \
  	--with-pam=yes \
-	--with-qt-libraries=%{_libdir} \\
+	--with-qt-libraries=%{_libdir} \
 	--with-shadow
 
 %{__make}
