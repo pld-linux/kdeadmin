@@ -200,18 +200,6 @@ Narzêdzie do konfiguracji demona WU-FTP dla KDE.
 %description kwuftpd -l pt_BR
 Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
-%package i18n
-Summary:	Common internationalization and localization files for kdeadmin
-Summary(pl):	Wspó³dzielone pliki umiêdzynarodawiaj±ce dla pakietów kdeadmin
-Group:		X11/Applications
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description i18n
-Common internationalization and localization files for kdeadmin.
-
-%description i18n -l pl
-Wspó³dzielone pliki umiêdzynarodawiaj±ce dla pakietów kdeadmin.
-
 %package kcron-i18n
 Summary:	Internationalization and localization files for kcron
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcrona
