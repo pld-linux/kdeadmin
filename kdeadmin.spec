@@ -71,6 +71,7 @@ Summary(pl):	Konfigurator j±dra Linuksa dla KDE
 Summary(pt_BR):	Configurador do Kernel Linux
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	%{name}-kwuftpd
 
 %description kcmlinuz
 A Linux kernel configurator for KDE.
@@ -86,6 +87,7 @@ Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
 Group:		X11/Applications
 Requires:       kdelibs >= %{version}
+Obsoletes:	%{name}-kwuftpd
 
 %description kdat
 Tape backup tool.
@@ -99,6 +101,7 @@ Summary(pl):	Program cron
 Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	%{name}-kwuftpd
 
 %description kcron
 Kde version of "CRON".
@@ -117,6 +120,7 @@ Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Provides:	kpackage
 Obsoletes:	kpackage
+Obsoletes:	%{name}-kwuftpd
 
 %description kpackage
 Package front-end for KDE.
@@ -133,6 +137,7 @@ Summary(pl):	Konfigurator Sys V Init dla KDE
 Summary(pt_BR):	Interface para administração da inicialização System V
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	%{name}-kwuftpd
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -151,6 +156,7 @@ Summary(pl):	Administracja kontami dla KDE
 Summary(pt_BR):	Ferramenta para administração de usuários
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	%{name}-kwuftpd
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -328,10 +334,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 #             KWUFTPD
 #################################################
-%files kwuftpd -f kwuftpd.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kwuftpd
-%{_applnkdir}/System/kwuftpd.desktop
+#%files kwuftpd -f kwuftpd.lang
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/kwuftpd
+#%{_applnkdir}/System/kwuftpd.desktop
 
 #################################################
 #             KXCONFIG
