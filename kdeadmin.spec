@@ -1,11 +1,11 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040517
+%define		_snap		040525
 %define		_packager	adgor
 
-%define		_minlibsevr	9:3.2.90.040515
-%define		_minbaseevr	9:3.2.90.040515
+%define		_minlibsevr	9:3.2.90.040524
+%define		_minbaseevr	9:3.2.90.040524
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -289,5 +289,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
+%{_datadir}/config.kcfg/kuser.kcfg
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
