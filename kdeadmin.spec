@@ -23,7 +23,6 @@ Group:		X11/Applications
 Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
 # Source0-md5:	3ea2eb506d78f3feda89b09ad62111a3
 Icon:		kde-admin.xpm
-Patch0:		%{name}-vcategories.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -223,7 +222,17 @@ Ferramenta de administração gráfica do WU-FTPD (servidor FTP).
 
 %prep
 %setup -q
-%patch0 -p1
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
+./kdat/kdat.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;/' \
+./kcron/kcron.desktop \
+./kpackage/kpackage.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;SystemSetup;/' \
+./ksysv/ksysv.desktop \
+./kuser/kuser.desktop
 
 %build
 cp /usr/share/automake/config.sub admin
