@@ -68,7 +68,7 @@ Summary:	KDE User management tool
 Summary(pl):	administracja kontami dla KDE
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description kuser
 A simple tool for adding/removing users from system and changing user
@@ -83,7 +83,7 @@ Summary:	RPM front-end KDE
 Summary(pl):	Program do manipulacji pakietami.
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description kpackage
 Package front-end for KDE.
@@ -96,7 +96,7 @@ Summary:	KDE System configurator
 Summary(pl):	Konfigurator Systemudla KDE
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description ksysctrl
 A System configurator for KDE.
@@ -109,7 +109,7 @@ Summary:	KDE Sys V Init configurator
 Summary(pl):	Konfigurator Sys V Init dla KDE
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description ksysv
 A Sys V Init configurator for KDE.
@@ -122,7 +122,7 @@ Summary:	KDE FTP daemon
 Summary(pl):	Wu-FTP daemon for KDE
 Group:		X11/KDE/Utilities
 Group(pl):	X11/KDE/Narzêdzia
-Requires:	qt >= 2.1, kdelibs = %{version}
+Requires:	kdelibs = %{version}
 
 %description kwuftpd
 Wu-FTP daemon for KDE.
@@ -132,7 +132,7 @@ Zamiennik demona wu-ftp dla KDE.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
 %{__make} -f Makefile.cvs
