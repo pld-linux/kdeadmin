@@ -1,0 +1,11 @@
+--- kdeadmin-3.2.1/kcron/ctcron.cpp.orig	2004-01-17 13:46:07.000000000 +0100
++++ kdeadmin-3.2.1/kcron/ctcron.cpp	2004-03-27 15:31:56.857930144 +0100
+@@ -98,7 +98,7 @@
+   initialVariableCount  = variable.size();
+ }
+ 
+-CTCron::CTCron(const struct passwd *pwd)
++CTCron::CTCron(const struct passwd *pwd) : syscron(false)
+ {
+   Q_ASSERT(pwd != 0L);
+ 
