@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.92
-%define		_snap		031006
+%define		_snap		031014
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -18,7 +18,7 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	fe553d647b351547c99e390e1049fff1
+# Source0-md5:	b0464c217178c22200ad56e60718dc1f
 Patch0:		%{name}-vcategories.patch
 Icon:		kde-icon.xpm
 BuildRequires:	autoconf
@@ -197,12 +197,8 @@ Narzêdzie do konfiguracji X Window..
 
 %build
 
-for plik in `find ./ -name *.desktop` ; do
-
-if [ -d $plik ]; then
-	echo $plik
-	sed -ie 's/\[nb\]/\[no\]/g' $plik
-	fi
+for f in `find . -name *.desktop` ; do
+	sed -i 's/\[nb\]/\[no\]/g' $f
 done
 
 %{__make} -f admin/Makefile.common cvs
