@@ -1,59 +1,446 @@
-diff -urN -x CVS kdeadmin.orig/kcron/cttask.cpp kdeadmin/kcron/cttask.cpp
---- kdeadmin.orig/kcron/cttask.cpp	Mon Mar 31 14:18:41 2003
-+++ kdeadmin/kcron/cttask.cpp	Tue Jun  1 16:12:34 2004
-@@ -44,6 +44,39 @@
-   {
-     silent = false;
-   }
-+  
-+  if (tokStr.substr(0,1) == "@")
-+  {
-+    if (tokStr.substr(1,6) == "reboot")
-+    {
-+      // Dunno what to do with this...
-+      tokStr = "0 0 1 1 *"+tokStr.substr(7,tokStr.length()-1);
-+    }
-+    else if (tokStr.substr(1,6) == "yearly")
-+    {
-+      tokStr = "0 0 1 1 *"+tokStr.substr(7,tokStr.length()-1);
-+    }
-+    else if (tokStr.substr(1,8) == "annually")
-+    {
-+      tokStr = "0 0 1 1 *"+tokStr.substr(9,tokStr.length()-1);
-+    }
-+    else if (tokStr.substr(1,7) == "monthly")
-+    {
-+      tokStr = "0 0 1 * *"+tokStr.substr(8,tokStr.length()-1);
-+    }
-+    else if (tokStr.substr(1,6) == "weekly")
-+    {
-+      tokStr = "0 0 * * 0"+tokStr.substr(7,tokStr.length()-1);
-+    }
-+    else if (tokStr.substr(1,5) == "daily")
-+    {
-+      tokStr = "0 0 * * *"+tokStr.substr(6,tokStr.length()-1);
-+    }
-+    else if (tokStr.substr(1,6) == "hourly")
-+    {
-+      tokStr = "0 * * * *"+tokStr.substr(7,tokStr.length()-1);
-+    }
-+  }
+diff -urN -x CVS kdeadmin.orig/admin/acinclude.m4.in kdeadmin/admin/acinclude.m4.in
+--- kdeadmin.orig/admin/acinclude.m4.in	2005-02-09 23:21:09.000000000 +0100
++++ kdeadmin/admin/acinclude.m4.in	2005-03-24 20:18:09.000000000 +0100
+@@ -1644,7 +1644,15 @@
  
-   int spacepos(tokStr.find_first_of(" \t"));
-   minute.initialize(tokStr.substr(0,spacepos));
-diff -urN -x CVS kdeadmin.orig/kcron/ctunit.cpp kdeadmin/kcron/ctunit.cpp
---- kdeadmin.orig/kcron/ctunit.cpp	Sat Sep 14 07:22:03 2002
-+++ kdeadmin/kcron/ctunit.cpp	Tue Jun  1 16:12:34 2004
-@@ -93,8 +93,12 @@
-       slashpos = subelement.length();
+ AC_MSG_RESULT([$kde_cv_uic_plugins])
+ if test "$kde_cv_uic_plugins" != yes; then
+-	AC_MSG_ERROR([you need to install kdelibs first.])
++	AC_MSG_ERROR([
++you need to install kdelibs first.
++
++If you did install kdelibs, then the Qt version that is picked up by
++this configure is not the same version you used to compile kdelibs. 
++The Qt Plugin installed by kdelibs is *ONLY* loadable if its the 
++same Qt version, compiled with the same compiler and the same Qt
++configuration settings.
++])
+ fi
+ fi
+ ])
+@@ -3104,8 +3112,8 @@
+         fi
+         rm -f conftest.h conftest.h.gch
+     fi
+-    AM_CONDITIONAL(unsermake_enable_pch, test "$kde_use_pch" = "yes" && test "$kde_gcc_supports_pch" = "yes")
+   fi
++  AM_CONDITIONAL(unsermake_enable_pch, test "$kde_use_pch" = "yes" && test "$kde_gcc_supports_pch" = "yes")
+   if test "$CXX" = "KCC"; then
+     dnl unfortunately we currently cannot disable exception support in KCC
+     dnl because doing so is binary incompatible and Qt by default links with exceptions :-(
+@@ -3194,6 +3202,51 @@
+   ifdef([AM_DEPENDENCIES], AC_REQUIRE([KDE_ADD_DEPENDENCIES]), [])
+ ])
+ 
++AC_DEFUN([KDE_CHECK_VISIBILITY_GCC_BUG],
++  [
++    AC_CACHE_CHECK([for gcc -fvisibility-inlines-hidden bug], kde_cv_val_gcc_visibility_bug,
++      [
++        AC_LANG_SAVE
++        AC_LANG_CPLUSPLUS
++
++        safe_CXXFLAGS=$CXXFLAGS
++        safe_LDFLAGS=$LDFLAGS
++        CXXFLAGS="$CXXFLAGS -fPIC -fvisibility-inlines-hidden -O0"
++        LDFLAGS="$LDFLAGS -shared -fPIC"
++
++        AC_TRY_LINK(
++        [
++          /* http://gcc.gnu.org/bugzilla/show_bug.cgi?id=19664 */
++          template<typename CharT>
++          struct VisTest
++          {
++            inline VisTest ();
++          };
++          template<typename CharT>
++          inline VisTest<CharT>::VisTest()
++          {}
++          extern template class VisTest<char>;  // It works if we drop that line
++          int some_function( int do_something ) __attribute__ ((visibility("default")));
++          int some_function( int )
++          {
++            VisTest<char> a;
++            return 0;
++          }
++        ], [/* elvis is alive */],
++        kde_cv_val_gcc_visibility_bug=no, kde_cv_val_gcc_visibility_bug=yes)
++
++        CXXFLAGS=$safe_CXXFLAGS
++        LDFLAGS=$safe_LDFLAGS
++        AC_LANG_RESTORE
++      ]
++    )
++
++    if test x$kde_cv_val_gcc_visibility_bug = xno; then
++      CXXFLAGS="$CXXFLAGS -fvisibility-inlines-hidden"
++    fi
++  ]
++)
++
+ AC_DEFUN([KDE_CHECK_AND_ADD_HIDDEN_VISIBILITY],
+ [
+   if test "$GXX" = "yes"; then
+@@ -3202,7 +3255,9 @@
+     KDE_CHECK_COMPILER_FLAG(fno-common, [CXXFLAGS="$CXXFLAGS -fno-common"])
+     KDE_CHECK_COMPILER_FLAG(fvisibility=hidden, 
+     [
+-        CXXFLAGS="$CXXFLAGS -fvisibility=hidden -fvisibility-inlines-hidden"
++        CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
++        KDE_CHECK_VISIBILITY_GCC_BUG
++
+         HAVE_GCC_VISIBILITY=1
+         AC_DEFINE_UNQUOTED(__KDE_HAVE_GCC_VISIBILITY, "$HAVE_GCC_VISIBILITY", [define to 1 if -fvisibility is supported])
+     ])
+diff -urN -x CVS kdeadmin.orig/admin/am_edit kdeadmin/admin/am_edit
+--- kdeadmin.orig/admin/am_edit	2004-12-17 21:18:28.000000000 +0100
++++ kdeadmin/admin/am_edit	2005-03-29 11:15:16.000000000 +0200
+@@ -483,6 +483,7 @@
+             $MakefileData =~ s/$lookup/$replacement/;
+             $lookup =~ s/\\\$\\\(CXXFLAGS\\\)/\\\$\\\(KCXXFLAGS\\\)/;
+             $replacement = "$stuff_before\$(KCXXFLAGS) \$(KDE_CXXFLAGS)$stuff_after";
++            next if ($stuff_before =~ /\$\(KDE_CXXFLAGS\)/ or $stuff_after =~ /\$\(KDE_CXXFLAGS\)/);
+             substituteLine($lookup, $replacement);
+         } else {
+             $found = 0;
+@@ -634,7 +635,7 @@
+ 		if ($pre eq '' && exists($varcontent{$variable})) {
+ 		    my @addlist = split(/[\034\s]+/, $varcontent{$variable});
+ 		    push(@objlist, @addlist);
+-                } elsif ($variable !~ 'OBJEXT') {
++                } elsif ($variable !~ 'OBJEXT' && $variable !~ /am__objects_\d+/ ) {
+                     $ocv = 1;
+ 		}
+             }
+@@ -2276,7 +2277,7 @@
+            "\t        echo \"\$\$i\"; \\\n" . 
+            "\t        if ! ";
+     $t .=  $cxxsuffix eq "KKK" ?
+-           "\$(CXX) \$(DEFS) -I. -I\$(srcdir) -I\$(top_builddir) \$(INCLUDES) \$(AM_CPPFLAGS) \$(CPPFLAGS) \$(KDE_CXXFLAGS) " :
++           "\$(CXX) \$(DEFS) -I. -I\$(srcdir) -I\$(top_builddir) \$(INCLUDES) \$(AM_CPPFLAGS) \$(CPPFLAGS) \$(CXXFLAGS) \$(KDE_CXXFLAGS) " :
+            "\$(CXXCOMPILE) ";
+     $t .=  " --dump-class-hierarchy -c \$\$i.bchecktest.cc; then \\\n" .
+            "\t            rm -f \$\$i.bchecktest.cc; exit 1; \\\n" .
+@@ -2352,7 +2353,7 @@
+     $MakefileData =~ s/\034/\\\n/g;    # Restore continuation lines
+     # Append our $progId line, _below_ the "generated by automake" line
+     # because automake-1.6 relies on the first line to be his own.
+-    my $progIdLine = "\# $progId - " . '$Revision$ '."\n";
++    my $progIdLine = "\# $progId - " . '$Revision$ '."\n";
+     if ( !( $MakefileData =~ s/^(.*generated .*by automake.*\n)/$1$progIdLine/ ) ) {
+         warn "automake line not found in $makefile\n";
+ 	# Fallback: first line
+diff -urN -x CVS kdeadmin.orig/kcron/kcron.desktop kdeadmin/kcron/kcron.desktop
+--- kdeadmin.orig/kcron/kcron.desktop	2005-02-05 05:17:07.000000000 +0100
++++ kdeadmin/kcron/kcron.desktop	2005-04-13 04:16:18.000000000 +0200
+@@ -15,7 +15,6 @@
+ Name[ta]=கேக்ரொன்
+ Name[tg]=Kрон
+ Name[th]=ตารางงาน - K
+-Name[xx]=xxKCronxx
+ GenericName=Task Scheduler
+ GenericName[af]=Opdrag Skeduleerder
+ GenericName[ar]=مجدول المهام
+@@ -27,7 +26,7 @@
+ GenericName[cy]=Trefnlennydd Tasgau
+ GenericName[da]=Opgaveskemalægger
+ GenericName[de]=Aufgabenplaner
+-GenericName[el]=Προγραμματιστής εργασιών
++GenericName[el]=Χρονοταξινομητής Εργασίας
+ GenericName[eo]=Planas taskojn por lanĉo je certaj tempoj
+ GenericName[es]=Planificador de tareas
+ GenericName[et]=Crontabi haldamine
+@@ -75,7 +74,6 @@
+ GenericName[ven]=Muvhekanyi wa Mushumo
+ GenericName[wa]=Tiestires C
+ GenericName[xh]=Umcwangcisi Womsebenzi
+-GenericName[xx]=xxTask Schedulerxx
+ GenericName[zh_CN]=任务调度程序
+ GenericName[zh_TW]=工作排程器
+ GenericName[zu]=Umgcini sikhathi Somsebenzi
+diff -urN -x CVS kdeadmin.orig/kdat/kdat.desktop kdeadmin/kdat/kdat.desktop
+--- kdeadmin.orig/kdat/kdat.desktop	2005-02-05 05:17:08.000000000 +0100
++++ kdeadmin/kdat/kdat.desktop	2005-04-13 04:16:18.000000000 +0200
+@@ -11,7 +11,6 @@
+ Name[ta]=கேடாட்
+ Name[tg]=KДат
+ Name[th]=เทปสำรองข้อมูล - K
+-Name[xx]=xxKDatxx
+ GenericName=Tape Backup Tool
+ GenericName[af]=Kaset Rugsteun Program
+ GenericName[ar]=أداة حفظ شريط البيانات الإحتياطي
+@@ -23,7 +22,7 @@
+ GenericName[cy]=Erfyn Cefn-gopïo ar Dâp
+ GenericName[da]=Værktøj til sikkerhedskopiering på bånd
+ GenericName[de]=Dienstprogramm für Bandsicherungen
+-GenericName[el]=Εργαλείο αντιγράφων εφεδρείας σε tape
++GenericName[el]=Εργαλείο Κασέτας Αντιγράφου Ασφαλείας
+ GenericName[eo]=Bendsekurigilo
+ GenericName[es]=Copia de cintas
+ GenericName[et]=Varukoopiate haldamine (lindil)
+@@ -70,7 +69,6 @@
+ GenericName[ven]=Tshishumiswa tsha Theipi tshau Thusedza
+ GenericName[wa]=Usteye di copeyes di såvrité so bindes
+ GenericName[xh]=Isixhobo Sokuncedisa Iteyipu
+-GenericName[xx]=xxTape Backup Toolxx
+ GenericName[zh_CN]=磁带备份工具
+ GenericName[zh_TW]=磁帶備份工具
+ GenericName[zu]=Ithuluzi Yethephu Yokugcina umsebenzi uphephile
+diff -urN -x CVS kdeadmin.orig/kfile-plugins/deb/kfile_deb.desktop kdeadmin/kfile-plugins/deb/kfile_deb.desktop
+--- kdeadmin.orig/kfile-plugins/deb/kfile_deb.desktop	2004-12-11 07:39:19.000000000 +0100
++++ kdeadmin/kfile-plugins/deb/kfile_deb.desktop	2005-03-07 15:19:46.000000000 +0100
+@@ -52,7 +52,6 @@
+ Name[uk]=Дані DEB
+ Name[ven]=Mbalo dza DEB
+ Name[wa]=Sitatistikes DEB
+-Name[xx]=xxDEB Statsxx
+ Name[zh_CN]=DEB统计
+ ServiceTypes=KFilePlugin
+ X-KDE-Library=kfile_deb
+diff -urN -x CVS kdeadmin.orig/kfile-plugins/rpm/kfile_rpm.desktop kdeadmin/kfile-plugins/rpm/kfile_rpm.desktop
+--- kdeadmin.orig/kfile-plugins/rpm/kfile_rpm.desktop	2004-12-11 07:39:20.000000000 +0100
++++ kdeadmin/kfile-plugins/rpm/kfile_rpm.desktop	2005-03-07 15:19:46.000000000 +0100
+@@ -53,7 +53,6 @@
+ Name[uk]=Дані RPM
+ Name[ven]=Mbalo dza RPM
+ Name[wa]=Sitatistikes RPM
+-Name[xx]=xxRPM Statsxx
+ Name[zh_CN]=RPM统计
+ ServiceTypes=KFilePlugin
+ X-KDE-Library=kfile_rpm
+diff -urN -x CVS kdeadmin.orig/kpackage/kpackage.desktop kdeadmin/kpackage/kpackage.desktop
+--- kdeadmin.orig/kpackage/kpackage.desktop	2005-02-05 05:17:08.000000000 +0100
++++ kdeadmin/kpackage/kpackage.desktop	2005-04-13 04:16:19.000000000 +0200
+@@ -16,7 +16,6 @@
+ Name[th]=จัดการแพ็คเกจ
+ Name[ven]=Tshiputo tsha K
+ Name[xh]=UdibanisolweK
+-Name[xx]=xxKPackagexx
+ Name[zu]=kphakethe
+ GenericName=Package Manager
+ GenericName[af]=Paket Bestuurder
+@@ -30,7 +29,7 @@
+ GenericName[cy]=Rheolydd Pecynnau
+ GenericName[da]=Pakkehåndtering
+ GenericName[de]=Paketmanager
+-GenericName[el]=Διαχειριστής πακέτων
++GenericName[el]=Διαχειρηστής Πακέτων
+ GenericName[eo]=Administrilo por programpakaĵoj
+ GenericName[es]=Administrador de paquetes
+ GenericName[et]=Pakettide haldamine
+@@ -77,7 +76,6 @@
+ GenericName[ven]=Phakhedzhi ya Murangaphanda
+ GenericName[wa]=Manaedjeu di pacaedjes
+ GenericName[xh]=Umphathi Wokudityaniswe kunye
+-GenericName[xx]=xxPackage Managerxx
+ GenericName[zh_CN]=软件包管理器
+ GenericName[zh_TW]=套件管理程式
+ GenericName[zu]=Umphathi Wokusongwayo
+diff -urN -x CVS kdeadmin.orig/kpackage/mimetypes/x-debian-package.desktop kdeadmin/kpackage/mimetypes/x-debian-package.desktop
+--- kdeadmin.orig/kpackage/mimetypes/x-debian-package.desktop	2005-02-05 05:17:08.000000000 +0100
++++ kdeadmin/kpackage/mimetypes/x-debian-package.desktop	2005-03-07 15:19:47.000000000 +0100
+@@ -62,7 +62,6 @@
+ Comment[ven]=Phakhedzhi ya Debian
+ Comment[wa]=Pacaedje Debian
+ Comment[xh]=Udityaniso kunye lwe Debian
+-Comment[xx]=xxDebian Packagexx
+ Comment[zh_CN]=Debian 软件包
+ Comment[zh_TW]=Debian 軟體套件
+ Comment[zu]=Ukusongwa kwe Debian
+diff -urN -x CVS kdeadmin.orig/ksysv/ksysv.desktop kdeadmin/ksysv/ksysv.desktop
+--- kdeadmin.orig/ksysv/ksysv.desktop	2005-02-23 06:06:40.000000000 +0100
++++ kdeadmin/ksysv/ksysv.desktop	2005-04-13 04:16:19.000000000 +0200
+@@ -2,15 +2,17 @@
+ Encoding=UTF-8
+ Name=KSysV
+ Name[pt_BR]=KSysV 
+-Name[xx]=xxKSysVxx
+ GenericName=SysV-Init Editor
+ GenericName[bg]=Редактор на SysV-Init
+ GenericName[br]=Aozer deraouiñ SysV
++GenericName[bs]=SysV Init Editor
+ GenericName[ca]=Editor de l'init SysV
+ GenericName[cs]=SysV-Init editor
+ GenericName[cy]=Golygydd SysV-Init
++GenericName[el]=Επεξεργαστής SysV-Init
+ GenericName[es]= Editor de inicio SysV
+ GenericName[et]=SysV-Init redaktor
++GenericName[eu]=SysV Init editorea
+ GenericName[fi]=SysV-Init -asetusmuokkain
+ GenericName[fr]=Éditeur de l'initialisation SysV
+ GenericName[ga]=Eagarthóir SysV-Init
+@@ -24,10 +26,12 @@
+ GenericName[pt]=Editor de SysV-Init
+ GenericName[pt_BR]=Editor do SysV-Init
+ GenericName[ru]=Редактор сценариев SysV
++GenericName[sk]=SysV-Init editor
+ GenericName[sl]=Urejevalnik začetnih nastavitev SysV
++GenericName[sr]=Уређивач SysV-init-а
++GenericName[sr@Latn]=Uređivač SysV-init-a
+ GenericName[sv]=Sys V-starteditor
+ GenericName[uk]=Редактора KSysV-Init
+-GenericName[xx]=xxSysV-Init Editorxx
+ GenericName[zh_CN]=SysV Init 编辑器
+ MimeType=
+ Exec=ksysv -caption "%c" %i %m
+diff -urN -x CVS kdeadmin.orig/ksysv/x-ksysv.desktop kdeadmin/ksysv/x-ksysv.desktop
+--- kdeadmin.orig/ksysv/x-ksysv.desktop	2005-02-05 05:17:09.000000000 +0100
++++ kdeadmin/ksysv/x-ksysv.desktop	2005-04-13 04:16:19.000000000 +0200
+@@ -12,7 +12,7 @@
+ Comment[cy]=Wedi cadw furfweddiad Init
+ Comment[da]=Gemt Init-indstilling
+ Comment[de]=Gespeicherte Init-Einstellungen
+-Comment[el]=Αποθηκευμένη ρύθμιση init
++Comment[el]=Αποθηκευμένες Ρυθμίσεις Init
+ Comment[eo]=Konservita Preparagordo
+ Comment[es]=Configuración de inicio guardada
+ Comment[et]=Salvestatud Initi konfiguratsioon
+@@ -60,7 +60,6 @@
+ Comment[ven]=Khonofiguresheni yo vhulungelwaho khayo
+ Comment[wa]=Apontiaedje d' enondaedje schapé
+ Comment[xh]=Uqwalaselo olugciniweyo lwe Init
+-Comment[xx]=xxSaved Init Configurationxx
+ Comment[zh_CN]=已保存的 Init 配置
+ Comment[zh_TW]=已儲存起始設定
+ Comment[zu]=Uhlanganiselo olugciniwe lwe Init
+diff -urN -x CVS kdeadmin.orig/ksysv/x-ksysv-log.desktop kdeadmin/ksysv/x-ksysv-log.desktop
+--- kdeadmin.orig/ksysv/x-ksysv-log.desktop	2005-02-05 05:17:08.000000000 +0100
++++ kdeadmin/ksysv/x-ksysv-log.desktop	2005-04-13 04:16:19.000000000 +0200
+@@ -10,7 +10,7 @@
+ Comment[cy]=Ffeil Cofnodi Golygydd SysV-Init
+ Comment[da]=SysV-Init editor logfil
+ Comment[de]=Protokolldatei des SysV-Init-Editors
+-Comment[el]=Αρχείο καταγραφής διορθωτή SysV-Init
++Comment[el]=Αρχείο Καταχωρήσεων Επεξεργαστή SysV-Init
+ Comment[eo]=protokoldosiero de SysV-Prepar-Redaktilo
+ Comment[es]=Archivo de registro del Editor de inicio SysV
+ Comment[et]=SysV-Init redaktori logifail
+@@ -47,7 +47,6 @@
+ Comment[tr]=SysV-Inıt Düzenleyici Günlük Dosyası
+ Comment[uk]=Файл журналу редактора SysV-Init
+ Comment[wa]=Fitchî djournå di l' aspougneu po SysV-Init
+-Comment[xx]=xxSysV-Init Editor Log Filexx
+ Comment[zh_CN]=SysV-Init 编辑器记录文件
+ Icon=ksysv
+ Type=MimeType
+diff -urN -x CVS kdeadmin.orig/kuser/kuser.desktop kdeadmin/kuser/kuser.desktop
+--- kdeadmin.orig/kuser/kuser.desktop	2005-02-05 05:17:09.000000000 +0100
++++ kdeadmin/kuser/kuser.desktop	2005-04-13 04:16:19.000000000 +0200
+@@ -19,7 +19,6 @@
+ Name[tg]=KИстифодакунанда
+ Name[th]=จัดการบัญชีผู้ใช้ - K
+ Name[uz]=Фойдаланувчилар
+-Name[xx]=xxKUserxx
+ GenericName=User Manager
+ GenericName[af]=Gebruiker Bestuurder
+ GenericName[ar]=مدير المستخدمين
+@@ -32,7 +31,7 @@
+ GenericName[cy]=Rheolydd Defnyddwyr
+ GenericName[da]=Brugerhåndtering
+ GenericName[de]=Benutzerverwaltung
+-GenericName[el]=Διαχειριστής χρηστών
++GenericName[el]=Διαχειρηστής Χρηστών
+ GenericName[eo]=Administrilo por la uzantoj de la komputilo
+ GenericName[es]=Administrador de usuarios
+ GenericName[et]=Kasutajate haldamine
+@@ -80,7 +79,6 @@
+ GenericName[ven]=Murangaphanda wa Mushumisi
+ GenericName[wa]=Manaedjeu d' uzeus
+ GenericName[xh]=Umphathi We Calendar
+-GenericName[xx]=xxUser Managerxx
+ GenericName[zh_CN]=用户管理程序
+ GenericName[zh_TW]=使用者管理程式
+ GenericName[zu]=Umphathi we Calendar
+diff -urN -x CVS kdeadmin.orig/kuser/propdlg.cpp kdeadmin/kuser/propdlg.cpp
+--- kdeadmin.orig/kuser/propdlg.cpp	2004-11-29 01:03:48.000000000 +0100
++++ kdeadmin/kuser/propdlg.cpp	2005-04-07 16:33:39.000000000 +0200
+@@ -210,6 +210,8 @@
+       connect(cbposix, SIGNAL(stateChanged(int)), this, SLOT(changed()));
+       connect(cbposix, SIGNAL(stateChanged(int)), this, SLOT(cbposixChanged()));
+       addRow(frame, layout, row++, cbposix, i18n("Disable &POSIX account information"), whatstr);
++    } else {
++      cbposix = 0;
      }
-     else
-+    {
-       step = fieldToValue(subelement.substr(slashpos+1,
-         subelement.length()-slashpos-1));
-+      if (step < 1)
-+        step = 1;
-+    }
+     frontrow = row;
+   }
+@@ -706,7 +708,8 @@
+   bool posix, samba = false;
  
-     // find "=" to determine range
-     dashpos = subelement.find("-");
+   newuser->copy( user );
+-  if ( cbposix->state() != QButton::NoChange ) {
++
++  if ( kug->getUsers().getCaps() & KUsers::Cap_Disable_POSIX && cbposix->state() != QButton::NoChange ) {
+     if ( cbposix->isChecked() )
+       newuser->setCaps( newuser->getCaps() & ~KUser::Cap_POSIX );
+     else
+@@ -873,7 +876,7 @@
+ bool propdlg::check()
+ {
+   bool one = ( mUsers.getFirst() == mUsers.getLast() );
+-  bool posix = !( cbposix->isChecked() );
++  bool posix = !( kug->getUsers().getCaps() & KUsers::Cap_Disable_POSIX ) || !( cbposix->isChecked() );
+ 
+   if ( one && posix && leid->text().isEmpty() ) {
+     KMessageBox::sorry( 0, i18n("You need to specify an UID.") );
+@@ -928,7 +931,8 @@
+ 
+   uid_t newuid = leid->text().toULong();
+ 
+-  if ( one && !cbposix->isChecked() && olduid != newuid )
++  if ( one && ( !( kug->getUsers().getCaps() & KUsers::Cap_Disable_POSIX ) || !cbposix->isChecked() )
++               && olduid != newuid )
+   {
+     if (kug->getUsers().lookup(newuid)) {
+       KMessageBox::sorry( 0,
+diff -urN -x CVS kdeadmin.orig/lilo-config/kde/lilo.desktop kdeadmin/lilo-config/kde/lilo.desktop
+--- kdeadmin.orig/lilo-config/kde/lilo.desktop	2005-02-05 05:17:09.000000000 +0100
++++ kdeadmin/lilo-config/kde/lilo.desktop	2005-04-13 04:16:20.000000000 +0200
+@@ -20,7 +20,7 @@
+ Name[cy]=Rheolydd Cychwyn (LILO)
+ Name[da]=Boothåndtering (LILO)
+ Name[de]=Boot-Manager (Lilo)
+-Name[el]=Διαχειριστής εκκίνησης (LILO)
++Name[el]=Διαχειρηστής Εκκίνησης (LILO)
+ Name[eo]=Linukslanĉilo (LILO)
+ Name[es]=Administrador de arranque (LILO)
+ Name[et]=Alglaadur (LILO)
+@@ -66,7 +66,6 @@
+ Name[ven]=Muranga phanda wa Butu (LILO)
+ Name[wa]=Apontiaedje del enondrece (LILO)
+ Name[xh]=Umphathi wesiNgxobo (LILO)
+-Name[xx]=xxBoot Manager (LILO)xx
+ Name[zh_CN]=启动管理器(LILO)
+ Name[zh_TW]=開機啟動管理程式(LILO)
+ Name[zu]=Umphathi Wesingxobo (LILO)
+@@ -82,7 +81,7 @@
+ Comment[cy]=Ffurfweddu LILO (rheolydd cychwyn Linux)
+ Comment[da]=Indstil LILO (Linux-boothåndtering)
+ Comment[de]=Hier können Sie Lilo (den Boot-Manager von Linux) einrichten
+-Comment[el]=Ρύθμιση του LILO (ο διαχειριστής εκκίνησης του Linux)
++Comment[el]=Ρύθμιση LILO (Ο διαχειρηστής εκκίνησης του Linux)
+ Comment[eo]=Agordu LILOn (la Linukslanĉilon)
+ Comment[es]=Configurar LILO (el administrador de arranque de Linux)
+ Comment[et]=Linuxi alglaaduri LILO seadistamine
+@@ -125,7 +124,6 @@
+ Comment[ven]=Dzudzanyani LILO (mulanguli wa boot ya Linux)
+ Comment[wa]=Chal vos ploz apontyî LILO (l' enondrece Linux)
+ Comment[xh]=Qwalalsela LILO (umphathi we boot ye Linux)
+-Comment[xx]=xxConfigure LILO (the Linux boot manager)xx
+ Comment[zh_CN]=配置 LILO (Linux 启动管理程序)
+ 
+ Keywords=lilo,boot,bootup,boot manager,linux,Other OS,MBR,startup,start
+@@ -136,7 +134,6 @@
+ Keywords[cy]=lilo,cychwyn, rheolydd cychwyn, linux, CG Arall, MBR, dechrau
+ Keywords[da]=lilo,boot,bootup,boothåndtering,linux,Andet OS,MBR,opstart,start
+ Keywords[de]=Lilo,Booten,Linux,MBR,Start,Systemstart,Boot-Manager,andere OS
+-Keywords[el]=lilo,εκκίνηση,εκκίνηση,διαχειριστής εκκίνησης,linux,Άλλο λειτουργικό σύστημα,MBR,έναρξη,ξεκίνημα
+ Keywords[eo]=lilo,lanĉo,lanĉadministrilo,Linukso,alia operaciumo,MBR,rulo
+ Keywords[es]=lilo,arranque,administrador de arranque,linux,Otro SO,MBR,inicio
+ Keywords[et]=lilo,boot,bootup,alglaadimine,linux,teine OS,MBR,käivitamine,start
+@@ -177,7 +174,6 @@
+ Keywords[ven]=lilo,boot,bootup,boot manager,linux,Other Os,MBR,Mathomoni,Thoma
+ Keywords[wa]=LILO,boot,bootup,linux,Ôtes SO,MBR,startup,start,enondrece,enondaedje
+ Keywords[xh]=lilo,isingxobo,faka isingxobo, uphathi wesingxobo,linux,Ezinye OS,MBR,faka isiqalo,qala
+-Keywords[xx]=xxlilo,boot,bootup,boot manager,linux,Other OS,MBR,startup,startxx
+ Keywords[zh_CN]=lilo,boot,bootup,boot manager,linux,Other OS,MBR,startup,start,启动,启动管理器,其它操作系统
+ Keywords[zu]=lilo,isingxobo,faka isingxobo umphathi wesingxobo,linux,Ezinye OS,MBR,faka isiqalo,qala
+ 
