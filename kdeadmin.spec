@@ -77,22 +77,6 @@ LILO configuration module for KDE Control Centre.
 %description kcmlilo -l pl
 Konfigurator LILO dla Centrum Sterowania KDE.
 
-%package kcmlinuz
-Summary:	KDE Linux Kernel Configuration
-Summary(pl):	Konfigurator j±dra Linuksa dla KDE
-Summary(pt_BR):	Configurador do Kernel Linux
-Group:		X11/Applications
-Requires:	kdebase-core >= %{_minbaseevr}
-
-%description kcmlinuz
-A Linux kernel configuration module for KDE Control Centre.
-
-%description kcmlinuz -l pl
-Program do konfiguracji j±dra Linuksa dla Centrum Sterowania KDE.
-
-%description kcmlinuz -l pt_BR
-Configurador do Kernel Linux.
-
 %package kdat
 Summary:	Tape backup tool
 Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
@@ -289,13 +273,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
 %{_desktopdir}/kde/lilo.desktop
 %endif
-
-#%files kcmlinuz
-#%defattr(644,root,root,755)
-#{_libdir}/kde3/kcm_linuz.la
-#%attr(755,root,root) %{_libdir}/kde3/kcm_linuz.so
-#%{_datadir}/apps/kcmlinuz
-#%{_desktopdir}/kde/linuz.desktop
 
 %files kcron -f kcron.lang
 %defattr(644,root,root,755)
