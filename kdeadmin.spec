@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -33,7 +33,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel
-BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	rpmbuild(macros) >= 1.213
 #BuildRequires:	unsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -266,7 +266,7 @@ rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%ifarch %{ix86}
+%ifarch %{ix86} %{x8664}
 %files kcmlilo
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_lilo.la
