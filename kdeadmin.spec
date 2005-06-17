@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -32,9 +32,9 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
-BuildRequires:	rpm-devel
+BuildRequires:	rpm-devel >= 4.4.1
 BuildRequires:	rpmbuild(macros) >= 1.213
-#BuildRequires:	unsermake >= 040511
+#BuildRequires:	pnsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
