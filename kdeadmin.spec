@@ -1,10 +1,10 @@
 
 %define		_state		stable
-%define		_kdever		3.4.1
-%define		_ver		3.4.1
+%define		_kdever		3.4.2
+%define		_ver		3.4.2
 
-%define		_minlibsevr	9:3.4.1
-%define		_minbaseevr	9:3.4.1
+%define		_minlibsevr	9:3.4.2
+%define		_minbaseevr	9:3.4.2
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -14,13 +14,13 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	3
+Release:	0.1
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2	
-# Source0-md5:	ee02e3caf664d825838698b44557b0ef
+# Source0-md5:	ef1d4be02bbe384d46e807421dd52fed
 Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -294,7 +294,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kfile*.la
 %attr(755,root,root) %{_libdir}/kde3/kfile*.so
 %{_datadir}/apps/kpackage
-%{_datadir}/mimelnk/application/x-debian-package.desktop
 %{_datadir}/services/kfile*
 %{_desktopdir}/kde/kpackage.desktop
 %{_iconsdir}/*/*/*/kpackage.png
