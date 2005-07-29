@@ -266,7 +266,7 @@ rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%ifarch %{ix86} %{x8664}
+%ifarch %{ix86} %{x8664} sparc sparc64
 %files kcmlilo
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_lilo.la
