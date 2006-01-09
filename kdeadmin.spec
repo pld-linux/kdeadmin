@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Vendor:		The KDE Team
@@ -68,7 +68,9 @@ Summary:	LILO Configurator
 Summary(pl):	Konfigurator LILO
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
+%ifarch %{ix86} %{x8664}
 Requires:	lilo
+%endif
 Obsoletes:	kdeadmin-kcmlinuz < 8:3.4.0
 
 %description kcmlilo
