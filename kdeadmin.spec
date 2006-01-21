@@ -21,7 +21,6 @@ Vendor:		The KDE Team
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2	
 # Source0-md5:	9d0f914d2d0d3fbef8ed51cfdab36d40
-Icon:		kde-admin.xpm
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
