@@ -229,7 +229,7 @@ cp %{_datadir}/automake/config.sub admin
 
 %configure \
 	--disable-rpath \
-	--enable-final \
+	--disable-final \
  	--with-pam=yes \
 	--with-qt-libraries=%{_libdir} \
 	--with-shadow \
