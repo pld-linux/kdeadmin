@@ -17,9 +17,8 @@ Version:	%{_ver}
 Release:	1
 Epoch:		8
 License:	GPL
-Vendor:		The KDE Team
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2	
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	08e9bddd2b42e0783d7f79d08cdb031b
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -31,9 +30,9 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
+#BuildRequires:	pnsermake >= 040511
 BuildRequires:	rpm-devel >= 4.4.1
 BuildRequires:	rpmbuild(macros) >= 1.213
-#BuildRequires:	pnsermake >= 040511
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -311,6 +310,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/kuser.png
 
 %files knetworkconf -f knetworkconf.lang
+%defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_knetworkconf*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_knetworkconf*.so
 %{_datadir}/apps/knetworkconf
