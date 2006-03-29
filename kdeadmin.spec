@@ -1,10 +1,9 @@
-
+# TODO
+# - unpackaged files
+#   /usr/lib/pkgconfig/system-tools-backends.pc
 %define		_state		stable
-%define		_kdever		3.5.2
-%define		_ver		3.5.2
-
-%define		_minlibsevr	9:3.5.2
-%define		_minbaseevr	9:3.5.2
+%define		_minlibsevr	9:%{version}
+%define		_minbaseevr	9:%{version}
 
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
@@ -13,12 +12,12 @@ Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE¹ÜÀí¹¤¾ß
 Name:		kdeadmin
-Version:	%{_ver}
-Release:	0.1
+Version:	3.5.2
+Release:	1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	ad1f645ed9f140a7c9ce8602cc0c88b8
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -30,7 +29,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
-#BuildRequires:	pnsermake >= 040511
 BuildRequires:	rpm-devel >= 4.4.1
 BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	shadow
@@ -98,10 +96,10 @@ features of the dds2tar program. It features:
 
 %description kdat -l pl
 KDat to oparty na tarze program do wykonywania kopii zapasowych na
-ta¶mie. Jest przeznaczony do dzia³ania z wieloma archiwami na
-jednej tasiemce. By³ projektowany, by zapewniæ mi³y, graficzny
-interfejs do tara, obs³uguj±cy mo¿liwo¶ci najszybszego, selektywnego
-odczytywania z programu dds2tar. Mo¿liwo¶ci programu KDat:
+ta¶mie. Jest przeznaczony do dzia³ania z wieloma archiwami na jednej
+tasiemce. By³ projektowany, by zapewniæ mi³y, graficzny interfejs do
+tara, obs³uguj±cy mo¿liwo¶ci najszybszego, selektywnego odczytywania z
+programu dds2tar. Mo¿liwo¶ci programu KDat:
 - prosty graficzny interfejs dla zawarto¶ci systemu plików i ta¶my
 - obs³uga wielu archiwów na tej samej fizycznej ta¶mie
 - pe³ny indeks archiwów i plików zapisywany na lokalnym dysku
@@ -214,18 +212,12 @@ for f in `find . -name \*.desktop`; do
 	fi
 done
 
-%build
-cp /usr/share/automake/config.sub admin
-
 # Do not check for lilo
 rm lilo-config/configure.in.in
 
-cp %{_datadir}/automake/config.sub admin
-
-#export UNSERMAKE=%{_datadir}/unsermake/unsermake
-
+%build
+cp /usr/share/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
-
 %configure \
 	--disable-rpath \
 	--disable-final \
@@ -254,12 +246,13 @@ rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
 %find_lang ksysv	--with-kde
 %find_lang kuser	--with-kde
 %find_lang knetworkconf	--with-kde
+%find_lang lilo-config	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %ifarch %{ix86} %{x8664} sparc sparc64
-%files kcmlilo
+%files kcmlilo -f lilo-config.lang
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_lilo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
@@ -316,3 +309,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/knetworkconf
 %{_desktopdir}/kde/kcm_knetworkconfmodule.desktop
 %{_iconsdir}/*/*/*/knetworkconf.png
+%{_iconsdir}/*/*/actions/network_connected_lan_knc.png
+%{_iconsdir}/*/*/actions/network_disconnected_lan.png
+%{_iconsdir}/*/*/actions/network_disconnected_wlan.png
+%{_iconsdir}/*/*/actions/network_traffic_wlan.png
