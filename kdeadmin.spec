@@ -12,13 +12,13 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	3.5.2
+Version:	3.5.3
 Release:	1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	ad1f645ed9f140a7c9ce8602cc0c88b8
+# Source0-md5:	842e74881c89a719423bbd5cc1f4e226
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
