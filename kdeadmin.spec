@@ -1,6 +1,6 @@
 # TODO
 # - unpackaged files
-#   /usr/lib/pkgconfig/system-tools-backends.pc
+#   %{_pkgconfigdir}/system-tools-backends.pc
 %define		_state		stable
 %define		_minlibsevr	9:%{version}
 %define		_minbaseevr	9:%{version}
