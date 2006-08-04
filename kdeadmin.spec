@@ -13,12 +13,13 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	3.5.4
-Release:	1
+Release:	1.3
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	579a2e3e8e05cf0851a88def57fcc0a3
+Patch0:		%{name}-knetworkconf-pld.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -194,6 +195,7 @@ KDE Network Configurator.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -206,11 +208,14 @@ KDE Network Configurator.
 	-e 's/Terminal=0/Terminal=false/' \
 	ksysv/ksysv.desktop \
 	kuser/kuser.desktop
-for f in `find . -name \*.desktop`; do
+for f in `find . -name '*.desktop'`; do
 	if grep -q '\[ven\]' $f; then
 		sed -i -e 's/\[ven\]/[ve]/' $f
 	fi
 done
+
+# kill env, call interpreter directly, so rpm automatics could rule
+%{__sed} -i -e '1s,#!.*bin/env.*perl,#!%{__perl},' knetworkconf/backends/*.pl.in
 
 # Do not check for lilo
 rm lilo-config/configure.in.in
@@ -306,7 +311,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_knetworkconf*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_knetworkconf*.so
-%{_datadir}/apps/knetworkconf
+%dir %{_datadir}/apps/knetworkconf
+%dir %{_datadir}/apps/knetworkconf/backends
+%attr(755,root,root) %{_datadir}/apps/knetworkconf/backends/*
+%{_datadir}/apps/knetworkconf/pixmaps
 %{_desktopdir}/kde/kcm_knetworkconfmodule.desktop
 %{_iconsdir}/*/*/*/knetworkconf.png
 %{_iconsdir}/*/*/actions/network_connected_lan_knc.png
