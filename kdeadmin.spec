@@ -5,6 +5,7 @@
 %define		_minlibsevr	9:%{version}
 %define		_minbaseevr	9:%{version}
 
+%include	/usr/lib/rpm/macros.perl
 Summary:	K Desktop Environment - administrative tools
 Summary(es):	K Desktop Environment - herramientas administrativas
 Summary(ko):	K 单胶农啪 券版 - 包府 档备
@@ -13,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	3.5.4
-Release:	1.3
+Release:	1.4
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
@@ -31,6 +32,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	pam-devel
 BuildRequires:	rpm-devel >= 4.4.1
+BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
