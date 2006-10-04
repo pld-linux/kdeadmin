@@ -13,13 +13,13 @@ Summary(pl):	K Desktop Environment - narz阣zia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
-Version:	3.5.4
-Release:	2
+Version:	3.5.5
+Release:	0.1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	579a2e3e8e05cf0851a88def57fcc0a3
+# Source0-md5:	4af595f5d5506521e8b29a1d92ba3409
 Patch0:		%{name}-knetworkconf-pld.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
@@ -200,14 +200,11 @@ KDE Network Configurator.
 %patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
-	-e 's/Terminal=0/Terminal=false/' \
 	kdat/kdat.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;/' \
-	-e 's/Terminal=0/Terminal=false/' \
 	kcron/kcron.desktop \
 	kpackage/kpackage.desktop
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;X-Administration;/' \
-	-e 's/Terminal=0/Terminal=false/' \
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;SystemSetup;/' \
 	ksysv/ksysv.desktop \
 	kuser/kuser.desktop
 for f in `find . -name '*.desktop'`; do
