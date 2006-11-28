@@ -39,6 +39,8 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	shadow
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _noautoreq      libtool(.*)
+
 %description
 KDE administrative tools. Package includes:
 - KCron - KDE Cron daemon,
