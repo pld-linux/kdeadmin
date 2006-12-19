@@ -13,13 +13,13 @@ Summary(pl):	K Desktop Environment - narzêdzia administratora
 Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE¹ÜÀí¹¤¾ß
 Name:		kdeadmin
-Version:	3.5.5
+Version:	3.80.2
 Release:	1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	4af595f5d5506521e8b29a1d92ba3409
+Source0:	ftp://sunsite.icm.edu.pl/pub/unix/kde/unstable/%{version}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	e0e9fe7d8d45380c44a4456d64c80805
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-knetworkconf-pld.patch
 Patch2:		kde-ac260-lt.patch
@@ -81,38 +81,6 @@ LILO configuration module for KDE Control Centre.
 
 %description kcmlilo -l pl
 Konfigurator LILO dla Centrum Sterowania KDE.
-
-%package kdat
-Summary:	Tape backup tool
-Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
-Group:		X11/Applications
-Requires:	kdebase-core >= %{_minbaseevr}
-Obsoletes:	kdat
-
-%description kdat
-KDat is a tar-based tape archiver. It is designed to work with
-multiple archives on a single tape. It was designed to provide a nice,
-GUI front-end to tar that supported the fast selective extraction
-features of the dds2tar program. It features:
-- simple graphical interface to local filesystem and tape contents.
-- multiple archives on the same physical tape.
-- complete index of archives and files is stored on local hard disk.
-- selective restore of files from an archive.
-- backup profiles for frequently used backups.
-- tape backup tool.
-
-%description kdat -l pl
-KDat to oparty na tarze program do wykonywania kopii zapasowych na
-ta¶mie. Jest przeznaczony do dzia³ania z wieloma archiwami na jednej
-tasiemce. By³ projektowany, by zapewniæ mi³y, graficzny interfejs do
-tara, obs³uguj±cy mo¿liwo¶ci najszybszego, selektywnego odczytywania z
-programu dds2tar. Mo¿liwo¶ci programu KDat:
-- prosty graficzny interfejs dla zawarto¶ci systemu plików i ta¶my
-- obs³uga wielu archiwów na tej samej fizycznej ta¶mie
-- pe³ny indeks archiwów i plików zapisywany na lokalnym dysku
-- wybiórcze odtwarzanie plików z archiwum
-- profile backupów dla czêsto u¿ywanych kopii
-- narzêdzie do tworzenia kopii zapasowych na ta¶mie.
 
 %package kcron
 Summary:	KDE cron daemon
@@ -201,110 +169,82 @@ KDE Network Configurator.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
 
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
-	kdat/kdat.desktop
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;/' \
-	kcron/kcron.desktop \
-	kpackage/kpackage.desktop
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;SystemSetup;/' \
-	ksysv/ksysv.desktop \
-	kuser/kuser.desktop
-for f in `find . -name '*.desktop'`; do
-	if grep -q '\[ven\]' $f; then
-		sed -i -e 's/\[ven\]/[ve]/' $f
-	fi
-done
+#%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
+#	kdat/kdat.desktop
+#%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;/' \
+#	kcron/kcron.desktop \
+#	kpackage/kpackage.desktop
+#%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;SystemSetup;/' \
+#	ksysv/ksysv.desktop \
+#	kuser/kuser.desktop
+#for f in `find . -name '*.desktop'`; do
+#	if grep -q '\[ven\]' $f; then
+#		sed -i -e 's/\[ven\]/[ve]/' $f
+#	fi
+#done
 
 # kill env, call interpreter directly, so rpm automatics could rule
-%{__sed} -i -e '1s,#!.*bin/env.*perl,#!%{__perl},' knetworkconf/backends/*.pl.in
+#%{__sed} -i -e '1s,#!.*bin/env.*perl,#!%{__perl},' knetworkconf/backends/*.pl.in
 
-# Do not check for lilo
-rm lilo-config/configure.in.in
 
 %build
-cp /usr/share/automake/config.sub admin
-%{__make} -f admin/Makefile.common cvs
-%configure \
-	--disable-rpath \
-	--disable-final \
- 	--with-pam=yes \
-	--with-qt-libraries=%{_libdir} \
-	--with-shadow \
-%if "%{_lib}" == "lib64"
-	--enable-libsuffix=64 \
-%endif
-	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
-
+mkdir build
+cd build
+%cmake \
+    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+    ../
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
-
-%find_lang kcron	--with-kde
-%find_lang kdat		--with-kde
-%find_lang kpackage	--with-kde
-%find_lang ksysv	--with-kde
-%find_lang kuser	--with-kde
-%find_lang knetworkconf	--with-kde
-%find_lang lilo-config	--with-kde
+#%find_lang kcron	--with-kde
+#%find_lang kdat		--with-kde
+#%find_lang kpackage	--with-kde
+#%find_lang ksysv	--with-kde
+#%find_lang kuser	--with-kde
+#%find_lang knetworkconf	--with-kde
+#%find_lang lilo-config	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%ifarch %{ix86} %{x8664} sparc sparc64
-%files kcmlilo -f lilo-config.lang
+%files kcmlilo 
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_lilo.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
-%{_desktopdir}/kde/lilo.desktop
-%endif
+%{_libdir}/kde4/kcm_lilo.la
+%attr(755,root,root) %{_libdir}/kde4/kcm_lilo.so
+/usr/share/services/lilo.desktop
 
-%files kcron -f kcron.lang
+%files kcron 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_datadir}/apps/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
 
-%files kdat -f kdat.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kdat
-%{_datadir}/apps/kdat
-%{_desktopdir}/kde/kdat.desktop
-%{_iconsdir}/*/*/*/kdat*
-
-%files kpackage -f kpackage.lang
+%files kpackage 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
-%{_libdir}/kde3/kfile*.la
-%attr(755,root,root) %{_libdir}/kde3/kfile*.so
+%{_libdir}/kde4/kfile*.la
+%attr(755,root,root) %{_libdir}/kde4/kfile*.so
 %{_datadir}/apps/kpackage
 %{_datadir}/services/kfile*
 %{_desktopdir}/kde/kpackage.desktop
 %{_iconsdir}/*/*/*/kpackage.png
 
-%files ksysv -f ksysv.lang
+%files ksysv 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
-%attr(755,root,root) %{_bindir}/ksysv
-%{_datadir}/apps/ksysv
-%{_datadir}/mimelnk/application/x-ksysv.desktop
-%{_datadir}/mimelnk/text/x-ksysv-log.desktop
-%{_desktopdir}/kde/ksysv.desktop
-%{_iconsdir}/*/*/*/ksysv.png
-%{_iconsdir}/*/*/*/toggle_log.png
 
-%files kuser -f kuser.lang
+%files kuser 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
@@ -312,17 +252,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
 
-%files knetworkconf -f knetworkconf.lang
+%files knetworkconf 
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_knetworkconf*.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_knetworkconf*.so
+%{_libdir}/kde4/kcm_knetworkconf*.la
+%attr(755,root,root) %{_libdir}/kde4/kcm_knetworkconf*.so
 %dir %{_datadir}/apps/knetworkconf
 %dir %{_datadir}/apps/knetworkconf/backends
 %attr(755,root,root) %{_datadir}/apps/knetworkconf/backends/*
 %{_datadir}/apps/knetworkconf/pixmaps
-%{_desktopdir}/kde/kcm_knetworkconfmodule.desktop
+/usr/share/services/kcm_knetworkconfmodule.desktop
 %{_iconsdir}/*/*/*/knetworkconf.png
-%{_iconsdir}/*/*/actions/network_connected_lan_knc.png
-%{_iconsdir}/*/*/actions/network_disconnected_lan.png
-%{_iconsdir}/*/*/actions/network_disconnected_wlan.png
-%{_iconsdir}/*/*/actions/network_traffic_wlan.png
+%{_iconsdir}/*/*/actions/network_*.png
+/usr/lib/pkgconfig/system-tools-backends.pc
