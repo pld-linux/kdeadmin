@@ -1,7 +1,7 @@
 # TODO
 # - unpackaged files
 #   %{_pkgconfigdir}/system-tools-backends.pc
-%define		_state		stable
+%define		_state		unstable
 %define		_minlibsevr	9:%{version}
 %define		_minbaseevr	9:%{version}
 
@@ -195,8 +195,8 @@ KDE Network Configurator.
 mkdir build
 cd build
 %cmake \
-    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
-    ../
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	../
 %{__make}
 
 %install
@@ -207,30 +207,30 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 #%find_lang kcron	--with-kde
-#%find_lang kdat		--with-kde
+#%find_lang kdat	--with-kde
 #%find_lang kpackage	--with-kde
 #%find_lang ksysv	--with-kde
 #%find_lang kuser	--with-kde
-#%find_lang knetworkconf	--with-kde
+#%find_lang knetworkconf --with-kde
 #%find_lang lilo-config	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files kcmlilo 
+%files kcmlilo
 %defattr(644,root,root,755)
 %{_libdir}/kde4/kcm_lilo.la
 %attr(755,root,root) %{_libdir}/kde4/kcm_lilo.so
-/usr/share/services/lilo.desktop
+%{_datadir}/services/lilo.desktop
 
-%files kcron 
+%files kcron
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcron
 %{_datadir}/apps/kcron
 %{_desktopdir}/kde/kcron.desktop
 %{_iconsdir}/*/*/*/kcron.png
 
-%files kpackage 
+%files kpackage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
 %{_libdir}/kde4/kfile*.la
@@ -240,11 +240,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kpackage.desktop
 %{_iconsdir}/*/*/*/kpackage.png
 
-%files ksysv 
+%files ksysv
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/secpolicy
 
-%files kuser 
+%files kuser
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kuser
 %{_datadir}/apps/kuser
@@ -252,7 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kuser.desktop
 %{_iconsdir}/*/*/*/kuser.png
 
-%files knetworkconf 
+%files knetworkconf
 %defattr(644,root,root,755)
 %{_libdir}/kde4/kcm_knetworkconf*.la
 %attr(755,root,root) %{_libdir}/kde4/kcm_knetworkconf*.so
@@ -260,7 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/knetworkconf/backends
 %attr(755,root,root) %{_datadir}/apps/knetworkconf/backends/*
 %{_datadir}/apps/knetworkconf/pixmaps
-/usr/share/services/kcm_knetworkconfmodule.desktop
+%{_datadir}/services/kcm_knetworkconfmodule.desktop
 %{_iconsdir}/*/*/*/knetworkconf.png
 %{_iconsdir}/*/*/actions/network_*.png
-/usr/lib/pkgconfig/system-tools-backends.pc
+%{_pkgconfigdir}/system-tools-backends.pc
