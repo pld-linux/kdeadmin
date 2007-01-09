@@ -23,6 +23,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.t
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-knetworkconf-pld.patch
 Patch2:		kde-ac260-lt.patch
+Patch3:		kde-am.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -202,6 +203,7 @@ KDE Network Configurator.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	kdat/kdat.desktop
