@@ -1,0 +1,11 @@
+--- kdeadmin-3.5.6/kpackage/kpackage.desktop~	2007-01-18 17:00:55.000000000 +0200
++++ kdeadmin-3.5.6/kpackage/kpackage.desktop	2007-01-31 19:58:35.000000000 +0200
+@@ -85,7 +85,7 @@
+ GenericName[zh_HK]=套件管理程式
+ GenericName[zh_TW]=套件管理程式
+ GenericName[zu]=Umphathi Wokusongwayo
+-MimeType=application/x-rpm;application/x-deb;
++MimeType=application/x-rpm;application/x-deb;application/x-redhat-package-manager;
+ Exec=kpackage -caption "%c" %i %m %u
+ Icon=kpackage
+ Type=Application
