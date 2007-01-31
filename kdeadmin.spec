@@ -14,7 +14,7 @@ Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN):	KDE管理工具
 Name:		kdeadmin
 Version:	3.5.6
-Release:	1
+Release:	2
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
@@ -23,6 +23,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.t
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-knetworkconf-pld.patch
 Patch2:		kde-ac260-lt.patch
+Patch3:		%{name}-kpackage-mimetype.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -202,6 +203,7 @@ KDE Network Configurator.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	kdat/kdat.desktop
