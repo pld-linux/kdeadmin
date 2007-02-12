@@ -7,11 +7,11 @@
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	K Desktop Environment - administrative tools
-Summary(es):	K Desktop Environment - herramientas administrativas
-Summary(ko):	K µ¥½ºÅ©Å¾ È¯°æ - °ü¸® µµ±¸
-Summary(pl):	K Desktop Environment - narzêdzia administratora
-Summary(pt_BR):	K Desktop Environment - ferramentas administrativas
-Summary(zh_CN):	KDE¹ÜÀí¹¤¾ß
+Summary(es.UTF-8):   K Desktop Environment - herramientas administrativas
+Summary(ko.UTF-8):   K ë°ìŠ¤í¬íƒ‘ í™˜ê²½ - ê´€ë¦¬ ë„êµ¬
+Summary(pl.UTF-8):   K Desktop Environment - narzÄ™dzia administratora
+Summary(pt_BR.UTF-8):   K Desktop Environment - ferramentas administrativas
+Summary(zh_CN.UTF-8):   KDEç®¡ç†å·¥å…·
 Name:		kdeadmin
 Version:	3.5.6
 Release:	2
@@ -50,24 +50,24 @@ KDE administrative tools. Package includes:
 - Kwuftpd - KDE FTP daemon configuration,
 - Kcmlinuz - KDE Linux Kernel Configuration.
 
-%description -l es
+%description -l es.UTF-8
 Herramientas administrativas para KDE. Incluidos en este paquete:
-- KSYSV - editor de los archivos de iniciación sysV,
-- KUser - herramienta de gestión de usuarios.
+- KSYSV - editor de los archivos de iniciaciÃ³n sysV,
+- KUser - herramienta de gestiÃ³n de usuarios.
 
-%description -l pl
+%description -l pl.UTF-8
 Aplikacje administratorskie dla KDE. Pakiet zawiera:
 - KCron - program cron,
-- KDat - narzêdzie do wykonywania kopii zapasowych na ta¶mie,
-- KUser - program do zarz±dzania kontami u¿ytkowników,
+- KDat - narzÄ™dzie do wykonywania kopii zapasowych na taÅ›mie,
+- KUser - program do zarzÄ…dzania kontami uÅ¼ytkownikÃ³w,
 - KSYSV - program do konfiguracji startu systemu,
-- KPackage - program do zarz±dzania pakietami,
+- KPackage - program do zarzÄ…dzania pakietami,
 - Kwuftpd - konfigurator demona FTP dla KDE,
-- Kcmlinuz - konfigurator j±dra Linuksa dla KDE.
+- Kcmlinuz - konfigurator jÄ…dra Linuksa dla KDE.
 
 %package kcmlilo
 Summary:	LILO Configurator
-Summary(pl):	Konfigurator LILO
+Summary(pl.UTF-8):   Konfigurator LILO
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 %ifarch %{ix86} %{x8664}
@@ -78,12 +78,12 @@ Obsoletes:	kdeadmin-kcmlinuz < 8:3.4.0
 %description kcmlilo
 LILO configuration module for KDE Control Centre.
 
-%description kcmlilo -l pl
+%description kcmlilo -l pl.UTF-8
 Konfigurator LILO dla Centrum Sterowania KDE.
 
 %package kdat
 Summary:	Tape backup tool
-Summary(pl):	Narzêdzie do wykonywania kopii zapasowych na ta¶mie
+Summary(pl.UTF-8):   NarzÄ™dzie do wykonywania kopii zapasowych na taÅ›mie
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kdat
@@ -100,23 +100,23 @@ features of the dds2tar program. It features:
 - backup profiles for frequently used backups.
 - tape backup tool.
 
-%description kdat -l pl
+%description kdat -l pl.UTF-8
 KDat to oparty na tarze program do wykonywania kopii zapasowych na
-ta¶mie. Jest przeznaczony do dzia³ania z wieloma archiwami na jednej
-tasiemce. By³ projektowany, by zapewniæ mi³y, graficzny interfejs do
-tara, obs³uguj±cy mo¿liwo¶ci najszybszego, selektywnego odczytywania z
-programu dds2tar. Mo¿liwo¶ci programu KDat:
-- prosty graficzny interfejs dla zawarto¶ci systemu plików i ta¶my
-- obs³uga wielu archiwów na tej samej fizycznej ta¶mie
-- pe³ny indeks archiwów i plików zapisywany na lokalnym dysku
-- wybiórcze odtwarzanie plików z archiwum
-- profile backupów dla czêsto u¿ywanych kopii
-- narzêdzie do tworzenia kopii zapasowych na ta¶mie.
+taÅ›mie. Jest przeznaczony do dziaÅ‚ania z wieloma archiwami na jednej
+tasiemce. ByÅ‚ projektowany, by zapewniÄ‡ miÅ‚y, graficzny interfejs do
+tara, obsÅ‚ugujÄ…cy moÅ¼liwoÅ›ci najszybszego, selektywnego odczytywania z
+programu dds2tar. MoÅ¼liwoÅ›ci programu KDat:
+- prosty graficzny interfejs dla zawartoÅ›ci systemu plikÃ³w i taÅ›my
+- obsÅ‚uga wielu archiwÃ³w na tej samej fizycznej taÅ›mie
+- peÅ‚ny indeks archiwÃ³w i plikÃ³w zapisywany na lokalnym dysku
+- wybiÃ³rcze odtwarzanie plikÃ³w z archiwum
+- profile backupÃ³w dla czÄ™sto uÅ¼ywanych kopii
+- narzÄ™dzie do tworzenia kopii zapasowych na taÅ›mie.
 
 %package kcron
 Summary:	KDE cron daemon
-Summary(pl):	Program cron dla KDE
-Summary(pt_BR):	Gerenciador/agendador de tarefas e interface para o cron
+Summary(pl.UTF-8):   Program cron dla KDE
+Summary(pt_BR.UTF-8):   Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -125,18 +125,18 @@ KCron is an application for scheduling programs to run in the
 background. It is a graphical user interface to cron, the UNIX system
 scheduler.
 
-%description kcron -l pl
-KCron to aplikacja do planowania uruchamiania programów w tle. Jest to
+%description kcron -l pl.UTF-8
+KCron to aplikacja do planowania uruchamiania programÃ³w w tle. Jest to
 graficzny interfejs do crona - systemowego programu do planowego
-uruchamiania programów w systemach uniksowych.
+uruchamiania programÃ³w w systemach uniksowych.
 
-%description kcron -l pt_BR
+%description kcron -l pt_BR.UTF-8
 Gerenciador/agendador de tarefas e interface para o cron.
 
 %package kpackage
 Summary:	Package management front-end KDE
-Summary(pl):	Program do manipulacji pakietami
-Summary(pt_BR):	Interface para gerenciamento de pacotes RPM/DEB
+Summary(pl.UTF-8):   Program do manipulacji pakietami
+Summary(pt_BR.UTF-8):   Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Provides:	kpackage
@@ -147,48 +147,48 @@ KPackage is a GUI interface to the RPM, Debian, Slackware and BSD
 package managers. KPackage is part of the K Desktop Environment and,
 as a result, it is designed to integrate with the KDE file manager.
 
-%description kpackage -l pl
-KPackage to graficzny interfejs do zarz±dców pakietów RPM, Debiana,
-Slackware'a i BSD. KPackage to czê¶æ ¶rodowiska KDE, dziêki czemu
-integruje siê z zarz±dc± plików KDE.
+%description kpackage -l pl.UTF-8
+KPackage to graficzny interfejs do zarzÄ…dcÃ³w pakietÃ³w RPM, Debiana,
+Slackware'a i BSD. KPackage to czÄ™Å›Ä‡ Å›rodowiska KDE, dziÄ™ki czemu
+integruje siÄ™ z zarzÄ…dcÄ… plikÃ³w KDE.
 
-%description kpackage -l pt_BR
+%description kpackage -l pt_BR.UTF-8
 Interface para gerenciamento de pacotes RPM/DEB.
 
 %package ksysv
 Summary:	KDE Sys V Init configurator
-Summary(pl):	Konfigurator Sys V Init dla KDE
-Summary(pt_BR):	Interface para administração da inicialização System V
+Summary(pl.UTF-8):   Konfigurator Sys V Init dla KDE
+Summary(pt_BR.UTF-8):   Interface para administraÃ§Ã£o da inicializaÃ§Ã£o System V
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
 %description ksysv
 A Sys V Init configurator for KDE.
 
-%description ksysv -l pl
-Program do konfiguracji startu systemu wykorzystuj±cego Sys V Init.
+%description ksysv -l pl.UTF-8
+Program do konfiguracji startu systemu wykorzystujÄ…cego Sys V Init.
 
-%description ksysv -l pt_BR
-Interface para administração da inicialização System V, com
-visualização e manipulação gráfica e facilitada dos serviços
-disponíveis bem como dos níveis de execução.
+%description ksysv -l pt_BR.UTF-8
+Interface para administraÃ§Ã£o da inicializaÃ§Ã£o System V, com
+visualizaÃ§Ã£o e manipulaÃ§Ã£o grÃ¡fica e facilitada dos serviÃ§os
+disponÃ­veis bem como dos nÃ­veis de execuÃ§Ã£o.
 
 %package kuser
 Summary:	KDE User management tool
-Summary(pl):	Administracja kontami dla KDE
-Summary(pt_BR):	Ferramenta para administração de usuários
+Summary(pl.UTF-8):   Administracja kontami dla KDE
+Summary(pt_BR.UTF-8):   Ferramenta para administraÃ§Ã£o de usuÃ¡rios
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kuser
 A simple tool for managin system groups and user accounts from system.
 
-%description kuser -l pl
-Narzêdzie do dodawania/usuwania u¿ytkowników oraz do zmiany danych o
+%description kuser -l pl.UTF-8
+NarzÄ™dzie do dodawania/usuwania uÅ¼ytkownikÃ³w oraz do zmiany danych o
 nich.
 
-%description kuser -l pt_BR
-Ferramenta para administração de usuários do sistema.
+%description kuser -l pt_BR.UTF-8
+Ferramenta para administraÃ§Ã£o de usuÃ¡rios do sistema.
 
 %package knetworkconf
 Summary:	KDE Network Configurator
