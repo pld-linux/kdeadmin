@@ -7,11 +7,11 @@
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	K Desktop Environment - administrative tools
-Summary(es.UTF-8):   K Desktop Environment - herramientas administrativas
-Summary(ko.UTF-8):   K 데스크탑 환경 - 관리 도구
-Summary(pl.UTF-8):   K Desktop Environment - narzędzia administratora
-Summary(pt_BR.UTF-8):   K Desktop Environment - ferramentas administrativas
-Summary(zh_CN.UTF-8):   KDE管理工具
+Summary(es.UTF-8):	K Desktop Environment - herramientas administrativas
+Summary(ko.UTF-8):	K 데스크탑 환경 - 관리 도구
+Summary(pl.UTF-8):	K Desktop Environment - narzędzia administratora
+Summary(pt_BR.UTF-8):	K Desktop Environment - ferramentas administrativas
+Summary(zh_CN.UTF-8):	KDE管理工具
 Name:		kdeadmin
 Version:	3.5.6
 Release:	2
@@ -67,7 +67,7 @@ Aplikacje administratorskie dla KDE. Pakiet zawiera:
 
 %package kcmlilo
 Summary:	LILO Configurator
-Summary(pl.UTF-8):   Konfigurator LILO
+Summary(pl.UTF-8):	Konfigurator LILO
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 %ifarch %{ix86} %{x8664}
@@ -83,7 +83,7 @@ Konfigurator LILO dla Centrum Sterowania KDE.
 
 %package kdat
 Summary:	Tape backup tool
-Summary(pl.UTF-8):   Narzędzie do wykonywania kopii zapasowych na taśmie
+Summary(pl.UTF-8):	Narzędzie do wykonywania kopii zapasowych na taśmie
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kdat
@@ -115,8 +115,8 @@ programu dds2tar. Możliwości programu KDat:
 
 %package kcron
 Summary:	KDE cron daemon
-Summary(pl.UTF-8):   Program cron dla KDE
-Summary(pt_BR.UTF-8):   Gerenciador/agendador de tarefas e interface para o cron
+Summary(pl.UTF-8):	Program cron dla KDE
+Summary(pt_BR.UTF-8):	Gerenciador/agendador de tarefas e interface para o cron
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -135,8 +135,8 @@ Gerenciador/agendador de tarefas e interface para o cron.
 
 %package kpackage
 Summary:	Package management front-end KDE
-Summary(pl.UTF-8):   Program do manipulacji pakietami
-Summary(pt_BR.UTF-8):   Interface para gerenciamento de pacotes RPM/DEB
+Summary(pl.UTF-8):	Program do manipulacji pakietami
+Summary(pt_BR.UTF-8):	Interface para gerenciamento de pacotes RPM/DEB
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Provides:	kpackage
@@ -157,8 +157,8 @@ Interface para gerenciamento de pacotes RPM/DEB.
 
 %package ksysv
 Summary:	KDE Sys V Init configurator
-Summary(pl.UTF-8):   Konfigurator Sys V Init dla KDE
-Summary(pt_BR.UTF-8):   Interface para administração da inicialização System V
+Summary(pl.UTF-8):	Konfigurator Sys V Init dla KDE
+Summary(pt_BR.UTF-8):	Interface para administração da inicialização System V
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -175,8 +175,8 @@ disponíveis bem como dos níveis de execução.
 
 %package kuser
 Summary:	KDE User management tool
-Summary(pl.UTF-8):   Administracja kontami dla KDE
-Summary(pt_BR.UTF-8):   Ferramenta para administração de usuários
+Summary(pl.UTF-8):	Administracja kontami dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta para administração de usuários
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
