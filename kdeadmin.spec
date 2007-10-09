@@ -13,13 +13,13 @@ Summary(pl.UTF-8):	K Desktop Environment - narzędzia administratora
 Summary(pt_BR.UTF-8):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN.UTF-8):	KDE管理工具
 Name:		kdeadmin
-Version:	3.5.7
+Version:	3.5.8
 Release:	1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	fdf4e7e230d9b5688d72f0e1a8039e12
+# Source0-md5:	324a44d854a92177e71954f9264c98a8
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-knetworkconf-pld.patch
 Patch2:		kde-ac260-lt.patch
