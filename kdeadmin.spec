@@ -249,6 +249,7 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
+rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 
 %find_lang kcron	--with-kde
 %find_lang kdat		--with-kde
@@ -264,7 +265,6 @@ rm -rf $RPM_BUILD_ROOT
 %ifarch %{ix86} %{x8664} sparc sparc64
 %files kcmlilo -f lilo-config.lang
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_lilo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_lilo.so
 %{_desktopdir}/kde/lilo.desktop
 %endif
@@ -286,7 +286,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kpackage -f kpackage.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kpackage
-%{_libdir}/kde3/kfile*.la
 %attr(755,root,root) %{_libdir}/kde3/kfile*.so
 %{_datadir}/apps/kpackage
 %{_datadir}/services/kfile*
@@ -314,7 +313,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files knetworkconf -f knetworkconf.lang
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_knetworkconf*.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_knetworkconf*.so
 %dir %{_datadir}/apps/knetworkconf
 %dir %{_datadir}/apps/knetworkconf/backends
