@@ -14,7 +14,7 @@ Summary(pt_BR.UTF-8):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN.UTF-8):	KDE管理工具
 Name:		kdeadmin
 Version:	3.5.9
-Release:	0.1
+Release:	1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
