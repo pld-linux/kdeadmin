@@ -192,11 +192,15 @@ Ferramenta para administração de usuários do sistema.
 
 %package knetworkconf
 Summary:	KDE Network Configurator
+Summary(pl.UTF-8):	Konfigurator sieci dla KDE
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 
 %description knetworkconf
 KDE Network Configurator.
+
+%description knetworkconf -l pl.UTF-8
+Konfigurator sieci dla KDE.
 
 %prep
 %setup -q
