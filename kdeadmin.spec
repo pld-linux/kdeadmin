@@ -14,12 +14,13 @@ Summary(pt_BR.UTF-8):	K Desktop Environment - ferramentas administrativas
 Summary(zh_CN.UTF-8):	KDE管理工具
 Name:		kdeadmin
 Version:	3.5.10
-Release:	1
+Release:	3
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	eb23c52c945f31a48f2c9df4330a1262
+Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-knetworkconf-pld.patch
 Patch2:		kde-ac260-lt.patch
@@ -204,6 +205,7 @@ Konfigurator sieci dla KDE.
 
 %prep
 %setup -q
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
