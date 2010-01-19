@@ -25,6 +25,7 @@ Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-knetworkconf-pld.patch
 Patch2:		kde-ac260-lt.patch
 Patch3:		%{name}-kpackage-mimetype.patch
+Patch4:		kde-am.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -210,6 +211,7 @@ Konfigurator sieci dla KDE.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	kdat/kdat.desktop
