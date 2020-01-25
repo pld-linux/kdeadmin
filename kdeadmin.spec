@@ -5,7 +5,6 @@
 %define		_minlibsevr	9:%{version}
 %define		_minbaseevr	9:%{version}
 
-%include	/usr/lib/rpm/macros.perl
 Summary:	K Desktop Environment - administrative tools
 Summary(es.UTF-8):	K Desktop Environment - herramientas administrativas
 Summary(ko.UTF-8):	K 데스크탑 환경 - 관리 도구
